@@ -1,0 +1,355 @@
+/* Общие стили */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #222629; /* Темный фон */
+  color: #ffffff; /* Светлый текст */
+  transition: all 0.3s ease-in-out;
+}
+
+.container {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 400px;
+  padding-bottom: 70px;
+}
+
+/* Секция баланса */
+.balance-section {
+  background-color: #262a2f; /* Серый фон */
+  color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  position: relative;
+  animation: fadeIn 1s ease-in-out;
+  box-shadow: 0 0 15px 4px rgba(134, 194, 50, 0.3); /* Мягкое свечение */
+  transform: scale(0.9);
+}
+
+.balance {
+  font-size: 3em;
+  margin: 15px 0;
+  color: #86C232; /* Яркий зелёный для баланса */
+  transition: transform 0.5s ease-in-out;
+}
+
+.balance:hover {
+  transform: scale(1.1);
+}
+
+/* Кнопка пополнения баланса */
+.top-up-btn {
+  background-color: #61892F; /* Зелёный */
+  border: none;
+  padding: 15px;
+  font-size: 1.5em;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  color: #fff;
+}
+
+.top-up-btn:hover {
+  background-color: #86C232; /* Ярко-зелёный при наведении */
+  box-shadow: 0 0 10px rgba(134, 194, 50, 0.6);
+}
+
+/* Секция заявок */
+.order-section .btn {
+  display: block;
+  margin: 25px auto;
+  padding: 16px;
+  background-color: #364d31; /* Серо-зелёный */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  width: 96%;
+  font-size: 1.3em;
+  cursor: pointer;
+  animation: fadeInUp 1s ease-in-out;
+  transition: transform 0.3s ease, background-color 0.3s ease-in-out;
+}
+
+.order-section .btn:hover {
+  transform: translateY(-5px);
+  background-color: #86C232; /* Зелёный при наведении */
+}
+
+/* Минималистичные кнопки */
+.minimal-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #61892F; /* Зелёная рамка */
+  padding: 10px;
+  font-size: 1.2em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.minimal-btn:hover {
+  background-color: #61892F;
+  color: white;
+  transform: translateY(-5px);
+}
+
+/* Стили для формы заявки */
+.order-form {
+  background-color: #262a2f; /* Серый фон */
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(134, 194, 50, 0.3); /* Зелёное свечение */
+  margin: 20px auto;
+  max-width: 90%;
+  text-align: left;
+}
+
+.order-form label {
+  color: #86C232; /* Ярко-зелёный для меток */
+  font-weight: bold;
+}
+
+.order-form input,
+.order-form select,
+.order-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  background-color: #333537; /* Темно-серый фон полей */
+  color: #ffffff;
+}
+
+.order-form textarea {
+  resize: none;
+  height: 100px;
+}
+
+.order-form .btn {
+  width: 48%;
+  margin: 10px 1%;
+  background-color: #61892F;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order-form .btn:hover {
+  background-color: #86C232;
+}
+
+/* Всплывающее окно для уведомления */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #86C232;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 1.2em;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s;
+}
+
+.popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Стили для новых заявок */
+.order-item {
+padding: 20px;
+  background-color: #262a2f;
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: inset 0px 0px 20px 0px rgb(106 231 27 / 62%);
+  text-align: center;
+  border-radius: 8px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.page.active .order-item {
+  display: block;
+}
+
+.order-item p {
+  margin: 5px 0;
+}
+
+.order-item hr {
+  border: 1px solid #86C232;
+}
+
+/* Кнопка отмены заявки */
+.cancel-btn {
+  background-color: #61892F;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #86C232;
+}
+
+/* Стили для заголовка "Мои заявки" */
+.my-orders-title {
+  font-size: 1.5em;
+  color: #ffffff;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Стили для страницы Чат */
+#chat {
+  padding: 20px;
+  background-color: #262a2f;
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 0px 20px 0px rgb(105 146 49 / 49%);
+  text-align: center;
+}
+
+#chat h1 {
+  color: #86C232;
+}
+
+#chat p {
+  margin-top: 15px;
+  font-size: 1.2em;
+}
+
+/* Нижнее меню с эмодзи */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #222629;
+  padding: 12px 0;
+  z-index: 1000;
+}
+
+.nav-btn {
+  background-color: transparent;
+  border: none;
+  color: #f0f0f0;
+  font-size: 1.3em;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease-in-out;
+}
+
+.nav-btn:hover {
+  transform: scale(1.1);
+  color: #86C232;
+}
+
+/* Блокировка страниц до регистрации */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* Скрытый элемент */
+.hidden {
+  display: none;
+}
+
+/* Анимации для страниц */
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutPage {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Анимации для других элементов */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-section {
+  margin-top: 35px;
+  padding: 25px;
+  background-color: #262a2f;
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(134, 194, 50, 0.3);
+  text-align: left;
+  margin-bottom: 4%;
+}
+
+.info-section h2, .info-section h3 {
+  color: #86C232;
+  margin-bottom: 18px;
+}
+
+.info-section p {
+  margin-bottom: 18px;
+  line-height: 1.7;
+  font-size: 1.1em;
+}
+
+.support-link {
+  color: #61892F;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.support-link:hover {
+  color: #86C232;
+}
