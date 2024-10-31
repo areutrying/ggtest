@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pinConfirmButton = document.getElementById('pin-confirm-btn');
 
   const availableCities = [
-    "Москва", "Тюмень", "Курган", "Челябинск", "Санкт-Петербург", "Екатеринбург",
+    "Москва", "Тюмень", "Курган", "Челябинск", "Санкт-Петербург", "Екатеринбург","Казань","Владивосток","Омск",
     // Добавьте другие города здесь
   ];
 
