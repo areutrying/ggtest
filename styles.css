@@ -542,3 +542,12 @@ body {
   visibility: visible;
   transform: translate(-50%, -50%) scale(1); /* Конечная трансформация */
 }
+
+@keyframes moveDownLeft {
+  from {
+    transform: translate(1px, 6px);
+  }
+  to {
+    transform: translate(1px, 6px); /* Измените значения на нужные вам */
+  }
+}
