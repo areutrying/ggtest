@@ -28,7 +28,7 @@ body {
     border-radius: 12px;
     box-shadow: inset 0px 0px 12px rgb(132 255 26 / 32%);
     margin-top: 15px;
-    height: 83px;
+    height: 89px;
 }
 
 .button-container .btn {
@@ -47,7 +47,8 @@ body {
     margin: 0 2px;
     text-align: center;
     box-shadow: inset 0px 0px 12px rgb(0 0 0 / 27%);
-    margin: 2px 2px;
+    margin: 5px 2px;
+    display: inline-grid;
 }
 
 .button-container .btn:hover {
