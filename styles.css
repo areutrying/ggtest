@@ -17,13 +17,17 @@ body {
     font-size: 2em;
 }
 .balance-section {
-
+    padding: 7px;
+    background-color: #262a2f;
+    border-radius: 12px;
+    box-shadow: inset 0px 0px 12px rgb(132 255 26 / 32%);
 }
 .button-container {
     padding: 7px;
     background-color: #262a2f;
     border-radius: 12px;
     box-shadow: inset 0px 0px 12px rgb(132 255 26 / 32%);
+    margin-top: 15px;
 }
 
 .button-container .btn {
