@@ -12,14 +12,14 @@ window.showPage = function (pageId) {
       const newPage = document.getElementById(pageId);
       if (newPage) {
         newPage.classList.add('active');
-        newPage.style.animation = 'fadeInPage 0.5s ease forwards';
+        newPage.style.animation = 'fadeInPage 0.5s ease forwards'; // Проигрывается 1 раз
       }
     });
   } else {
     const newPage = document.getElementById(pageId);
     if (newPage) {
       newPage.classList.add('active');
-      newPage.style.animation = 'fadeInPage 0.5s ease forwards';
+      newPage.style.animation = 'fadeInPage 0.5s ease forwards'; // Проигрывается 1 раз
     }
   }
 
@@ -170,9 +170,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (pinMenu.currentPinBtn) {
       pinMenu.currentPinBtn.remove(); // Удаляем кнопку "Закрепить"
-      const lightningEmoji = document.createElement('span');
-      lightningEmoji.textContent = '⚡️';
-      pinMenu.currentOrderElement.appendChild(lightningEmoji); // Добавляем смайлик
+
+      // Создаем элемент изображения
+      const lightningImg = document.createElement('img');
+      lightningImg.src = "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/High%20Voltage.webp";
+      lightningImg.alt = "High Voltage";
+      lightningImg.width = 25;
+      lightningImg.height = 25;
+      lightningImg.style.animation = 'moveDownLeft 1s linear forwards'; // Анимация
+
+      pinMenu.currentOrderElement.appendChild(lightningImg); // Добавляем изображение
     }
   });
 
