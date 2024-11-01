@@ -74,8 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeSubscription = JSON.parse(localStorage.getItem('activeSubscription'));
     if (activeSubscription) {
       activeSubscriptionDiv.textContent = activeSubscription.type;
+      activeSubscriptionDiv.style.display = "block"; // Отображаем информацию о подписке
     } else {
       activeSubscriptionDiv.textContent = ""; // Очищаем текст, если подписка не куплена
+      activeSubscriptionDiv.style.display = "none"; // Скрываем блок с подпиской
     }
   }
 
