@@ -61,7 +61,7 @@ body {
     text-align: center;
     background-color: #262a2f;
     border-radius: 20px;
-    box-shadow: inset 0px 0px 12px rgb(255 2 2);
+    box-shadow: inset 0px 0px 12px rgb(255 2 2 / 58%);
     height: 27px;
     width: 160px;
     margin-bottom: 5px;
@@ -674,7 +674,7 @@ body {
   text-align: center;
   background-color: #262a2f;
   border-radius: 20px;
-  box-shadow: inset 0px 0px 12px rgb(17 196 150);
+  box-shadow: inset 0px 0px 12px rgb(17 196 150 / 61%);
   height: 27px;
   width: 120px;
   margin: -23px 2px;
