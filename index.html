@@ -12,10 +12,14 @@
 
     <!-- Главная страница -->
     <div id="home" class="page active">
-      <div class="balance-section">
-        <h1>Ваш баланс</h1>
-        <p class="balance">₽0.00</p>
-      </div>
+<div class="balance-section">
+  <h1>Ваш баланс</h1>
+  <p class="balance">₽0.00</p>
+  
+  <!-- Отображение активной подписки -->
+  <div id="active-subscription" class="subscription-info"></div>
+</div>
+
       <div class="button-container">
           <button class="btn">💎<span>Купить подписку</span></button>
           <button class="btn">💰<span>Пополнить баланс</span></button>
@@ -142,6 +146,38 @@
   <div id="order-canceled-popup" class="popup hidden">
     <p>Заявка отменена</p>
   </div>
+
+<!-- Полноэкранное меню подписки -->
+<div id="subscription-menu" class="fullscreen-menu hidden">
+  <div class="menu-content">
+    <h2>Выберите подписку</h2>
+
+    <!-- Выбор типа подписки -->
+    <label for="subscription-type">Тип подписки:</label>
+    <select id="subscription-type">
+      <option value="client">💎Заказчик+</option>
+      <option value="mover">💎Грузчик+</option>
+    </select>
+
+    <!-- Выбор продолжительности подписки -->
+    <label for="subscription-duration">Длительность:</label>
+    <select id="subscription-duration">
+      <option value="1">1 месяц</option>
+      <option value="3">3 месяца</option>
+      <option value="6">6 месяцев</option>
+    </select>
+
+<!-- Описание подписки -->
+<div id="subscription-description" class="subscription-description"></div>
+
+<!-- Стоимость подписки -->
+<p id="subscription-price">Цена: 600 руб</p>
+
+    <button class="btn" id="subscribe-confirm-btn">Подписаться</button>
+    <button class="btn" id="subscribe-cancel-btn">Отмена</button>
+  </div>
+</div>
+
   
 </body>
 </html>
