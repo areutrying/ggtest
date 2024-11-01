@@ -61,8 +61,8 @@ body {
     padding: 7px;
     text-align: center;
     background-color: #262a2f;
-    border-radius: 20px;
-    box-shadow: inset 0px 0px 12px rgb(255 255 2 / 58%);
+    border-radius: 8px;
+    box-shadow: inset 0px 0px 7px rgb(255 255 2 / 58%);
     height: 27px;
     width: 160px;
     margin-bottom: 5px;
@@ -674,11 +674,11 @@ body {
   padding: 7px;
   text-align: center;
   background-color: #262a2f;
-  border-radius: 20px;
-  box-shadow: inset 0px 0px 12px rgb(196 17 17 / 61%);
+  border-radius: 8px;
+  box-shadow: inset 0px 0px 8px rgb(196 17 17 / 61%);
   height: 27px;
   width: 120px;
-  margin: -23px 2px;
+  margin: -23px 0px;
   margin-bottom: 5px;
   text-align: center;
 }
