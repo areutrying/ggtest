@@ -54,7 +54,20 @@ body {
 .button-container .btn:hover {
     background-color: #4b5159; /* Темный оттенок для эффекта наведения */
 }
-
+.rating-info {
+    font-size: 1em;
+    color: #ffffff;
+    padding: 7px;
+    text-align: center;
+    background-color: #262a2f;
+    border-radius: 20px;
+    box-shadow: inset 0px 0px 12px rgb(255 2 2);
+    height: 27px;
+    width: 160px;
+    margin: 5px 2px;
+    margin-bottom: 5px;
+    text-align: center;
+}
 
 
 /* Кнопка пополнения баланса */
@@ -662,7 +675,7 @@ body {
   text-align: center;
   background-color: #262a2f;
   border-radius: 20px;
-  box-shadow: inset 0px 0px 12px rgb(28 150 255);
+  box-shadow: inset 0px 0px 12px rgb(17 196 150);
   height: 27px;
   width: 100px;
   margin: -23px 2px;
