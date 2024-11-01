@@ -31,6 +31,95 @@ window.showPage = function (pageId) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  const buySubscriptionButton = document.querySelector('.button-container .btn:first-child');
+  const subscriptionMenu = document.getElementById('subscription-menu');
+  const cancelSubscriptionButton = document.getElementById('subscribe-cancel-btn');
+  const confirmSubscriptionButton = document.getElementById('subscribe-confirm-btn');
+  const subscriptionTypeSelect = document.getElementById('subscription-type');
+  const subscriptionDurationSelect = document.getElementById('subscription-duration');
+  const subscriptionPrice = document.getElementById('subscription-price');
+  const subscriptionDescription = document.getElementById('subscription-description');
+  const activeSubscriptionDiv = document.getElementById('active-subscription');
+
+  // Стоимости подписок
+  const prices = {
+    client: { 1: 600, 3: 1400, 6: 4000 },
+    mover: { 1: 150, 3: 350, 6: 800 }
+  };
+
+  // Описания подписок
+  const descriptions = {
+    client: `
+      <h3>Что даёт подписка Заказчик+</h3>
+      <p>💼 Неограниченное количество заявок</p>
+      <p>📌 Закрепление заявок без ограничений</p>
+    `,
+    mover: `
+      <h3>Что даёт подписка Грузчик+</h3>
+      <p>⭐ Приоритет на заявку</p>
+    `
+  };
+
+  // Функция для обновления стоимости и описания
+  function updateSubscriptionInfo() {
+    const type = subscriptionTypeSelect.value;
+    const duration = subscriptionDurationSelect.value;
+    const price = prices[type][duration];
+    subscriptionPrice.textContent = `Цена: ${price} руб`;
+    subscriptionDescription.innerHTML = descriptions[type];
+  }
+
+  // Функция для отображения активной подписки
+  function displayActiveSubscription() {
+    const activeSubscription = JSON.parse(localStorage.getItem('activeSubscription'));
+    if (activeSubscription) {
+      activeSubscriptionDiv.textContent = activeSubscription.type;
+    } else {
+      activeSubscriptionDiv.textContent = ""; // Очищаем текст, если подписка не куплена
+    }
+  }
+
+  // Открыть меню подписки
+  buySubscriptionButton.addEventListener('click', () => {
+    subscriptionMenu.classList.remove('hidden');
+    subscriptionMenu.classList.add('show');
+    updateSubscriptionInfo(); // Обновление информации при открытии
+  });
+
+  // Закрыть меню подписки
+  cancelSubscriptionButton.addEventListener('click', () => {
+    subscriptionMenu.classList.remove('show');
+    setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
+  });
+
+  // Обновить цену и описание при изменении типа или длительности подписки
+  subscriptionTypeSelect.addEventListener('change', updateSubscriptionInfo);
+  subscriptionDurationSelect.addEventListener('change', updateSubscriptionInfo);
+
+  // Подтверждение подписки
+  confirmSubscriptionButton.addEventListener('click', () => {
+    const selectedType = subscriptionTypeSelect.options[subscriptionTypeSelect.selectedIndex].text;
+    const selectedDuration = subscriptionDurationSelect.value;
+    const price = subscriptionPrice.textContent.match(/\d+/)[0];
+
+    // Сохранение активной подписки в localStorage
+    localStorage.setItem('activeSubscription', JSON.stringify({
+      type: selectedType
+    }));
+
+    displayActiveSubscription(); // Обновить отображение активной подписки
+
+    alert(`Вы приобрели подписку: ${selectedType} на ${selectedDuration} месяц(а) за ${price} руб.`);
+    subscriptionMenu.classList.remove('show');
+    setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
+  });
+
+  // Отображение активной подписки при загрузке страницы
+  displayActiveSubscription();
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
   const createOrderButton = document.getElementById('create-order-btn');
   const cancelOrderButton = document.getElementById('cancel-order-btn');
   const submitOrderButton = document.getElementById('submit-order-btn');
