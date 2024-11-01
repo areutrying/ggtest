@@ -166,21 +166,23 @@ body {
 
 /* Всплывающее окно для уведомления */
 .popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #86C232;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  font-size: 1.2em;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: #2b2e33;
+    color: #ffffff;
+    padding: 20px;
+    width: 90%;
+    max-width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-size: 1.1em;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .popup.show {
@@ -666,4 +668,41 @@ body {
   margin: -24px 126px;
   margin-bottom: 12px;
   text-align: center;
+}
+
+#cancel-subscription-menu {
+  /* ... (другие стили) ... */
+}
+
+/* Кнопка "нет" */
+#cancel-subscription-menu .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    color: #000000;
+    border-radius: 8px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #688f41;
+    width: 100px;
+    height: 46px;
+}
+
+/* Кнопка "Да" */
+#cancel-subscription-confirm-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    color: #000000;
+    border-radius: 8px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #8f2f2f;
+    width: 100px;
+    height: 50px;
+
+#cancel-subscription-confirm-btn:hover {
+  background-color: #cc0000; /* Темнее красный при наведении */
 }
