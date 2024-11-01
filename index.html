@@ -31,11 +31,14 @@
         </div>
 
       <!-- Секция с заявками -->
-      <div class="order-section">
-        <button class="btn minimal-btn" id="create-order-btn" style="display: block;">📝 Создать заявку</button>
-        <button class="btn minimal-btn" id="accept-orders-btn">📥 Принимать заявки</button> 
-        <button class="btn minimal-btn" id="view-active-orders-btn">👀 Посмотреть активные заявки</button>
-      </div>
+    <div class="order-section">
+    <button class="btn minimal-btn" id="create-order-btn">📝<span>Создать заявку</span></button>
+    <button class="btn minimal-btn" id="accept-orders-btn">📥<span>Принимать заявки</span></button>
+    <button class="btn minimal-btn" id="view-active-orders-btn">👀<span>Посмотреть активные заявки</span></button>
+    <a href="https://t.me/GrandGruz2bot" target="_blank">
+        <button class="btn minimal-btn" id="support-btn">🎧<span>Тех.Поддержка</span></button>
+    </a>
+</div>
 
       <!-- Форма создания заявки -->
       <div id="create-order-form" class="order-form hidden full-screen">
@@ -64,7 +67,7 @@
           <label for="comment">💬 Комментарий:</label>
           <textarea id="comment" placeholder="Дополнительные комментарии"></textarea><br>
 
-          <button type="button" class="btn" id="submit-order-btn">Создать заявку</button>
+          <button type="button" class="btn" id="submit-order-btn">Создать</button>
           <button type="button" class="btn" id="cancel-order-btn">Отмена</button>
         </form>
       </div>
@@ -92,7 +95,7 @@
     <!-- Заявки -->
     <div id="orders" class="page">
       <h2 class="my-orders-title">📝 Мои заявки</h2> <!-- Заголовок "Мои заявки" -->
-      <h1>📋 Активные заявки</h1> <!-- Заголовок "Активные заявки" -->
+      <h1>📋 Активные заявки</h1> 
       <p id="no-orders-message">У вас нет заявок</p> <!-- Сообщение при отсутствии заявок -->
     </div>
 
