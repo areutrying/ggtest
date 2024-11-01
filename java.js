@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const subscriptionPrice = document.getElementById('subscription-price');
   const subscriptionDescription = document.getElementById('subscription-description');
   const activeSubscriptionDiv = document.getElementById('active-subscription');
+  const cancelSubscriptionConfirmButton = document.getElementById('cancel-subscription-confirm-btn');
+  const cancelSubscriptionCancelButton = document.getElementById('cancel-subscription-cancel-btn');
+  const cancelSubscriptionMenu = document.getElementById('cancel-subscription-menu');
 
   // Стоимости подписок
   const prices = {
@@ -111,15 +114,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     displayActiveSubscription(); // Обновить отображение активной подписки
 
-    alert(`Вы приобрели подписку: ${selectedType} на ${selectedDuration} месяц(а) за ${price} руб.`);
     subscriptionMenu.classList.remove('show');
     setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
   });
 
   // Отображение активной подписки при загрузке страницы
   displayActiveSubscription();
-});
 
+  // Отмена подписки
+  activeSubscriptionDiv.addEventListener('click', () => {
+    cancelSubscriptionMenu.classList.remove('hidden');
+    cancelSubscriptionMenu.classList.add('show');
+  });
+
+  // Подтверждение отмены подписки
+  cancelSubscriptionConfirmButton.addEventListener('click', () => {
+    localStorage.removeItem('activeSubscription'); // Удаляем информацию о подписке
+    displayActiveSubscription(); // Обновляем отображение активной подписки
+    cancelSubscriptionMenu.classList.remove('show');
+    setTimeout(() => cancelSubscriptionMenu.classList.add('hidden'), 400);
+  });
+
+  // Отмена отмены подписки
+  cancelSubscriptionCancelButton.addEventListener('click', () => {
+    cancelSubscriptionMenu.classList.remove('show');
+    setTimeout(() => cancelSubscriptionMenu.classList.add('hidden'), 400);
+  });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const createOrderButton = document.getElementById('create-order-btn');
