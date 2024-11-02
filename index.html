@@ -34,7 +34,7 @@
     <div class="order-section">
     <button class="btn minimal-btn" id="create-order-btn">📝<span>Создать заявку</span></button>
     <button class="btn minimal-btn" id="accept-orders-btn">📥<span>Принимать заявки</span></button>
-    <button class="btn minimal-btn" id="view-active-orders-btn">👀<span>Посмотреть активные заявки</span></button>
+    <button class="btn minimal-btn" id="view-active-orders-btn">👀<span>Активные заявки</span></button>
     <button class="btn minimal-btn" id="support-btn">🎧<span> Тех.Поддержка</span></button>
     </a>
 </div>
@@ -147,6 +147,11 @@
   <div id="order-canceled-popup" class="popup hidden">
     <p>Заявка отменена</p>
   </div>
+
+<!-- Всплывающее окно для уведомления о недостатке средств -->
+<div id="insufficient-funds-popup" class="popup hidden">
+  <p>Недостаточно средств</p>
+</div>
 
 <!-- Полноэкранное меню подписки -->
 <div id="subscription-menu" class="fullscreen-menu hidden">
