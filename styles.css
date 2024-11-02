@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #161718; 
-  color: #ffffff; /*  текст */
+  background-color: #161718; /* Темный фон */
+  color: #ffffff; /* Светлый текст */
   transition: all 0.3s ease-in-out;
 }
 
@@ -19,15 +19,15 @@ body {
 }
 .balance-section {
     padding: 7px;
-    background-color: #2d2e2f;
+    background-color: #262627;
     border-radius: 12px;
     box-shadow: 0 0 12px rgb(0 0 0 / 30%);
 }
 .button-container {
     padding: 7px;
-    background-color: #2d2e2f;
+    background-color: #262627;
     border-radius: 12px;
-    box-shadow: 0 0 8px 0px #43d01e96;
+    box-shadow: 0 0 8px 0px #41935096;
     margin-top: 15px;
     height: 89px;
 }
@@ -35,7 +35,7 @@ body {
 .button-container .btn {
     width: 111px;
     height: 80px;
-    background-color: #3d4148; /* Цвет кнопок для минималистичного дизайна */
+    background-color: #3e3e3f;
     color: #ffffff;
     border: none;
     border-radius: 10px;
@@ -148,7 +148,7 @@ body {
 
 /* Стили для формы заявки */
 .order-form {
-  background-color: #2d2e2f;
+  background-color: #262627;
   padding: 25px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgb(24 24 24 / 30%);
@@ -225,7 +225,7 @@ body {
 /* Стили для новых заявок */
 .order-item {
   padding: 20px;
-  background-color: #2d2e2f;
+  background-color: #262627;
   color: #ffffff;
   border-radius: 12px;
   text-align: left;
@@ -298,12 +298,12 @@ body {
 /* Стили для страницы Чат */
 #chat {
   padding: 20px;
-  background-color: #2d2e2f;
+  background-color: #262627;
   color: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 0px 20px 0px rgb(5 5 5 / 30%);
   text-align: center;
-  width: 317px;
+  width: 342px;
   margin: 3px 9px;
 }
 
@@ -327,8 +327,9 @@ body {
   padding: 8px 2px;
   z-index: 1000;
   margin: -1px 4px;
-  border-radius: 33px;
+  border-radius: 8px;
   justify-content: space-evenly;
+  box-shadow: 0 0 14px 0px rgb(0 0 0 / 84%);
 }
 
 .nav-btn {
@@ -404,7 +405,7 @@ body {
 .info-section {
   margin-top: 35px;
   padding: 25px;
-  background-color: #2d2e2f;
+  background-color: #262627;
   color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 0 12px rgb(0 0 0 / 30%);
@@ -581,7 +582,7 @@ body {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, -50%) scale(1); /* Конечная трансформация */
-  background-color: #2e3133;
+  background-color: #232323;
   box-shadow: 0 8px 16px rgb(0 0 0);
 }
 
@@ -620,7 +621,7 @@ body {
 .menu-content {
   text-align: center;
   padding: 30px;
-  background-color: #2b2e33;
+  background-color: #232323;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   max-width: 90%;
