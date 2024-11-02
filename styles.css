@@ -735,3 +735,69 @@ body {
 #cancel-subscription-confirm-btn:hover {
   background-color: #cc0000; /* Темнее красный при наведении */
 }
+/* Update menu-content to match the style of create-order-form */
+#top-up-menu .menu-content {
+  text-align: left;
+  padding: 25px;
+  background-color: #262a2f;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(134, 194, 50, 0.3); /* Matching green glow */
+  max-width: 90%;
+  width: 320px;
+}
+
+/* Heading style */
+#top-up-menu h2 {
+  font-size: 1.8em;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Label style */
+#top-up-menu label {
+  color: #86C232; /* Bright green */
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+/* Input style */
+#top-up-amount {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #333537; /* Dark gray background */
+  color: #ffffff;
+  font-size: 1em;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* Button styles */
+#top-up-confirm-btn, #top-up-cancel-btn {
+  width: 48%;
+  padding: 10px;
+  font-size: 1.1em;
+  background-color: #61892F;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 1%;
+  text-align: center;
+}
+
+#top-up-confirm-btn:hover {
+  background-color: #86C232; /* Bright green on hover */
+}
+
+#top-up-cancel-btn {
+  background-color: #b7381e; /* Dark red for cancel button */
+}
+
+#top-up-cancel-btn:hover {
+  background-color: #ff4d4d; /* Bright red on hover */
+}
