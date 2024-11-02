@@ -2,7 +2,7 @@ window.showPage = function (pageId) {
   const activePage = document.querySelector('.page.active');
 
   if (activePage) {
-    activePage.style.animation = 'fadeOutPage 0.5s ease forwards';
+    activePage.style.animation = 'fadeOutPage 0.1s ease forwards';
 
     activePage.addEventListener('animationend', function handleFadeOut() {
       activePage.classList.remove('active');
@@ -32,6 +32,43 @@ window.showPage = function (pageId) {
 
 document.getElementById('support-btn').addEventListener('click', () => {
     window.open('https://t.me/GrandGruz2bot', '_blank');
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
+  const topUpMenu = document.getElementById('top-up-menu');
+  const topUpConfirmButton = document.getElementById('top-up-confirm-btn');
+  const topUpCancelButton = document.getElementById('top-up-cancel-btn');
+  const balanceDisplay = document.querySelector('.balance');
+  const topUpAmountInput = document.getElementById('top-up-amount');
+
+  // Show the top-up menu
+  topUpButton.addEventListener('click', () => {
+    topUpMenu.classList.remove('hidden');
+    topUpMenu.classList.add('show');
+  });
+
+  // Hide the top-up menu
+  topUpCancelButton.addEventListener('click', () => {
+    topUpMenu.classList.remove('show');
+    setTimeout(() => topUpMenu.classList.add('hidden'), 400);
+  });
+
+  // Confirm top-up action
+  topUpConfirmButton.addEventListener('click', () => {
+    const topUpAmount = parseFloat(topUpAmountInput.value);
+    if (topUpAmount > 0) {
+      let currentBalance = parseFloat(balanceDisplay.textContent.replace(/[₽\s]/g, ''));
+      currentBalance += topUpAmount;
+      balanceDisplay.textContent = `₽${currentBalance.toFixed(2)}`;
+      
+      topUpAmountInput.value = ''; // Clear input
+      topUpMenu.classList.remove('show');
+      setTimeout(() => topUpMenu.classList.add('hidden'), 400);
+    } else {
+      alert("Введите сумму больше нуля");
+    }
+  });
 });
 
 
