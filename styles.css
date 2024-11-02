@@ -95,6 +95,7 @@ body {
     justify-content: center;
 }
 
+
 .order-section .btn {
     width: 163px;
     height: 104px;
@@ -296,7 +297,7 @@ body {
   background-color: #262a2f;
   color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0px 0px 20px 0px rgb(105 146 49 / 49%);
+  box-shadow: 0px 0px 20px 0px rgb(5 5 5 / 30%);
   text-align: center;
   width: 300px;
   margin: 3px 25px;
@@ -405,7 +406,7 @@ body {
 }
 
 .info-section h2, .info-section h3 {
-  color: #86C232;
+  color: #a42828;
   margin-bottom: 18px;
 }
 
@@ -416,7 +417,7 @@ body {
 }
 
 .support-link {
-  color: #61892F;
+  color: #1d7bbd;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
