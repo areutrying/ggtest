@@ -133,7 +133,7 @@ body {
     padding: 7px;
     background-color: #262627;
     border-radius: 12px;
-    box-shadow: 0 0 8px 0px #41935096;
+    box-shadow:  0 0 12px rgb(0 0 0 / 30%);
     margin-top: 15px;
     height: 89px;
 }
@@ -943,4 +943,3 @@ body {
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
 }
-
