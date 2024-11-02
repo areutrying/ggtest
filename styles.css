@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #222629; /* Темный фон */
+  background-color: #161718; /* Темный фон */
   color: #ffffff; /* Светлый текст */
   transition: all 0.3s ease-in-out;
 }
@@ -19,15 +19,15 @@ body {
 }
 .balance-section {
     padding: 7px;
-    background-color: #262a2f;
+    background-color: #2d2e2f;
     border-radius: 12px;
-    box-shadow: inset 0px 0px 12px rgb(132 255 26 / 32%);
+    box-shadow: 0 0 12px rgb(0 0 0 / 30%);
 }
 .button-container {
     padding: 7px;
-    background-color: #262a2f;
+    background-color: #2d2e2f;
     border-radius: 12px;
-    box-shadow: inset 0 0 8px 4px #364d31;
+    box-shadow: 0 0 8px 0px #43d01e96;
     margin-top: 15px;
     height: 89px;
 }
@@ -65,7 +65,6 @@ body {
     color: #ffffff;
     padding: 7px;
     text-align: center;
-    background-color: #262a2f;
     border-radius: 8px;
     box-shadow: inset 0px 0px 7px rgb(255 255 2 / 58%);
     height: 27px;
@@ -114,7 +113,7 @@ body {
     color: #ffffff;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease;
-    margin: 2px 7px;
+    margin: -7px 7px;
     border: none;
     padding: 13px;
     margin-top: 20px;
@@ -149,10 +148,10 @@ body {
 
 /* Стили для формы заявки */
 .order-form {
-  background-color: #262a2f; /* Серый фон */
+  background-color: #2d2e2f;
   padding: 25px;
   border-radius: 15px;
-  box-shadow: 0 0 15px rgba(134, 194, 50, 0.3); /* Зелёное свечение */
+  box-shadow: 0 0 15px rgb(24 24 24 / 30%);
   margin: 20px auto;
   max-width: 90%;
   text-align: left;
@@ -166,7 +165,7 @@ body {
 .order-form input,
 .order-form select,
 .order-form textarea {
-  width: 325px;
+  width: 305px;
   padding: 12px;
   margin: 10px 0;
   border-radius: 8px;
@@ -226,7 +225,7 @@ body {
 /* Стили для новых заявок */
 .order-item {
   padding: 20px;
-  background-color: #262a2f;
+  background-color: #2d2e2f;
   color: #ffffff;
   border-radius: 12px;
   text-align: left;
@@ -237,11 +236,11 @@ body {
 }
 
 .order-item.unconfirmed {
-  box-shadow: inset 0px 0px 20px 0px yellow; /* Жёлтая тень для неподтвержденных заявок */
+  box-shadow: inset 0px 0px 20px 0px #ffff0075; /* Жёлтая тень для неподтвержденных заявок */
 }
 
 .order-item.confirmed {
-  box-shadow: inset 0px 0px 20px 0px green; /* Зелёная тень для подтвержденных заявок */
+  box-shadow: inset 0px 0px 20px 0px #008000b5; /* Зелёная тень для подтвержденных заявок */
   opacity: 1; /* Подтверждённые заявки остаются яркими */
 }
 
@@ -299,13 +298,13 @@ body {
 /* Стили для страницы Чат */
 #chat {
   padding: 20px;
-  background-color: #262a2f;
+  background-color: #2d2e2f;
   color: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 0px 20px 0px rgb(5 5 5 / 30%);
   text-align: center;
-  width: 300px;
-  margin: 3px 25px;
+  width: 317px;
+  margin: 3px 9px;
 }
 
 #chat h1 {
@@ -321,12 +320,15 @@ body {
 .bottom-nav {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 97%;
   display: flex;
   justify-content: space-around;
-  background-color: #222629;
-  padding: 12px 0;
+  background-color: #212121;
+  padding: 8px 2px;
   z-index: 1000;
+  margin: -1px 4px;
+  border-radius: 33px;
+  justify-content: space-evenly;
 }
 
 .nav-btn {
@@ -402,7 +404,7 @@ body {
 .info-section {
   margin-top: 35px;
   padding: 25px;
-  background-color: #262a2f;
+  background-color: #2d2e2f;
   color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 0 12px rgb(0 0 0 / 30%);
@@ -579,6 +581,8 @@ body {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, -50%) scale(1); /* Конечная трансформация */
+  background-color: #2e3133;
+  box-shadow: 0 8px 16px rgb(0 0 0);
 }
 
 @keyframes moveDownLeft {
@@ -694,7 +698,6 @@ body {
   color: #ffffff;
   padding: 7px;
   text-align: center;
-  background-color: #262a2f;
   border-radius: 8px;
   box-shadow: inset 0px 0px 8px rgb(255 255 255 / 61%);
   height: 27px;
