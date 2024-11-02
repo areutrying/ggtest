@@ -6,6 +6,113 @@ body {
   color: #ffffff; /* Светлый текст */
   transition: all 0.3s ease-in-out;
 }
+/* СНЕГ */
+.initial-snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* Размещаем снежинки позади всех элементов */
+  pointer-events: none; /* Снег не будет блокировать клики по элементам */
+}
+
+.initial-snow > .snow {
+  font-size: 25px; /* Уменьшенные снежинки */
+  color: white;
+  position: absolute;
+  top: -5vh;
+  animation: snowfall 10s linear infinite; /* Без задержки */
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(var(--left-ini), 0, 0);
+  }
+  100% {
+    transform: translate3d(var(--left-end), 110vh, 0);
+  }
+}
+
+/* Настройки для разных снежинок */
+.snow:nth-child(2n) {
+  filter: blur(1px);
+  font-size: 20px;
+}
+
+.snow:nth-child(6n) {
+  filter: blur(2px);
+  font-size: 15px;
+}
+
+.snow:nth-child(10n) {
+  filter: blur(5px);
+  font-size: 15px;
+}
+
+/* Позиции снежинок */
+.snow:nth-child(1) {
+  --left-ini: 0vw;
+  --left-end: -1vw;
+  left: 70vw;
+  animation-duration: 9s;
+}
+
+.snow:nth-child(2) {
+  --left-ini: -7vw;
+  --left-end: 10vw;
+  left: 65vw;
+  animation-duration: 15s;
+}
+
+.snow:nth-child(6n) {
+  filter: blur(2px);
+  font-size: 15px;
+}
+
+.snow:nth-child(10n) {
+  filter: blur(5px);
+  font-size: 15px;
+}
+
+/* Позиции снежинок с убранными задержками */
+.snow:nth-child(1) {
+  --left-ini: 0vw;
+  --left-end: -1vw;
+  left: 70vw;
+  animation-duration: 9s;
+}
+
+.snow:nth-child(2) {
+  --left-ini: -7vw;
+  --left-end: 10vw;
+  left: 65vw;
+  animation-duration: 15s;
+}
+
+.snow:nth-child(3) {
+  --left-ini: 6vw;
+  --left-end: 6vw;
+  left: 1vw;
+  animation-duration: 9s;
+}
+
+/* Добавьте аналогичные настройки для всех 50 снежинок */
+.snow:nth-child(4) {
+  --left-ini: -3vw;
+  --left-end: 9vw;
+  left: 88vw;
+  animation-duration: 14s;
+}
+
+.snow:nth-child(5) {
+  --left-ini: -2vw;
+  --left-end: -9vw;
+  left: 74vw;
+  animation-duration: 6s;
+}
+/* КОНЕЦ СНЕГА */
 
 .container {
   text-align: center;
@@ -109,9 +216,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #3e3e3ea3;
+    background-color: #333333;
     color: #ffffff;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 12px rgb(0 0 0 / 30%);
     transition: background-color 0.3s ease;
     margin: -7px 7px;
     border: none;
@@ -837,3 +944,4 @@ body {
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
 }
+
