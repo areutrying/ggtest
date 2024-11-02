@@ -19,7 +19,7 @@ body {
 }
 
 .initial-snow > .snow {
-  font-size: 25px; /* Уменьшенные снежинки */
+  font-size: 20px; /* Уменьшенные снежинки */
   color: white;
   position: absolute;
   top: -5vh;
@@ -98,7 +98,6 @@ body {
   animation-duration: 9s;
 }
 
-/* Добавьте аналогичные настройки для всех 50 снежинок */
 .snow:nth-child(4) {
   --left-ini: -3vw;
   --left-end: 9vw;
