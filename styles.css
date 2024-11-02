@@ -55,6 +55,11 @@ body {
 .button-container .btn:hover {
     background-color: #4b5159; /* Темный оттенок для эффекта наведения */
 }
+
+.button-container {
+
+}
+
 .rating-info {
     font-size: 1em;
     color: #ffffff;
