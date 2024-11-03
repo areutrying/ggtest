@@ -425,14 +425,12 @@ body {
 .bottom-nav {
   position: fixed;
   bottom: 0;
-  width: 97%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   background-color: #212121;
   padding: 8px 2px;
   z-index: 1000;
-  margin: -1px 4px;
-  border-radius: 8px;
   justify-content: space-evenly;
   box-shadow: 0 0 14px 0px rgb(0 0 0 / 84%);
 }
