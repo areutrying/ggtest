@@ -437,6 +437,32 @@ body {
   box-shadow: 0 0 14px 0px rgb(0 0 0 / 84%);
 }
 
+.nav-icon {
+    filter: brightness(0) invert(1);
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 0px;
+}
+
+.nav-icon.profil-icon {
+    width: 30px !important; /* Увеличенный размер */
+    height: 30px !important;
+}
+
+
+/* Окрашивание активной иконки и текста */
+.active-nav-btn {
+    color: #86C232;
+}
+
+.active-nav-btn .nav-icon {
+filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) brightness(90%) contrast(101%);
+
+}
+
+
+
 .nav-btn {
   background-color: transparent;
   border: none;
