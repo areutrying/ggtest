@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Стоимости подписок
   const prices = {
-    client: { 1: 600, 3: 1400, 6: 4000 },
-    mover: { 1: 150, 3: 350, 6: 800 }
+    client: { 1: 600, 3: 1600, 6: 3000 },
+    mover: { 1: 150, 3: 350, 6: 650 }
   };
 
   // Описания подписок
