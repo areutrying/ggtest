@@ -66,6 +66,7 @@
     <div class="snow">&#10052;</div>
   </div>
 </div>
+<!-- СНЕГ -->
 
   <div class="container" style="padding-bottom: 70px;"> 
 
@@ -181,12 +182,21 @@
   </div>
 
   <!-- Нижнее меню с эмодзи -->
-  <div class="bottom-nav" style="z-index: 1000;">
-    <button class="nav-btn" onclick="showPage('home')">🏠 Главная</button>
-    <button class="nav-btn" onclick="showPage('orders')">📋 Заявки</button>
-    <button class="nav-btn" onclick="showPage('chat')">💬 Чат</button>
-    <button class="nav-btn" onclick="showPage('profile')">👤 Профиль</button>
-  </div>
+<div class="bottom-nav" style="z-index: 1000;">
+    <button class="nav-btn" onclick="showPage('home')">
+        <img src="image/home.png" alt="Главная" class="nav-icon"> Главная
+    </button>
+    <button class="nav-btn" onclick="showPage('orders')">
+        <img src="image/Zayavki.png" alt="Заявки" class="nav-icon"> Заявки
+    </button>
+    <button class="nav-btn" onclick="showPage('chat')">
+        <img src="image/chat.png" alt="Чат" class="nav-icon"> Чат
+    </button>
+    <button class="nav-btn" onclick="showPage('profile')">
+        <img src="image/profil.png" alt="Профиль" class="nav-icon profil-icon"> Профиль
+    </button>
+</div>
+
 
   <!-- Элемент для уведомлений -->
   <div class="notification" id="notification"></div>
