@@ -453,8 +453,6 @@ body {
 /* Окрашивание активной иконки и текста */
 .active-nav-btn {
     color: #86C232;
-    box-shadow: 0 0 4px 0px rgb(0 0 0 / 60%);
-    border-radius: 17px;
 }
 
 .active-nav-btn .nav-icon {
