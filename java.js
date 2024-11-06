@@ -48,18 +48,21 @@ document.addEventListener('DOMContentLoaded', () => {
       userNameElement.textContent = userData.username || `${userData.first_name} ${userData.last_name}`;
     }
 
-    // Отображение аватара пользователя, если доступен
+        // Получение контейнера для аватара
     const avatarContainer = document.getElementById('avatar-container');
-    if (avatarContainer && userData.photo_url) {
-      const userAvatar = document.createElement('img');
-      userAvatar.src = userData.photo_url;
-      userAvatar.alt = 'Аватар пользователя';
-      userAvatar.id = 'user-avatar';
-      userAvatar.style.width = '100%';
-      userAvatar.style.height = '100%';
-      userAvatar.style.objectFit = 'cover';
-      avatarContainer.innerHTML = ''; // Очистить контейнер
-      avatarContainer.appendChild(userAvatar); // Добавить изображение аватара
+    const userAvatarElement = document.getElementById('user-avatar');
+
+    // Если контейнер и аватарка существует, то обновляем аватар
+    if (avatarContainer && userAvatarElement) {
+      if (userData.photo_url) {
+        // Если есть URL фото, обновляем его в аватарке
+        userAvatarElement.src = userData.photo_url;
+        userAvatarElement.alt = 'Аватар пользователя';
+        userAvatarElement.style.objectFit = 'cover';  // Подгоняем изображение
+      } else {
+        // Если фото нет, оставляем аватар по умолчанию или не меняем
+        userAvatarElement.src = 'image/icon.png';  // Укажите путь к дефолтному изображению
+      }
     }
   } else {
     console.log("Telegram Web App не инициализирован или данные пользователя недоступны.");
