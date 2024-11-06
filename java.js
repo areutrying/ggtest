@@ -35,6 +35,37 @@ document.getElementById('support-btn').addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Инициализация Telegram Web App
+  const telegramWebApp = window.Telegram.WebApp;
+
+  // Проверка, поддерживает ли Telegram Web App и получение данных пользователя
+  if (telegramWebApp.initDataUnsafe && telegramWebApp.initDataUnsafe.user) {
+    const userData = telegramWebApp.initDataUnsafe.user;
+
+    // Отображение имени пользователя
+    const userNameElement = document.getElementById('user-name');
+    if (userNameElement) {
+      userNameElement.textContent = userData.username || `${userData.first_name} ${userData.last_name}`;
+    }
+
+    // Отображение аватара пользователя, если доступен
+    const avatarContainer = document.getElementById('avatar-container');
+    if (avatarContainer && userData.photo_url) {
+      const userAvatar = document.createElement('img');
+      userAvatar.src = userData.photo_url;
+      userAvatar.alt = 'Аватар пользователя';
+      userAvatar.id = 'user-avatar';
+      userAvatar.style.width = '100%';
+      userAvatar.style.height = '100%';
+      userAvatar.style.objectFit = 'cover';
+      avatarContainer.innerHTML = ''; // Очистить контейнер
+      avatarContainer.appendChild(userAvatar); // Добавить изображение аватара
+    }
+  } else {
+    console.log("Telegram Web App не инициализирован или данные пользователя недоступны.");
+  }
+
+  // Кнопки и меню пополнения баланса
   const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
   const topUpMenu = document.getElementById('top-up-menu');
   const topUpConfirmButton = document.getElementById('top-up-confirm-btn');
@@ -66,9 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("Введите сумму больше нуля");
     }
   });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
+  // Кнопки и меню подписки
   const buySubscriptionButton = document.querySelector('.button-container .btn:first-child');
   const subscriptionMenu = document.getElementById('subscription-menu');
   const cancelSubscriptionButton = document.getElementById('subscribe-cancel-btn');
@@ -180,15 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   displayActiveSubscriptions();
-});
 
-document.addEventListener('DOMContentLoaded', () => {
+  // Кнопки для создания и подтверждения заявок
   const createOrderButton = document.getElementById('create-order-btn');
   const cancelOrderButton = document.getElementById('cancel-order-btn');
   const submitOrderButton = document.getElementById('submit-order-btn');
   const orderForm = document.getElementById('create-order-form');
   const notification = document.getElementById('notification');
-  const viewActiveOrdersButton = document.getElementById('view-active-orders-btn'); // Проверка на null
+  const viewActiveOrdersButton = document.getElementById('view-active-orders-btn');
   const cityInput = document.getElementById('city');
   const citySuggestions = document.getElementById('city-suggestions');
   const pinMenu = document.getElementById('pin-menu');
@@ -333,6 +362,5 @@ document.addEventListener('DOMContentLoaded', () => {
   if (viewActiveOrdersButton) {
     viewActiveOrdersButton.addEventListener('click', () => showPage('orders'));
   }
-
   showPage('home');
 });
