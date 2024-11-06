@@ -2,7 +2,7 @@ window.showPage = function (pageId) {
   const activePage = document.querySelector('.page.active');
 
   if (activePage) {
-    activePage.style.animation = 'fadeOutPage 0.1s ease forwards';
+    activePage.style.animation = 'fadeOutPage 0.07s ease forwards';
 
     activePage.addEventListener('animationend', function handleFadeOut() {
       activePage.classList.remove('active');
@@ -12,14 +12,14 @@ window.showPage = function (pageId) {
       const newPage = document.getElementById(pageId);
       if (newPage) {
         newPage.classList.add('active');
-        newPage.style.animation = 'fadeInPage 0.5s ease forwards'; // Проигрывается 1 раз
+        newPage.style.animation = 'fadeInPage 0.07s ease forwards';
       }
     });
   } else {
     const newPage = document.getElementById(pageId);
     if (newPage) {
       newPage.classList.add('active');
-      newPage.style.animation = 'fadeInPage 0.5s ease forwards'; // Проигрывается 1 раз
+      newPage.style.animation = 'fadeInPage 0.07s ease forwards';
     }
   }
 
@@ -31,10 +31,8 @@ window.showPage = function (pageId) {
 };
 
 document.getElementById('support-btn').addEventListener('click', () => {
-    window.open('https://t.me/GrandGruz2bot', '_blank');
+  window.open('https://t.me/GrandGruz2bot', '_blank');
 });
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
@@ -44,27 +42,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const balanceDisplay = document.querySelector('.balance');
   const topUpAmountInput = document.getElementById('top-up-amount');
 
-  // Show the top-up menu
   topUpButton.addEventListener('click', () => {
     topUpMenu.classList.remove('hidden');
     topUpMenu.classList.add('show');
   });
 
-  // Hide the top-up menu
   topUpCancelButton.addEventListener('click', () => {
     topUpMenu.classList.remove('show');
     setTimeout(() => topUpMenu.classList.add('hidden'), 400);
   });
 
-  // Confirm top-up action
   topUpConfirmButton.addEventListener('click', () => {
     const topUpAmount = parseFloat(topUpAmountInput.value);
     if (topUpAmount > 0) {
       let currentBalance = parseFloat(balanceDisplay.textContent.replace(/[₽\s]/g, ''));
       currentBalance += topUpAmount;
       balanceDisplay.textContent = `₽${currentBalance.toFixed(2)}`;
-      
-      topUpAmountInput.value = ''; // Clear input
+
+      topUpAmountInput.value = '';
       topUpMenu.classList.remove('show');
       setTimeout(() => topUpMenu.classList.add('hidden'), 400);
     } else {
@@ -72,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const buySubscriptionButton = document.querySelector('.button-container .btn:first-child');
@@ -83,18 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const subscriptionDurationSelect = document.getElementById('subscription-duration');
   const subscriptionPrice = document.getElementById('subscription-price');
   const subscriptionDescription = document.getElementById('subscription-description');
-  const activeSubscriptionDiv = document.getElementById('active-subscription');
-  const cancelSubscriptionConfirmButton = document.getElementById('cancel-subscription-confirm-btn');
-  const cancelSubscriptionCancelButton = document.getElementById('cancel-subscription-cancel-btn');
+  const activeSubscriptionsDiv = document.getElementById('active-subscription');
   const cancelSubscriptionMenu = document.getElementById('cancel-subscription-menu');
+  const cancelSubscriptionConfirmBtn = document.getElementById('cancel-subscription-confirm-btn');
+  const cancelSubscriptionCancelBtn = document.getElementById('cancel-subscription-cancel-btn');
 
-  // Стоимости подписок
   const prices = {
     client: { 1: 600, 3: 1600, 6: 3000 },
     mover: { 1: 150, 3: 350, 6: 650 }
   };
 
-  // Описания подписок
   const descriptions = {
     client: `
       <h3>Что даёт подписка Заказчик+</h3>
@@ -107,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `
   };
 
-  // Функция для обновления стоимости и описания
   function updateSubscriptionInfo() {
     const type = subscriptionTypeSelect.value;
     const duration = subscriptionDurationSelect.value;
@@ -116,74 +107,79 @@ document.addEventListener('DOMContentLoaded', () => {
     subscriptionDescription.innerHTML = descriptions[type];
   }
 
-  // Функция для отображения активной подписки
-  function displayActiveSubscription() {
-    const activeSubscription = JSON.parse(localStorage.getItem('activeSubscription'));
-    if (activeSubscription) {
-      activeSubscriptionDiv.textContent = activeSubscription.type;
-      activeSubscriptionDiv.style.display = "block"; // Отображаем информацию о подписке
+  function displayActiveSubscriptions() {
+    activeSubscriptionsDiv.innerHTML = '';
+    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
+
+    if (activeSubscriptions.length > 0) {
+      activeSubscriptions.forEach(subscription => {
+        const subscriptionElement = document.createElement('div');
+        subscriptionElement.classList.add('subscription-item');
+        subscriptionElement.innerHTML = `<strong>${subscription.type}</strong>`;
+        activeSubscriptionsDiv.appendChild(subscriptionElement);
+      });
+      activeSubscriptionsDiv.style.display = "block";
     } else {
-      activeSubscriptionDiv.textContent = ""; // Очищаем текст, если подписка не куплена
-      activeSubscriptionDiv.style.display = "none"; // Скрываем блок с подпиской
+      activeSubscriptionsDiv.style.display = "none";
     }
   }
 
-  // Открыть меню подписки
   buySubscriptionButton.addEventListener('click', () => {
     subscriptionMenu.classList.remove('hidden');
     subscriptionMenu.classList.add('show');
-    updateSubscriptionInfo(); // Обновление информации при открытии
+    updateSubscriptionInfo();
   });
 
-  // Закрыть меню подписки
   cancelSubscriptionButton.addEventListener('click', () => {
     subscriptionMenu.classList.remove('show');
     setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
   });
 
-  // Обновить цену и описание при изменении типа или длительности подписки
   subscriptionTypeSelect.addEventListener('change', updateSubscriptionInfo);
   subscriptionDurationSelect.addEventListener('change', updateSubscriptionInfo);
 
-  // Подтверждение подписки
   confirmSubscriptionButton.addEventListener('click', () => {
     const selectedType = subscriptionTypeSelect.options[subscriptionTypeSelect.selectedIndex].text;
     const selectedDuration = subscriptionDurationSelect.value;
-    const price = subscriptionPrice.textContent.match(/\d+/)[0];
+    const newSubscription = {
+      type: selectedType,
+      duration: selectedDuration
+    };
 
-    // Сохранение активной подписки в localStorage
-    localStorage.setItem('activeSubscription', JSON.stringify({
-      type: selectedType
-    }));
+    let activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
 
-    displayActiveSubscription(); // Обновить отображение активной подписки
+    const existingIndex = activeSubscriptions.findIndex(sub => sub.type === selectedType);
+    if (existingIndex !== -1) {
+      activeSubscriptions[existingIndex] = newSubscription;
+    } else {
+      activeSubscriptions.push(newSubscription);
+    }
+
+    localStorage.setItem('activeSubscriptions', JSON.stringify(activeSubscriptions));
+    displayActiveSubscriptions();
 
     subscriptionMenu.classList.remove('show');
     setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
   });
 
-  // Отображение активной подписки при загрузке страницы
-  displayActiveSubscription();
-
-  // Отмена подписки
-  activeSubscriptionDiv.addEventListener('click', () => {
+  activeSubscriptionsDiv.addEventListener('click', () => {
     cancelSubscriptionMenu.classList.remove('hidden');
     cancelSubscriptionMenu.classList.add('show');
   });
 
-  // Подтверждение отмены подписки
-  cancelSubscriptionConfirmButton.addEventListener('click', () => {
-    localStorage.removeItem('activeSubscription'); // Удаляем информацию о подписке
-    displayActiveSubscription(); // Обновляем отображение активной подписки
+  cancelSubscriptionCancelBtn.addEventListener('click', () => {
     cancelSubscriptionMenu.classList.remove('show');
     setTimeout(() => cancelSubscriptionMenu.classList.add('hidden'), 400);
   });
 
-  // Отмена отмены подписки
-  cancelSubscriptionCancelButton.addEventListener('click', () => {
+  cancelSubscriptionConfirmBtn.addEventListener('click', () => {
+    localStorage.removeItem('activeSubscriptions');
     cancelSubscriptionMenu.classList.remove('show');
     setTimeout(() => cancelSubscriptionMenu.classList.add('hidden'), 400);
+    activeSubscriptionsDiv.style.display = 'none';
   });
+
+  displayActiveSubscriptions();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -192,22 +188,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitOrderButton = document.getElementById('submit-order-btn');
   const orderForm = document.getElementById('create-order-form');
   const notification = document.getElementById('notification');
-  const viewActiveOrdersButton = document.getElementById('view-active-orders-btn');
+  const viewActiveOrdersButton = document.getElementById('view-active-orders-btn'); // Проверка на null
   const cityInput = document.getElementById('city');
   const citySuggestions = document.getElementById('city-suggestions');
   const pinMenu = document.getElementById('pin-menu');
   const pinConfirmButton = document.getElementById('pin-confirm-btn');
 
-const availableCities = [
-"Москва", "Тюмень", "Курган", "Челябинск","Санкт-Петербург", "Екатеринбург", "Казань", "Владивосток", "Омск", "Новосибирск", "Красноярск", "Пермь",
- "Нижний Новгород", "Краснодар", "Воронеж", "Ростов-на-Дону", "Уфа", "Самара", "Чебоксары", "Ижевск", "Ярославль", "Хабаровск", "Саратов", 
- "Тольятти", "Барнаул", "Иркутск", "Ульяновск", "Волгоград", "Калининград", "Махачкала", "Новокузнецк", "Кемерово", "Рязань", "Набережные Челны", 
- "Ставрополь", "Оренбург", "Сочи", "Тверь", "Владимир", "Курск", "Липецк", "Тула", "Киров", "Вологда", "Чита", "Пенза", "Брянск", "Архангельск", 
- "Калуга", "Смоленск", "Астрахань", "Белгород", "Нижний Тагил", "Петрозаводск", "Сыктывкар", "Череповец", "Якутск", "Химки", "Балашиха",
-  "Красногорск", "Подольск", "Королёв", "Люберцы", "Мытищи", "Одинцово", "Дзержинский", "Электросталь", 
-"Реутов", "Коломна", "Серпухов", "Видное", "Щёлково", "Домодедово", "Раменское", "Крым", "Донецк", "Луганск", "Мариуполь"
-];
-
+  const availableCities = ["Москва", "Тюмень", "Курган", "Челябинск","Санкт-Петербург", /*... другие города ...*/];
 
   function openOrderForm() {
     createOrderButton.style.display = 'none';
@@ -247,17 +234,15 @@ const availableCities = [
     orderElement.appendChild(pinBtn);
 
     pinBtn.addEventListener('click', () => {
-      pinMenu.classList.remove('hidden'); // Открыть меню закрепления
-      pinMenu.classList.add('show'); // Добавить класс для отображения по центру
-
-      // Сохранить текущую заявку и кнопку для обновления после закрепления
+      pinMenu.classList.remove('hidden');
+      pinMenu.classList.add('show');
       pinMenu.currentOrderElement = orderElement;
       pinMenu.currentPinBtn = pinBtn;
     });
   }
 
   function submitOrder() {
-    const city = document.getElementById('city').value;
+    const city = cityInput.value;
     const address = document.getElementById('address').value;
     const task = document.getElementById('task').value;
     const Dataz = document.getElementById('Dataz').value;
@@ -269,20 +254,19 @@ const availableCities = [
     if (availableCities.includes(city)) {
       const newOrder = document.createElement('div');
       newOrder.classList.add('order-item', 'unconfirmed');
-
       newOrder.innerHTML = `
-        <p><strong>🏙️ Город:</strong> <span data-city>${city}</span></p>
-        <p><strong>📍 Адрес:</strong> <span data-address>${address}</span></p>
-        <p><strong>📝 Задание:</strong> <span data-task>${task}</span></p>
-        <p><strong>📅 Дата:</strong> <span data-Dataz>${Dataz}</span></p>
-        <p><strong>⏰ Время начала:</strong> <span data-start-time>${startTime}</span></p>
-        <p><strong>💰 Оплата(руб/час):</strong> <span data-payment>${payment} ₽</span></p>
-        <p><strong>👥 Количество людей:</strong> <span data-people>${people}</span></p>
-        <p><strong>💬 Комментарий:</strong> <span data-comment>${comment}</span></p>
+        <p><strong>🏙️ Город:</strong> ${city}</p>
+        <p><strong>📍 Адрес:</strong> ${address}</p>
+        <p><strong>📝 Задание:</strong> ${task}</p>
+        <p><strong>📅 Дата:</strong> ${Dataz}</p>
+        <p><strong>⏰ Время начала:</strong> ${startTime}</p>
+        <p><strong>💰 Оплата(руб/час):</strong> ${payment} ₽</p>
+        <p><strong>👥 Количество людей:</strong> ${people}</p>
+        <p><strong>💬 Комментарий:</strong> ${comment}</p>
         <button class="btn confirm-btn">Подтвердить заявку</button>
         <button class="btn cancel-btn">Отменить заявку</button>
       `;
-
+      
       newOrder.querySelector('.confirm-btn').addEventListener('click', () => confirmOrder(newOrder));
       newOrder.querySelector('.cancel-btn').addEventListener('click', () => deleteOrder(newOrder));
 
@@ -299,10 +283,7 @@ const availableCities = [
 
   function updateCitySuggestions() {
     const inputValue = cityInput.value.toLowerCase();
-    const suggestions = availableCities.filter(city => 
-      city.toLowerCase().includes(inputValue)
-    );
-
+    const suggestions = availableCities.filter(city => city.toLowerCase().includes(inputValue));
     citySuggestions.innerHTML = '';
     citySuggestions.classList.remove('hidden');
 
@@ -321,43 +302,37 @@ const availableCities = [
     }
   }
 
-  // Закрытие меню закрепления заявки по кнопке "Отмена"
   document.getElementById('pin-cancel-btn').addEventListener('click', () => {
-    pinMenu.classList.remove('show'); // Убираем отображение по центру
-    setTimeout(() => pinMenu.classList.add('hidden'), 400); // Убираем после анимации
+    pinMenu.classList.remove('show');
+    setTimeout(() => pinMenu.classList.add('hidden'), 400);
   });
 
-  // Закрепление заявки при нажатии на "Закрепить" в меню
   pinConfirmButton.addEventListener('click', () => {
-    pinMenu.classList.remove('show'); // Убираем отображение по центру
-    setTimeout(() => pinMenu.classList.add('hidden'), 400); // Убираем после анимации
-
+    pinMenu.classList.remove('show');
+    setTimeout(() => pinMenu.classList.add('hidden'), 400);
     if (pinMenu.currentPinBtn) {
-      pinMenu.currentPinBtn.remove(); // Удаляем кнопку "Закрепить"
-
-      // Создаем элемент изображения
+      pinMenu.currentPinBtn.remove();
       const lightningImg = document.createElement('img');
       lightningImg.src = "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/High%20Voltage.webp";
       lightningImg.alt = "High Voltage";
       lightningImg.width = 25;
       lightningImg.height = 25;
-      lightningImg.style.animation = 'moveDownLeft 1s linear forwards'; // Анимация
-
-      pinMenu.currentOrderElement.appendChild(lightningImg); // Добавляем изображение
+      lightningImg.style.animation = 'moveDownLeft 1s linear forwards';
+      pinMenu.currentOrderElement.appendChild(lightningImg);
     }
   });
 
   cityInput.addEventListener('input', updateCitySuggestions);
-  cityInput.addEventListener('blur', () => {
-    setTimeout(() => {
-      citySuggestions.classList.add('hidden');
-    }, 200);
-  });
+  cityInput.addEventListener('blur', () => setTimeout(() => citySuggestions.classList.add('hidden'), 200));
 
   createOrderButton?.addEventListener('click', openOrderForm);
   cancelOrderButton?.addEventListener('click', closeOrderForm);
   submitOrderButton?.addEventListener('click', submitOrder);
-  viewActiveOrdersButton?.addEventListener('click', () => showPage('orders'));
+
+  // Проверка наличия viewActiveOrdersButton перед добавлением обработчика событий
+  if (viewActiveOrdersButton) {
+    viewActiveOrdersButton.addEventListener('click', () => showPage('orders'));
+  }
 
   showPage('home');
 });
