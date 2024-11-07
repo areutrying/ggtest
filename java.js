@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Инициализация Telegram Web App
   const telegramWebApp = window.Telegram.WebApp;
 
-  // Проверка и получение данных пользователя
+  // Проверка, поддерживает ли Telegram Web App и получение данных пользователя
   if (telegramWebApp.initDataUnsafe && telegramWebApp.initDataUnsafe.user) {
     const userData = telegramWebApp.initDataUnsafe.user;
 
@@ -48,17 +48,26 @@ document.addEventListener('DOMContentLoaded', () => {
       userNameElement.textContent = userData.username || `${userData.first_name} ${userData.last_name}`;
     }
 
-    // Получение контейнера для аватара и замена на аватар из Telegram, если доступен
+    // Получение контейнера для аватара
+    const avatarContainer = document.getElementById('avatar-container');
     const userAvatarElement = document.getElementById('user-avatar');
-    if (userAvatarElement && userData.photo_url) {
-      userAvatarElement.src = userData.photo_url;
-      userAvatarElement.alt = 'Аватар пользователя';
-      userAvatarElement.style.objectFit = 'cover';
+
+    // Если контейнер и аватарка существует, то обновляем аватар
+    if (avatarContainer && userAvatarElement) {
+      if (userData.photo_url) {
+        // Если есть URL фото, обновляем его в аватарке
+        userAvatarElement.src = userData.photo_url;
+        userAvatarElement.alt = 'Аватар пользователя';
+        userAvatarElement.style.objectFit = 'cover';  // Подгоняем изображение
+      } else {
+        // Если фото нет, оставляем аватар по умолчанию или не меняем
+        userAvatarElement.src = 'image/icon.png';  // Укажите путь к дефолтному изображению
+      }
     }
   } else {
     console.log("Telegram Web App не инициализирован или данные пользователя недоступны.");
   }
-
+  
   // Кнопки и меню пополнения баланса
   const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
   const topUpMenu = document.getElementById('top-up-menu');
@@ -246,23 +255,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }
 
-  function confirmOrder(orderElement) {
-    orderElement.classList.add('confirmed');
-    orderElement.classList.remove('unconfirmed');
-    orderElement.querySelector('.confirm-btn').style.display = 'none';
-    
-    const pinBtn = document.createElement('button');
-    pinBtn.classList.add('btn', 'pin-btn');
-    pinBtn.textContent = '📌 Закрепить';
-    orderElement.appendChild(pinBtn);
+function confirmOrder(orderElement) {
+  orderElement.classList.add('confirmed');
+  orderElement.classList.remove('unconfirmed');
+  orderElement.querySelector('.confirm-btn').style.display = 'none';
+  // Создайте кнопку "📌 Закрепить"
+  const pinBtn = document.createElement('button');
+  pinBtn.classList.add('btn', 'pin-btn');
+  pinBtn.textContent = '📌 Закрепить';
+  orderElement.appendChild(pinBtn);
 
-    pinBtn.addEventListener('click', () => {
-      pinMenu.classList.remove('hidden');
-      pinMenu.classList.add('show');
-      pinMenu.currentOrderElement = orderElement;
-      pinMenu.currentPinBtn = pinBtn;
-    });
-  }
+  // Добавьте обработчик события click к кнопке "📌 Закрепить" 
+  pinBtn.addEventListener('click', () => { 
+    pinMenu.classList.remove('hidden');
+    pinMenu.classList.add('show');
+    pinMenu.currentOrderElement = orderElement; 
+    pinMenu.currentPinBtn = pinBtn;
+  });
+}
 
   function submitOrder() {
     const city = cityInput.value;
@@ -296,7 +306,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const myOrdersSection = document.querySelector('.my-orders-title');
       myOrdersSection.insertAdjacentElement('afterend', newOrder);
 
-      showNotification('Заявка создана!');
       closeOrderForm();
       showPage('orders');
     } else {
