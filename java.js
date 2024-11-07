@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Инициализация Telegram Web App
   const telegramWebApp = window.Telegram.WebApp;
 
-  // Проверка, поддерживает ли Telegram Web App и получение данных пользователя
+  // Проверка и получение данных пользователя
   if (telegramWebApp.initDataUnsafe && telegramWebApp.initDataUnsafe.user) {
     const userData = telegramWebApp.initDataUnsafe.user;
 
@@ -48,21 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
       userNameElement.textContent = userData.username || `${userData.first_name} ${userData.last_name}`;
     }
 
-        // Получение контейнера для аватара
-    const avatarContainer = document.getElementById('avatar-container');
+    // Получение контейнера для аватара и замена на аватар из Telegram, если доступен
     const userAvatarElement = document.getElementById('user-avatar');
-
-    // Если контейнер и аватарка существует, то обновляем аватар
-    if (avatarContainer && userAvatarElement) {
-      if (userData.photo_url) {
-        // Если есть URL фото, обновляем его в аватарке
-        userAvatarElement.src = userData.photo_url;
-        userAvatarElement.alt = 'Аватар пользователя';
-        userAvatarElement.style.objectFit = 'cover';  // Подгоняем изображение
-      } else {
-        // Если фото нет, оставляем аватар по умолчанию или не меняем
-        userAvatarElement.src = 'image/icon.png';  // Укажите путь к дефолтному изображению
-      }
+    if (userAvatarElement && userData.photo_url) {
+      userAvatarElement.src = userData.photo_url;
+      userAvatarElement.alt = 'Аватар пользователя';
+      userAvatarElement.style.objectFit = 'cover';
     }
   } else {
     console.log("Telegram Web App не инициализирован или данные пользователя недоступны.");
