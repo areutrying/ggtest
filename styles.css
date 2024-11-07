@@ -177,8 +177,15 @@ body {
     width: 160px;
     margin-bottom: 5px;
     text-align: center;
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали */
+    gap: 5px; /* Отступ между картинкой и текстом */
 }
 
+.rating-info img {
+  width: 25px; /* Размер картинки */
+  height: 24px;
+}
 
 /* Кнопка пополнения баланса */
 .top-up-btn {
@@ -461,7 +468,6 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
 }
 
 
-
 .nav-btn {
   background-color: transparent;
   border: none;
@@ -490,7 +496,6 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
 .hidden {
   display: none;
 }
-
 /* Анимации для страниц */
 @keyframes fadeInPage {
   from {
@@ -619,7 +624,7 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
   background-color: rgb(247 0 0 / 0%);
   border: 2px solid #61892F;
   color: white;
-  padding: 9px;
+  padding: 8px 16px;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
@@ -841,6 +846,7 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
 #cancel-subscription-menu {
   /* ... (другие стили) ... */
 }
+
 
 /* Кнопка "нет" */
 #cancel-subscription-menu .btn {
