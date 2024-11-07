@@ -169,12 +169,12 @@ body {
 .rating-info {
     font-size: 1em;
     color: #ffffff;
-    padding: 7px;
+    padding: 8px;
     text-align: center;
     border-radius: 8px;
     box-shadow: inset 0px 0px 7px rgb(255 255 2 / 70%);
-    height: 27px;
-    width: 160px;
+    height: 29px;
+    width: 163px;
     margin-bottom: 5px;
     text-align: center;
     display: flex;
@@ -183,8 +183,8 @@ body {
 }
 
 .rating-info img {
-  width: 23px; /* Размер картинки */
-  height: 23px;
+  width: 25px; /* Размер картинки */
+  height: 25px;
 }
 
 /* Кнопка пополнения баланса */
