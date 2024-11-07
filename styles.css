@@ -203,6 +203,68 @@ body {
   background-color: #86C232; /* Ярко-зелёный при наведении */
   box-shadow: 0 0 10px rgba(134, 194, 50, 0.6);
 }
+#top-up-menu .menu-content {
+  text-align: left; /* Выравнивание текста по левому краю */
+  padding: 25px;
+  background-color: #262a2f; /* Тёмно-серый фон */
+  border-radius: 15px;
+  box-shadow:  0 0 15px rgb(0 0 0 / 30%);
+  max-width: 90%;
+  width: 320px;
+}
+
+#top-up-menu h2 {
+  font-size: 1.8em;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-align: center; /* Заголовок по центру */
+}
+
+#top-up-menu label {
+  color: #86C232; /* Ярко-зелёный для меток */
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+#top-up-amount {
+  width: 300px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #333537; /* Темно-серый фон для поля ввода */
+  color: #ffffff;
+  font-size: 1em;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#top-up-confirm-btn,
+#top-up-cancel-btn {
+  width: 151px;
+  padding: 10px;
+  font-size: 1.1em;
+  background-color: #61892F; /* Зелёный цвет для кнопок */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 1%;
+  text-align: center;
+}
+
+#top-up-confirm-btn:hover {
+  background-color: #86C232; /* Ярко-зелёный при наведении */
+}
+
+#top-up-cancel-btn {
+  background-color: #b7381e; /* Красный цвет для кнопки отмены */
+}
+
+#top-up-cancel-btn:hover {
+  background-color: #ff4d4d; /* Ярко-красный при наведении */
+}
 
 /* Секция заявок */
 .order-section {
@@ -825,7 +887,7 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
       padding: 7px;
     background-color: #262a2f;
     border-radius: 12px;
-    box-shadow: inset 0px 0px 12px rgb(255 0 0 / 76%);
+    box-shadow: inset 0px 0px 12px rgb(93 93 93 / 76%);
     margin-top: 15px;
 }
 
