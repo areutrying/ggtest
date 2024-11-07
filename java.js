@@ -96,9 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       topUpAmountInput.value = '';
       topUpMenu.classList.remove('show');
       setTimeout(() => topUpMenu.classList.add('hidden'), 400);
-    } else {
-      alert("Введите сумму больше нуля");
-    }
+    } 
   });
 
   // Кнопки и меню подписки
