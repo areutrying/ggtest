@@ -376,7 +376,7 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(-50%, -50%) d(0.8);
     background-color: #2b2e33;
     color: #ffffff;
     padding: 20px;
@@ -541,7 +541,6 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
 }
 
 .nav-btn:hover {
-  transform: scale(1.1);
   color: #86C232;
 }
 
@@ -726,7 +725,7 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.8); /* Начальная трансформация */
+  transform: translate(-50%, -50%) d(0.8); /* Начальная трансформация */
   background-color: #2b2e33; /* Темный фон */
   color: #ffffff;
   padding: 20px;
@@ -779,7 +778,7 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
 #pin-menu.show {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, -50%) scale(1); /* Конечная трансформация */
+  transform: translate(-50%, -50%) d(1); /* Конечная трансформация */
   background-color: #232323;
   box-shadow: 0 8px 16px rgb(0 0 0);
 }
@@ -1014,7 +1013,7 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
+  transform: translate(-50%, -50%) d(0.8);
   background-color: #b7381e; /* Dark red background */
   color: #ffffff;
   padding: 20px;
@@ -1033,5 +1032,5 @@ filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) br
 #insufficient-funds-popup.show {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) d(1);
 }
