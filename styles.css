@@ -528,6 +528,10 @@ body {
  filter: brightness(0) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) brightness(90%) contrast(101%); /* Яркий зеленый фильтр */
 
 }
+.bottom-nav .nav-btn:hover .nav-icon {
+  filter: brightness(0%) invert(43%) sepia(78%) saturate(500%) hue-rotate(38deg) brightness(90%) contrast(101%);
+}
+
 
 
 .nav-btn {
