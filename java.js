@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Если есть URL фото, обновляем его в аватарке
         userAvatarElement.src = userData.photo_url;
         userAvatarElement.alt = 'Аватар пользователя';
-        userAvatarElement.style.objectFit = 'cover';  // Подгоняем изображение
+        userAvatarElement.style.objectFit = 'contain';  // Подгоняем изображение
       } else {
         // Если фото нет, оставляем аватар по умолчанию или не меняем
         userAvatarElement.src = 'image/icon.png';  // Укажите путь к дефолтному изображению
@@ -306,8 +306,9 @@ function confirmOrder(orderElement) {
 
       closeOrderForm();
       showPage('orders');
+      
     } else {
-      showNotification('Неверно указан город. Пожалуйста, выберите город из списка.');
+       alert('Пожалуйста, заполните все поля!');
     }
   }
 
