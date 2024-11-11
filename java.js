@@ -35,46 +35,38 @@ document.getElementById('support-btn').addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Инициализация Telegram Web App
   const telegramWebApp = window.Telegram.WebApp;
 
-  // Проверка, поддерживает ли Telegram Web App и получение данных пользователя
   if (telegramWebApp.initDataUnsafe && telegramWebApp.initDataUnsafe.user) {
     const userData = telegramWebApp.initDataUnsafe.user;
-
-    // Отображение имени пользователя
     const userNameElement = document.getElementById('user-name');
     if (userNameElement) {
       userNameElement.textContent = userData.username || `${userData.first_name} ${userData.last_name}`;
     }
 
-    // Получение контейнера для аватара
     const avatarContainer = document.getElementById('avatar-container');
     const userAvatarElement = document.getElementById('user-avatar');
-
-    // Если контейнер и аватарка существуют, то обновляем аватар
     if (avatarContainer && userAvatarElement) {
       if (userData.photo_url) {
-        // Если есть URL фото, обновляем его в аватарке
         userAvatarElement.src = userData.photo_url;
         userAvatarElement.alt = 'Аватар пользователя';
-        userAvatarElement.style.objectFit = 'contain';  // Подгоняем изображение
+        userAvatarElement.style.objectFit = 'contain';
       } else {
-        // Если фото нет, оставляем аватар по умолчанию или не меняем
-        userAvatarElement.src = 'image/icon.png';  // Укажите путь к дефолтному изображению
+        userAvatarElement.src = 'image/icon.png';
       }
     }
   } else {
     console.log("Telegram Web App не инициализирован или данные пользователя недоступны.");
   }
   
-  // Кнопки и меню пополнения баланса
   const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
   const topUpMenu = document.getElementById('top-up-menu');
   const topUpConfirmButton = document.getElementById('top-up-confirm-btn');
   const topUpCancelButton = document.getElementById('top-up-cancel-btn');
   const balanceDisplay = document.querySelector('.balance');
   const topUpAmountInput = document.getElementById('top-up-amount');
+  const CONFIRMATION_COST = 150;
+  const PIN_COST = 200;
 
   topUpButton.addEventListener('click', () => {
     topUpMenu.classList.remove('hidden');
@@ -99,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } 
   });
 
-  // Кнопки и меню подписки
   const buySubscriptionButton = document.querySelector('.button-container .btn:first-child');
   const subscriptionMenu = document.getElementById('subscription-menu');
   const cancelSubscriptionButton = document.getElementById('subscribe-cancel-btn');
@@ -113,19 +104,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const cancelSubscriptionConfirmBtn = document.getElementById('cancel-subscription-confirm-btn');
   const cancelSubscriptionCancelBtn = document.getElementById('cancel-subscription-cancel-btn');
 
-  // Цены на подписки
   const prices = {
     client: { 1: 600, 3: 1600, 6: 3000 },
     mover: { 1: 150, 3: 350, 6: 650 }
   };
 
-  // Названия подписок на русском
   const subscriptionNames = {
     client: "💎Заказчик+",
     mover: "✨Грузчик+"
   };
 
-  // Описание подписок
   const descriptions = {
     client: `
       <h3>Что даёт подписка Заказчик+</h3>
@@ -138,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `
   };
 
-  // Обновление информации о подписке
   function updateSubscriptionInfo() {
     const type = subscriptionTypeSelect.value;
     const duration = subscriptionDurationSelect.value;
@@ -147,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     subscriptionDescription.innerHTML = descriptions[type];
   }
 
-  // Отображение активной подписки
   function displayActiveSubscriptions() {
     activeSubscriptionsDiv.innerHTML = '';
     const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
@@ -157,9 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const subscriptionElement = document.createElement('div');
         subscriptionElement.classList.add('subscription-item');
 
-        // Используем русские названия подписок
         const subscriptionName = subscriptionNames[subscription.type];
-
         subscriptionElement.textContent = `${subscriptionName}`;
         activeSubscriptionsDiv.appendChild(subscriptionElement);
       });
@@ -169,14 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Открытие меню подписки
   buySubscriptionButton.addEventListener('click', () => {
     subscriptionMenu.classList.remove('hidden');
     subscriptionMenu.classList.add('show');
     updateSubscriptionInfo();
   });
 
-  // Закрытие меню подписки
   cancelSubscriptionButton.addEventListener('click', () => {
     subscriptionMenu.classList.remove('show');
     setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
@@ -185,17 +167,30 @@ document.addEventListener('DOMContentLoaded', () => {
   subscriptionTypeSelect.addEventListener('change', updateSubscriptionInfo);
   subscriptionDurationSelect.addEventListener('change', updateSubscriptionInfo);
 
-  // Показ уведомления о недостатке средств
   function showInsufficientFunds() {
     const insufficientFundsPopup = document.getElementById('insufficient-funds-popup');
-    insufficientFundsPopup.classList.add('show');
+    if (insufficientFundsPopup) {
+      insufficientFundsPopup.classList.add('show');
     
-    setTimeout(() => {
-      insufficientFundsPopup.classList.remove('show');
-    }, 3000); // Убрать через 3 секунды
+      setTimeout(() => {
+        insufficientFundsPopup.classList.remove('show');
+      }, 3000); 
+    }
   }
 
-  // Подтверждение покупки подписки
+  function updateBalance(amount) {
+    let currentBalance = parseFloat(balanceDisplay.textContent.replace(/[₽\s]/g, ''));
+    const newBalance = currentBalance + amount;
+
+    if (newBalance < 0) {
+      showInsufficientFunds();
+      return false;
+    }
+
+    balanceDisplay.textContent = `₽${newBalance.toFixed(2)}`;
+    return true;
+  }
+
   confirmSubscriptionButton.addEventListener('click', () => {
     const selectedType = subscriptionTypeSelect.value;
     const selectedDuration = subscriptionDurationSelect.value;
@@ -204,11 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentBalance = parseFloat(balanceDisplay.textContent.replace(/[₽\s]/g, ''));
 
     if (currentBalance >= price) {
-      // Списать средства с баланса
       currentBalance -= price;
       balanceDisplay.textContent = `₽${currentBalance.toFixed(2)}`;
 
-      // Сохранить подписку
       const newSubscription = {
         type: selectedType,
         duration: selectedDuration
@@ -220,12 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       displayActiveSubscriptions();
       
-      // Скрыть меню подписки
       subscriptionMenu.classList.remove('show');
       setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
 
     } else {
-      // Если баланс недостаточен, показать уведомление
       showInsufficientFunds();
     }
   });
@@ -235,13 +226,11 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelSubscriptionMenu.classList.add('show');
   });
 
-  // Обработчик для кнопки "Нет" - закрывает меню отмены подписки
   cancelSubscriptionCancelBtn.addEventListener('click', () => {
     cancelSubscriptionMenu.classList.remove('show');
     setTimeout(() => cancelSubscriptionMenu.classList.add('hidden'), 400);
   });
 
-  // Обработчик для кнопки "Да" - подтверждает отмену подписки
   cancelSubscriptionConfirmBtn.addEventListener('click', () => {
     localStorage.removeItem('activeSubscriptions');
     cancelSubscriptionMenu.classList.remove('show');
@@ -251,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   displayActiveSubscriptions();
 
-  // Кнопки для создания и подтверждения заявок
   const createOrderButton = document.getElementById('create-order-btn');
   const cancelOrderButton = document.getElementById('cancel-order-btn');
   const submitOrderButton = document.getElementById('submit-order-btn');
@@ -262,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const citySuggestions = document.getElementById('city-suggestions');
   const pinMenu = document.getElementById('pin-menu');
   const pinConfirmButton = document.getElementById('pin-confirm-btn');
-
   const availableCities = ["Москва", "Тюмень", "Курган", "Челябинск", "Санкт-Петербург"];
 
   function openOrderForm() {
@@ -278,37 +265,58 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showNotification(message) {
-    notification.textContent = message;
-    notification.style.opacity = 1;
-    setTimeout(() => {
-      notification.style.opacity = 0;
-    }, 2000);
+    if (notification) {
+      notification.textContent = message;
+      notification.style.opacity = 1;
+      setTimeout(() => {
+        notification.style.opacity = 0;
+      }, 2000);
+    }
   }
 
-  function deleteOrder(orderElement) {
+  function confirmOrder(orderElement) {
+    if (updateBalance(-CONFIRMATION_COST)) {
+      orderElement.classList.add('confirmed');
+      orderElement.classList.remove('unconfirmed');
+      orderElement.querySelector('.confirm-btn').style.display = 'none';
+      orderElement.querySelector('.cancel-btn').style.display = 'inline-block';
+
+      const pinBtn = document.createElement('button');
+      pinBtn.classList.add('btn', 'pin-btn');
+      pinBtn.textContent = '📌 Закрепить';
+      orderElement.appendChild(pinBtn);
+
+      pinBtn.addEventListener('click', () => {
+        if (updateBalance(-PIN_COST)) {
+          orderElement.classList.add('pinned');
+          pinBtn.remove();
+
+          // Добавляем изображение вместо кнопки
+          const lightningImg = document.createElement('img');
+          lightningImg.src = "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/High%20Voltage.webp";
+          lightningImg.alt = "Закреплено";
+          lightningImg.width = 25;
+          lightningImg.height = 25;
+          lightningImg.style.animation = 'moveDownLeft 1s linear forwards';
+          orderElement.appendChild(lightningImg);
+
+          showNotification("Заявка закреплена.");
+        }
+      });
+    }
+  }
+
+  function cancelOrder(orderElement) {
+    if (orderElement.classList.contains('confirmed')) {
+      updateBalance(CONFIRMATION_COST);
+    }
+    if (orderElement.classList.contains('pinned')) {
+      updateBalance(PIN_COST);
+    }
     orderElement.classList.add('fade-out');
     setTimeout(() => {
       orderElement.remove();
     }, 500);
-  }
-
-  function confirmOrder(orderElement) {
-    orderElement.classList.add('confirmed');
-    orderElement.classList.remove('unconfirmed');
-    orderElement.querySelector('.confirm-btn').style.display = 'none';
-    // Создайте кнопку "📌 Закрепить"
-    const pinBtn = document.createElement('button');
-    pinBtn.classList.add('btn', 'pin-btn');
-    pinBtn.textContent = '📌 Закрепить';
-    orderElement.appendChild(pinBtn);
-
-    // Добавьте обработчик события click к кнопке "📌 Закрепить" 
-    pinBtn.addEventListener('click', () => { 
-      pinMenu.classList.remove('hidden');
-      pinMenu.classList.add('show');
-      pinMenu.currentOrderElement = orderElement; 
-      pinMenu.currentPinBtn = pinBtn;
-    });
   }
 
   function submitOrder() {
@@ -334,11 +342,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <p><strong>👥 Количество людей:</strong> ${people}</p>
         <p><strong>💬 Комментарий:</strong> ${comment}</p>
         <button class="btn confirm-btn">Подтвердить заявку</button>
-        <button class="btn cancel-btn">Отменить заявку</button>
+        <button class="btn cancel-btn" style="display:none;">Отменить заявку</button>
       `;
       
       newOrder.querySelector('.confirm-btn').addEventListener('click', () => confirmOrder(newOrder));
-      newOrder.querySelector('.cancel-btn').addEventListener('click', () => deleteOrder(newOrder));
+      newOrder.querySelector('.cancel-btn').addEventListener('click', () => cancelOrder(newOrder));
 
       const myOrdersSection = document.querySelector('.my-orders-title');
       myOrdersSection.insertAdjacentElement('afterend', newOrder);
@@ -382,9 +390,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => pinMenu.classList.add('hidden'), 400);
     if (pinMenu.currentPinBtn) {
       pinMenu.currentPinBtn.remove();
+
       const lightningImg = document.createElement('img');
       lightningImg.src = "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/High%20Voltage.webp";
-      lightningImg.alt = "High Voltage";
+      lightningImg.alt = "Закреплено";
       lightningImg.width = 25;
       lightningImg.height = 25;
       lightningImg.style.animation = 'moveDownLeft 1s linear forwards';
@@ -399,7 +408,6 @@ document.addEventListener('DOMContentLoaded', () => {
   cancelOrderButton?.addEventListener('click', closeOrderForm);
   submitOrderButton?.addEventListener('click', submitOrder);
 
-  // Проверка наличия viewActiveOrdersButton перед добавлением обработчика событий
   if (viewActiveOrdersButton) {
     viewActiveOrdersButton.addEventListener('click', () => showPage('orders'));
   }
