@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const avatarContainer = document.getElementById('avatar-container');
     const userAvatarElement = document.getElementById('user-avatar');
 
-    // Если контейнер и аватарка существует, то обновляем аватар
+    // Если контейнер и аватарка существуют, то обновляем аватар
     if (avatarContainer && userAvatarElement) {
       if (userData.photo_url) {
         // Если есть URL фото, обновляем его в аватарке
@@ -111,13 +111,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const activeSubscriptionsDiv = document.getElementById('active-subscription');
   const cancelSubscriptionMenu = document.getElementById('cancel-subscription-menu');
   const cancelSubscriptionConfirmBtn = document.getElementById('cancel-subscription-confirm-btn');
-  const cancelSubscriptionCancelBtn = document.getElementById('cancel-subscription-cancel-btn');
+  const cancelSubscriptionCancelBtn = document.getElementById('cancel-subscription-cancel-btn'); // Обновлено
 
+  // Цены на подписки
   const prices = {
     client: { 1: 600, 3: 1600, 6: 3000 },
     mover: { 1: 150, 3: 350, 6: 650 }
   };
 
+  // Названия подписок на русском
+  const subscriptionNames = {
+    client: "💎Заказчик+",
+    mover: "✨Грузчик+"
+  };
+
+  // Описание подписок
   const descriptions = {
     client: `
       <h3>Что даёт подписка Заказчик+</h3>
@@ -130,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `
   };
 
+  // Обновление информации о подписке
   function updateSubscriptionInfo() {
     const type = subscriptionTypeSelect.value;
     const duration = subscriptionDurationSelect.value;
@@ -138,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     subscriptionDescription.innerHTML = descriptions[type];
   }
 
+  // Отображение активной подписки
   function displayActiveSubscriptions() {
     activeSubscriptionsDiv.innerHTML = '';
     const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
@@ -146,7 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
       activeSubscriptions.forEach(subscription => {
         const subscriptionElement = document.createElement('div');
         subscriptionElement.classList.add('subscription-item');
-        subscriptionElement.innerHTML = `<strong>${subscription.type}</strong>`;
+
+        // Используем русские названия подписок
+        const subscriptionName = subscriptionNames[subscription.type];
+
+        subscriptionElement.textContent = `${subscriptionName}`;
         activeSubscriptionsDiv.appendChild(subscriptionElement);
       });
       activeSubscriptionsDiv.style.display = "block";
@@ -155,12 +169,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Открытие меню подписки
   buySubscriptionButton.addEventListener('click', () => {
     subscriptionMenu.classList.remove('hidden');
     subscriptionMenu.classList.add('show');
     updateSubscriptionInfo();
   });
 
+  // Закрытие меню подписки
   cancelSubscriptionButton.addEventListener('click', () => {
     subscriptionMenu.classList.remove('show');
     setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
@@ -169,28 +185,49 @@ document.addEventListener('DOMContentLoaded', () => {
   subscriptionTypeSelect.addEventListener('change', updateSubscriptionInfo);
   subscriptionDurationSelect.addEventListener('change', updateSubscriptionInfo);
 
+  // Показ уведомления о недостатке средств
+  function showInsufficientFunds() {
+    const insufficientFundsPopup = document.getElementById('insufficient-funds-popup');
+    insufficientFundsPopup.classList.add('show');
+    
+    setTimeout(() => {
+      insufficientFundsPopup.classList.remove('show');
+    }, 3000); // Убрать через 3 секунды
+  }
+
+  // Подтверждение покупки подписки
   confirmSubscriptionButton.addEventListener('click', () => {
-    const selectedType = subscriptionTypeSelect.options[subscriptionTypeSelect.selectedIndex].text;
+    const selectedType = subscriptionTypeSelect.value;
     const selectedDuration = subscriptionDurationSelect.value;
-    const newSubscription = {
-      type: selectedType,
-      duration: selectedDuration
-    };
+    const price = prices[selectedType][selectedDuration];
+    
+    let currentBalance = parseFloat(balanceDisplay.textContent.replace(/[₽\s]/g, ''));
 
-    let activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
+    if (currentBalance >= price) {
+      // Списать средства с баланса
+      currentBalance -= price;
+      balanceDisplay.textContent = `₽${currentBalance.toFixed(2)}`;
 
-    const existingIndex = activeSubscriptions.findIndex(sub => sub.type === selectedType);
-    if (existingIndex !== -1) {
-      activeSubscriptions[existingIndex] = newSubscription;
-    } else {
+      // Сохранить подписку
+      const newSubscription = {
+        type: selectedType,
+        duration: selectedDuration
+      };
+      
+      let activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
       activeSubscriptions.push(newSubscription);
+      localStorage.setItem('activeSubscriptions', JSON.stringify(activeSubscriptions));
+
+      displayActiveSubscriptions();
+      
+      // Скрыть меню подписки
+      subscriptionMenu.classList.remove('show');
+      setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
+
+    } else {
+      // Если баланс недостаточен, показать уведомление
+      showInsufficientFunds();
     }
-
-    localStorage.setItem('activeSubscriptions', JSON.stringify(activeSubscriptions));
-    displayActiveSubscriptions();
-
-    subscriptionMenu.classList.remove('show');
-    setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
   });
 
   activeSubscriptionsDiv.addEventListener('click', () => {
@@ -198,11 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
     cancelSubscriptionMenu.classList.add('show');
   });
 
+  // Обработчик для кнопки "Нет" - закрывает меню отмены подписки
   cancelSubscriptionCancelBtn.addEventListener('click', () => {
     cancelSubscriptionMenu.classList.remove('show');
     setTimeout(() => cancelSubscriptionMenu.classList.add('hidden'), 400);
   });
 
+  // Обработчик для кнопки "Да" - подтверждает отмену подписки
   cancelSubscriptionConfirmBtn.addEventListener('click', () => {
     localStorage.removeItem('activeSubscriptions');
     cancelSubscriptionMenu.classList.remove('show');
@@ -253,24 +292,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }
 
-function confirmOrder(orderElement) {
-  orderElement.classList.add('confirmed');
-  orderElement.classList.remove('unconfirmed');
-  orderElement.querySelector('.confirm-btn').style.display = 'none';
-  // Создайте кнопку "📌 Закрепить"
-  const pinBtn = document.createElement('button');
-  pinBtn.classList.add('btn', 'pin-btn');
-  pinBtn.textContent = '📌 Закрепить';
-  orderElement.appendChild(pinBtn);
+  function confirmOrder(orderElement) {
+    orderElement.classList.add('confirmed');
+    orderElement.classList.remove('unconfirmed');
+    orderElement.querySelector('.confirm-btn').style.display = 'none';
+    // Создайте кнопку "📌 Закрепить"
+    const pinBtn = document.createElement('button');
+    pinBtn.classList.add('btn', 'pin-btn');
+    pinBtn.textContent = '📌 Закрепить';
+    orderElement.appendChild(pinBtn);
 
-  // Добавьте обработчик события click к кнопке "📌 Закрепить" 
-  pinBtn.addEventListener('click', () => { 
-    pinMenu.classList.remove('hidden');
-    pinMenu.classList.add('show');
-    pinMenu.currentOrderElement = orderElement; 
-    pinMenu.currentPinBtn = pinBtn;
-  });
-}
+    // Добавьте обработчик события click к кнопке "📌 Закрепить" 
+    pinBtn.addEventListener('click', () => { 
+      pinMenu.classList.remove('hidden');
+      pinMenu.classList.add('show');
+      pinMenu.currentOrderElement = orderElement; 
+      pinMenu.currentPinBtn = pinBtn;
+    });
+  }
 
   function submitOrder() {
     const city = cityInput.value;
