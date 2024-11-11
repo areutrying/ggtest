@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const activeSubscriptionsDiv = document.getElementById('active-subscription');
   const cancelSubscriptionMenu = document.getElementById('cancel-subscription-menu');
   const cancelSubscriptionConfirmBtn = document.getElementById('cancel-subscription-confirm-btn');
-  const cancelSubscriptionCancelBtn = document.getElementById('cancel-subscription-cancel-btn'); // Обновлено
+  const cancelSubscriptionCancelBtn = document.getElementById('cancel-subscription-cancel-btn');
 
   // Цены на подписки
   const prices = {
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pinMenu = document.getElementById('pin-menu');
   const pinConfirmButton = document.getElementById('pin-confirm-btn');
 
-  const availableCities = ["Москва", "Тюмень", "Курган", "Челябинск","Санкт-Петербург", /*... другие города ...*/];
+  const availableCities = ["Москва", "Тюмень", "Курган", "Челябинск", "Санкт-Петербург"];
 
   function openOrderForm() {
     createOrderButton.style.display = 'none';
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const city = cityInput.value;
     const address = document.getElementById('address').value;
     const task = document.getElementById('task').value;
-    const Dataz = document.getElementById('Dataz').value;
+    const dataz = document.getElementById('Dataz').value;
     const startTime = document.getElementById('start-time').value;
     const payment = document.getElementById('payment').value;
     const people = document.getElementById('people').value;
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p><strong>🏙️ Город:</strong> ${city}</p>
         <p><strong>📍 Адрес:</strong> ${address}</p>
         <p><strong>📝 Задание:</strong> ${task}</p>
-        <p><strong>📅 Дата:</strong> ${Dataz}</p>
+        <p><strong>📅 Дата:</strong> ${dataz}</p>
         <p><strong>⏰ Время начала:</strong> ${startTime}</p>
         <p><strong>💰 Оплата(руб/час):</strong> ${payment} ₽</p>
         <p><strong>👥 Количество людей:</strong> ${people}</p>
