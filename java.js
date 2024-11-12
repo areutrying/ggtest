@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const balanceDisplay = document.querySelector('.balance');
   const topUpAmountInput = document.getElementById('top-up-amount');
   const CONFIRMATION_COST = 150;
-  const PIN_COST = 250;
+  const PIN_COST = 250;  // Изменено на 250
 
   topUpButton.addEventListener('click', () => {
     topUpMenu.classList.remove('hidden');
@@ -134,19 +134,27 @@ document.addEventListener('DOMContentLoaded', () => {
     subscriptionDescription.innerHTML = descriptions[type];
   }
 
+  // Функция для отображения активных подписок без дублирования
   function displayActiveSubscriptions() {
     activeSubscriptionsDiv.innerHTML = '';
     const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
 
-    if (activeSubscriptions.length > 0) {
-      activeSubscriptions.forEach(subscription => {
+    activeSubscriptions.forEach(subscription => {
+      // Проверяем, существует ли уже элемент с такой подпиской
+      const existingSubscription = activeSubscriptionsDiv.querySelector(`[data-subscription-type="${subscription.type}"]`);
+      
+      if (!existingSubscription) {
         const subscriptionElement = document.createElement('div');
         subscriptionElement.classList.add('subscription-item');
+        subscriptionElement.setAttribute('data-subscription-type', subscription.type);
 
         const subscriptionName = subscriptionNames[subscription.type];
         subscriptionElement.textContent = `${subscriptionName}`;
         activeSubscriptionsDiv.appendChild(subscriptionElement);
-      });
+      }
+    });
+
+    if (activeSubscriptions.length > 0) {
       activeSubscriptionsDiv.style.display = "block";
     } else {
       activeSubscriptionsDiv.style.display = "none";
@@ -208,11 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       
       let activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
-      activeSubscriptions.push(newSubscription);
-      localStorage.setItem('activeSubscriptions', JSON.stringify(activeSubscriptions));
 
-      displayActiveSubscriptions();
+      // Добавляем новую подписку только если её нет
+      const isAlreadySubscribed = activeSubscriptions.some(sub => sub.type === newSubscription.type);
       
+      if (!isAlreadySubscribed) {
+        activeSubscriptions.push(newSubscription);
+        localStorage.setItem('activeSubscriptions', JSON.stringify(activeSubscriptions));
+        displayActiveSubscriptions();
+      }
+
       subscriptionMenu.classList.remove('show');
       setTimeout(() => subscriptionMenu.classList.add('hidden'), 400);
 
@@ -301,10 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (updateBalance(-PIN_COST)) {
       currentOrderElement.classList.add('pinned');
       
-      // Удаляем кнопку "Закрепить"
       currentOrderElement.querySelector('.pin-btn').remove();
 
-      // Добавляем изображение вместо кнопки
       const lightningImg = document.createElement('img');
       lightningImg.src = "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/High%20Voltage.webp";
       lightningImg.alt = "Закреплено";
@@ -316,13 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
       showNotification("Заявка закреплена.");
     }
 
-    // Закрыть меню закрепления
     pinMenu.classList.remove('show');
     setTimeout(() => pinMenu.classList.add('hidden'), 400);
   });
 
   pinCancelButton.addEventListener('click', () => {
-    // Закрываем меню без закрепления
     pinMenu.classList.remove('show');
     setTimeout(() => pinMenu.classList.add('hidden'), 400);
   });
