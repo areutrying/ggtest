@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const balanceDisplay = document.querySelector('.balance');
   const topUpAmountInput = document.getElementById('top-up-amount');
   const CONFIRMATION_COST = 150;
-  const PIN_COST = 250;  // Изменено на 250
+  const PIN_COST = 250;
 
   topUpButton.addEventListener('click', () => {
     topUpMenu.classList.remove('hidden');
@@ -134,13 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
     subscriptionDescription.innerHTML = descriptions[type];
   }
 
-  // Функция для отображения активных подписок без дублирования
   function displayActiveSubscriptions() {
     activeSubscriptionsDiv.innerHTML = '';
     const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
 
     activeSubscriptions.forEach(subscription => {
-      // Проверяем, существует ли уже элемент с такой подпиской
       const existingSubscription = activeSubscriptionsDiv.querySelector(`[data-subscription-type="${subscription.type}"]`);
       
       if (!existingSubscription) {
@@ -217,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       let activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
 
-      // Добавляем новую подписку только если её нет
       const isAlreadySubscribed = activeSubscriptions.some(sub => sub.type === newSubscription.type);
       
       if (!isAlreadySubscribed) {
@@ -291,7 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function confirmOrder(orderElement) {
-    if (updateBalance(-CONFIRMATION_COST)) {
+    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
+    const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
+
+    if (hasClientPlusSubscription || updateBalance(-CONFIRMATION_COST)) {
       orderElement.classList.add('confirmed');
       orderElement.classList.remove('unconfirmed');
       orderElement.querySelector('.confirm-btn').style.display = 'none';
@@ -311,7 +311,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   pinConfirmButton.addEventListener('click', () => {
-    if (updateBalance(-PIN_COST)) {
+    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
+    const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
+
+    if (hasClientPlusSubscription || updateBalance(-PIN_COST)) {
       currentOrderElement.classList.add('pinned');
       
       currentOrderElement.querySelector('.pin-btn').remove();
@@ -336,18 +339,28 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => pinMenu.classList.add('hidden'), 400);
   });
 
-  function cancelOrder(orderElement) {
-    if (orderElement.classList.contains('confirmed')) {
-      updateBalance(CONFIRMATION_COST);
+function cancelOrder(orderElement) {
+    // Получаем активные подписки
+    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
+    const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
+
+    // Проверяем, если подписка отсутствует, возвращаем средства за подтверждение и закрепление
+    if (!hasClientPlusSubscription) {
+        if (orderElement.classList.contains('confirmed')) {
+            updateBalance(CONFIRMATION_COST);
+        }
+        if (orderElement.classList.contains('pinned')) {
+            updateBalance(PIN_COST);
+        }
     }
-    if (orderElement.classList.contains('pinned')) {
-      updateBalance(PIN_COST);
-    }
+    
+    // Удаляем элемент заявки с эффектом исчезновения
     orderElement.classList.add('fade-out');
     setTimeout(() => {
-      orderElement.remove();
+        orderElement.remove();
     }, 500);
-  }
+}
+
 
   function submitOrder() {
     const city = cityInput.value;
@@ -359,7 +372,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const people = document.getElementById('people').value;
     const comment = document.getElementById('comment').value;
 
-    if (availableCities.includes(city)) {
+    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
+    const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
+
+    if (hasClientPlusSubscription || availableCities.includes(city)) {
       const newOrder = document.createElement('div');
       newOrder.classList.add('order-item', 'unconfirmed');
       newOrder.innerHTML = `
