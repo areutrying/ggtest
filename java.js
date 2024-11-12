@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const balanceDisplay = document.querySelector('.balance');
   const topUpAmountInput = document.getElementById('top-up-amount');
   const CONFIRMATION_COST = 150;
-  const PIN_COST = 200;
+  const PIN_COST = 250;
 
   topUpButton.addEventListener('click', () => {
     topUpMenu.classList.remove('hidden');
