@@ -250,6 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const citySuggestions = document.getElementById('city-suggestions');
   const pinMenu = document.getElementById('pin-menu');
   const pinConfirmButton = document.getElementById('pin-confirm-btn');
+  const pinCancelButton = document.getElementById('pin-cancel-btn');
+  let currentOrderElement = null;
+
   const availableCities = ["Москва", "Тюмень", "Курган", "Челябинск", "Санкт-Петербург"];
 
   function openOrderForm() {
@@ -287,24 +290,42 @@ document.addEventListener('DOMContentLoaded', () => {
       orderElement.appendChild(pinBtn);
 
       pinBtn.addEventListener('click', () => {
-        if (updateBalance(-PIN_COST)) {
-          orderElement.classList.add('pinned');
-          pinBtn.remove();
-
-          // Добавляем изображение вместо кнопки
-          const lightningImg = document.createElement('img');
-          lightningImg.src = "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/High%20Voltage.webp";
-          lightningImg.alt = "Закреплено";
-          lightningImg.width = 25;
-          lightningImg.height = 25;
-          lightningImg.style.animation = 'moveDownLeft 1s linear forwards';
-          orderElement.appendChild(lightningImg);
-
-          showNotification("Заявка закреплена.");
-        }
+        currentOrderElement = orderElement;
+        pinMenu.classList.remove('hidden');
+        pinMenu.classList.add('show');
       });
     }
   }
+
+  pinConfirmButton.addEventListener('click', () => {
+    if (updateBalance(-PIN_COST)) {
+      currentOrderElement.classList.add('pinned');
+      
+      // Удаляем кнопку "Закрепить"
+      currentOrderElement.querySelector('.pin-btn').remove();
+
+      // Добавляем изображение вместо кнопки
+      const lightningImg = document.createElement('img');
+      lightningImg.src = "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Telegram-Animated-Emojis/main/Animals%20and%20Nature/High%20Voltage.webp";
+      lightningImg.alt = "Закреплено";
+      lightningImg.width = 25;
+      lightningImg.height = 25;
+      lightningImg.style.animation = 'moveDownLeft 1s linear forwards';
+      currentOrderElement.appendChild(lightningImg);
+
+      showNotification("Заявка закреплена.");
+    }
+
+    // Закрыть меню закрепления
+    pinMenu.classList.remove('show');
+    setTimeout(() => pinMenu.classList.add('hidden'), 400);
+  });
+
+  pinCancelButton.addEventListener('click', () => {
+    // Закрываем меню без закрепления
+    pinMenu.classList.remove('show');
+    setTimeout(() => pinMenu.classList.add('hidden'), 400);
+  });
 
   function cancelOrder(orderElement) {
     if (orderElement.classList.contains('confirmed')) {
