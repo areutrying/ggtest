@@ -426,6 +426,20 @@ function cancelOrder(orderElement) {
     }
   }
 
+  document.addEventListener('DOMContentLoaded', () => {
+    const telegramWebApp = window.Telegram.WebApp;
+
+    // Проверяем, доступен ли API и инициализируем его
+    if (telegramWebApp) {
+        // Расширяем приложение на весь экран
+        telegramWebApp.expand();
+    } else {
+        console.log("Telegram Web App не инициализирован.");
+    }
+
+
+});
+
   document.getElementById('pin-cancel-btn').addEventListener('click', () => {
     pinMenu.classList.remove('show');
     setTimeout(() => pinMenu.classList.add('hidden'), 400);
