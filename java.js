@@ -22,7 +22,7 @@ window.showPage = function (pageId) {
       newPage.style.animation = 'fadeInPage 0.07s ease forwards';
     }
   }
-  
+
     document.addEventListener('DOMContentLoaded', () => {
     const telegramWebApp = window.Telegram.WebApp;
 
@@ -376,7 +376,7 @@ function cancelOrder(orderElement) {
 }
 
 
-  function submitOrder() {
+function submitOrder() {
     const city = cityInput.value;
     const address = document.getElementById('address').value;
     const task = document.getElementById('task').value;
@@ -390,34 +390,34 @@ function cancelOrder(orderElement) {
     const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
 
     if (hasClientPlusSubscription || availableCities.includes(city)) {
-      const newOrder = document.createElement('div');
-      newOrder.classList.add('order-item', 'unconfirmed');
-      newOrder.innerHTML = `
-        <p><strong>🏙️ Город:</strong> ${city}</p>
-        <p><strong>📍 Адрес:</strong> ${address}</p>
-        <p><strong>📝 Задание:</strong> ${task}</p>
-        <p><strong>📅 Дата:</strong> ${dataz}</p>
-        <p><strong>⏰ Время начала:</strong> ${startTime}</p>
-        <p><strong>💰 Оплата(руб/час):</strong> ${payment} ₽</p>
-        <p><strong>👥 Количество людей:</strong> ${people}</p>
-        <p><strong>💬 Комментарий:</strong> ${comment}</p>
-        <button class="btn confirm-btn">Подтвердить заявку</button>
-        <button class="btn cancel-btn" style="display:none;">Отменить заявку</button>
-      `;
-      
-      newOrder.querySelector('.confirm-btn').addEventListener('click', () => confirmOrder(newOrder));
-      newOrder.querySelector('.cancel-btn').addEventListener('click', () => cancelOrder(newOrder));
+        const newOrder = document.createElement('div');
+        newOrder.classList.add('order-item', 'unconfirmed');
+        newOrder.innerHTML = `
+            <p><strong>🏙️ Город:</strong> ${city}</p>
+            <p><strong>📍 Адрес:</strong> ${address}</p>
+            <p><strong>📝 Задание:</strong> ${task}</p>
+            <p><strong>📅 Дата:</strong> ${dataz}</p>
+            <p><strong>⏰ Время начала:</strong> ${startTime}</p>
+            <p><strong>💰 Оплата(руб/час):</strong> ${payment} ₽</p>
+            <p><strong>👥 Количество людей:</strong> ${people}</p>
+            <p><strong>💬 Комментарий:</strong> ${comment}</p>
+            <button class="btn confirm-btn">Подтвердить заявку</button>
+            <button class="btn cancel-btn" style="display:none;">Отменить заявку</button>
+        `;
+        
+        newOrder.querySelector('.confirm-btn').addEventListener('click', () => confirmOrder(newOrder));
+        newOrder.querySelector('.cancel-btn').addEventListener('click', () => cancelOrder(newOrder));
 
-      const myOrdersSection = document.querySelector('.my-orders-title');
-      myOrdersSection.insertAdjacentElement('afterend', newOrder);
+        const myOrdersSection = document.querySelector('.my-orders-title');
+        myOrdersSection.classList.remove('hidden'); // Показать заголовок
+        myOrdersSection.insertAdjacentElement('afterend', newOrder);
 
-      closeOrderForm();
-      showPage('orders');
-      
+        closeOrderForm();
+        showPage('orders');
     } else {
-       alert('Пожалуйста, заполните все поля!');
+        alert('Пожалуйста, заполните все поля!');
     }
-  }
+}
 
   function updateCitySuggestions() {
     const inputValue = cityInput.value.toLowerCase();
