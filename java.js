@@ -22,6 +22,20 @@ window.showPage = function (pageId) {
       newPage.style.animation = 'fadeInPage 0.07s ease forwards';
     }
   }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+    const telegramWebApp = window.Telegram.WebApp;
+
+    // Проверяем, доступен ли API и инициализируем его
+    if (telegramWebApp) {
+        // Расширяем приложение на весь экран
+        telegramWebApp.expand();
+    } else {
+        console.log("Telegram Web App не инициализирован.");
+    }
+
+
+});
 
   document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active-nav-btn'));
   const activeButton = document.querySelector(`.nav-btn[onclick="showPage('${pageId}')"]`);
@@ -425,20 +439,6 @@ function cancelOrder(orderElement) {
       citySuggestions.classList.add('hidden');
     }
   }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const telegramWebApp = window.Telegram.WebApp;
-
-    // Проверяем, доступен ли API и инициализируем его
-    if (telegramWebApp) {
-        // Расширяем приложение на весь экран
-        telegramWebApp.expand();
-    } else {
-        console.log("Telegram Web App не инициализирован.");
-    }
-
-
-});
 
   document.getElementById('pin-cancel-btn').addEventListener('click', () => {
     pinMenu.classList.remove('show');
