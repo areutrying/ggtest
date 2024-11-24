@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000; /* Чёрный фон */
+  color: #ffffff; /* Белый текст */
+  font-family: Arial, sans-serif;
+}
+
+.loader-wrapper {
+  text-align: center;
+}
+
+.loader-gif {
+  width: 120px; /* Размер GIF */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.loader-text {
+  font-size: 1.5em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
