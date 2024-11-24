@@ -39,9 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const phoneInput = document.getElementById('phone-input');
   const phoneSubmitBtn = document.getElementById('phone-submit-btn');
   const userPhoneElement = document.getElementById('user-phone');
+  const changePhoneBtn = document.getElementById('change-phone-btn');
 
-  // Показываем модальное окно при загрузке
-  phoneModal.classList.add('show');
+  // Показываем модальное окно при загрузке, если номер не сохранён
+  const savedPhone = localStorage.getItem('userPhone');
+  if (!savedPhone) {
+    phoneModal.classList.add('show');
+  } else {
+    userPhoneElement.textContent = savedPhone;
+  }
 
   phoneSubmitBtn.addEventListener('click', () => {
     const phoneValue = phoneInput.value.trim();
@@ -58,11 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Если номер телефона уже сохранён, пропускаем ввод
-  const savedPhone = localStorage.getItem('userPhone');
-  if (savedPhone) {
-    userPhoneElement.textContent = savedPhone;
-    phoneModal.classList.remove('show');
+  // Кнопка "Изменить номер телефона"
+  if (changePhoneBtn) {
+    changePhoneBtn.addEventListener('click', () => {
+      phoneInput.value = ''; // Очищаем поле ввода
+      phoneModal.classList.add('show'); // Показываем модальное окно
+    });
   }
 });
 
@@ -90,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     console.log("Telegram Web App не инициализирован или данные пользователя недоступны.");
   }
-  
+
   const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
   const topUpMenu = document.getElementById('top-up-menu');
   const topUpConfirmButton = document.getElementById('top-up-confirm-btn');
@@ -98,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const balanceDisplay = document.querySelector('.balance');
   const topUpAmountInput = document.getElementById('top-up-amount');
   const CONFIRMATION_COST = 150;
-  const PIN_COST = 250;  // Изменено на 250
+  const PIN_COST = 250;
 
   topUpButton.addEventListener('click', () => {
     topUpMenu.classList.remove('hidden');
