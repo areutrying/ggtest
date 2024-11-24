@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css">
   <script defer src="java.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
 </head>
 <body>
 
@@ -184,7 +183,7 @@
 
     <!-- Заявки -->
     <div id="orders" class="page">
-      <h2 class="my-orders-title hidden">📝 Мои заявки</h2> <!-- Заголовок Мои заявки -->
+      <h2 class="my-orders-title">📝 Мои заявки</h2> <!-- Заголовок Мои заявки -->
       <h1>📋 Активные заявки</h1> 
       <p id="no-orders-message">У вас нет заявок</p> <!-- Сообщение при отсутствии заявок -->
     </div>
@@ -203,7 +202,9 @@
     <img id="user-avatar" src="image/icon.png" alt="User Avatar">
   </div>
   <p>Telegram: <span id="user-name">Загрузка...</span></p>
-  <p>Номер телефона: <span id="user-phone">Загрузка...</span></p>
+  <p>Номер телефона: <span id="user-phone">Загрузка...</span>
+  <button id="change-phone-btn" class="btn-small">Изменить номер</button>
+  </p>
 </div>
 
 
@@ -257,4 +258,13 @@
 </div>
 
 </body>
+<div id="phone-modal" class="modal">
+  <div class="modal-content">
+    <h2>Введите номер телефона</h2>
+    <label for="phone-input">Номер телефона:</label>
+    <input type="text" id="phone-input" placeholder="+7 (___) ___-__-__" pattern="^\+?[78][-( ]?\d{3}[-) ]?\d{3}[- ]?\d{2}[- ]?\d{2}$" required>
+    <button id="phone-submit-btn" class="btn">Подтвердить</button>
+  </div>
+</div>
+
 </html>
