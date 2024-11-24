@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <script>
-  setTimeout(() => {
-    window.location.href = "app.html"; // Переход на основное приложение
-  }, 2500); // Задержка в 3 секунды
+setTimeout(() => {
+  window.location.assign("app.html");
+}, 2500); // Задержка в 3 секунды
+
 </script>
 
 <head>
@@ -17,11 +18,5 @@
     <img src="image/abacus.gif" alt="Загрузка" class="loader-gif">
     <p class="loader-text">Загрузка...</p>
   </div>
-  <script>
-    // Перенаправляем на основное приложение после задержки
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 2500); // Задержка 3 секунды
-  </script>
 </body>
 </html>
