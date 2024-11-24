@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<script>
+  setTimeout(() => {
+    window.location.href = "app.html"; // Переход на основное приложение
+  }, 3000); // Задержка в 3 секунды
+</script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Загрузка</title>
+  <link rel="stylesheet" href="loader.css">
+</head>
+<body>
+  <div class="loader-wrapper">
+    <img src="image/abacus.gif" alt="Загрузка" class="loader-gif">
+    <p class="loader-text">Загрузка...</p>
+  </div>
+  <script>
+    // Перенаправляем на основное приложение после задержки
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 3000); // Задержка 3 секунды
+  </script>
+</body>
+</html>
