@@ -23,20 +23,6 @@ window.showPage = function (pageId) {
     }
   }
 
-    document.addEventListener('DOMContentLoaded', () => {
-    const telegramWebApp = window.Telegram.WebApp;
-
-    // Проверяем, доступен ли API и инициализируем его
-    if (telegramWebApp) {
-        // Расширяем приложение на весь экран
-        telegramWebApp.expand();
-    } else {
-        console.log("Telegram Web App не инициализирован.");
-    }
-
-
-});
-
   document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active-nav-btn'));
   const activeButton = document.querySelector(`.nav-btn[onclick="showPage('${pageId}')"]`);
   if (activeButton) {
@@ -46,6 +32,38 @@ window.showPage = function (pageId) {
 
 document.getElementById('support-btn').addEventListener('click', () => {
   window.open('https://t.me/GrandGruz2bot', '_blank');
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const phoneModal = document.getElementById('phone-modal');
+  const phoneInput = document.getElementById('phone-input');
+  const phoneSubmitBtn = document.getElementById('phone-submit-btn');
+  const userPhoneElement = document.getElementById('user-phone');
+
+  // Показываем модальное окно при загрузке
+  phoneModal.classList.add('show');
+
+  phoneSubmitBtn.addEventListener('click', () => {
+    const phoneValue = phoneInput.value.trim();
+
+    // Проверяем номер телефона
+    const phonePattern = /^\+?[78][-( ]?\d{3}[-) ]?\d{3}[- ]?\d{2}[- ]?\d{2}$/;
+    if (phonePattern.test(phoneValue)) {
+      // Сохраняем номер и скрываем модальное окно
+      localStorage.setItem('userPhone', phoneValue);
+      userPhoneElement.textContent = phoneValue;
+      phoneModal.classList.remove('show');
+    } else {
+      alert('Введите корректный номер телефона.');
+    }
+  });
+
+  // Если номер телефона уже сохранён, пропускаем ввод
+  const savedPhone = localStorage.getItem('userPhone');
+  if (savedPhone) {
+    userPhoneElement.textContent = savedPhone;
+    phoneModal.classList.remove('show');
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -80,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const balanceDisplay = document.querySelector('.balance');
   const topUpAmountInput = document.getElementById('top-up-amount');
   const CONFIRMATION_COST = 150;
-  const PIN_COST = 250;
+  const PIN_COST = 250;  // Изменено на 250
 
   topUpButton.addEventListener('click', () => {
     topUpMenu.classList.remove('hidden');
@@ -148,11 +166,13 @@ document.addEventListener('DOMContentLoaded', () => {
     subscriptionDescription.innerHTML = descriptions[type];
   }
 
+  // Функция для отображения активных подписок без дублирования
   function displayActiveSubscriptions() {
     activeSubscriptionsDiv.innerHTML = '';
     const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
 
     activeSubscriptions.forEach(subscription => {
+      // Проверяем, существует ли уже элемент с такой подпиской
       const existingSubscription = activeSubscriptionsDiv.querySelector(`[data-subscription-type="${subscription.type}"]`);
       
       if (!existingSubscription) {
@@ -229,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       let activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
 
+      // Добавляем новую подписку только если её нет
       const isAlreadySubscribed = activeSubscriptions.some(sub => sub.type === newSubscription.type);
       
       if (!isAlreadySubscribed) {
@@ -302,10 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function confirmOrder(orderElement) {
-    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
-    const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
-
-    if (hasClientPlusSubscription || updateBalance(-CONFIRMATION_COST)) {
+    if (updateBalance(-CONFIRMATION_COST)) {
       orderElement.classList.add('confirmed');
       orderElement.classList.remove('unconfirmed');
       orderElement.querySelector('.confirm-btn').style.display = 'none';
@@ -325,10 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   pinConfirmButton.addEventListener('click', () => {
-    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
-    const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
-
-    if (hasClientPlusSubscription || updateBalance(-PIN_COST)) {
+    if (updateBalance(-PIN_COST)) {
       currentOrderElement.classList.add('pinned');
       
       currentOrderElement.querySelector('.pin-btn').remove();
@@ -353,30 +368,20 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => pinMenu.classList.add('hidden'), 400);
   });
 
-function cancelOrder(orderElement) {
-    // Получаем активные подписки
-    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
-    const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
-
-    // Проверяем, если подписка отсутствует, возвращаем средства за подтверждение и закрепление
-    if (!hasClientPlusSubscription) {
-        if (orderElement.classList.contains('confirmed')) {
-            updateBalance(CONFIRMATION_COST);
-        }
-        if (orderElement.classList.contains('pinned')) {
-            updateBalance(PIN_COST);
-        }
+  function cancelOrder(orderElement) {
+    if (orderElement.classList.contains('confirmed')) {
+      updateBalance(CONFIRMATION_COST);
     }
-    
-    // Удаляем элемент заявки с эффектом исчезновения
+    if (orderElement.classList.contains('pinned')) {
+      updateBalance(PIN_COST);
+    }
     orderElement.classList.add('fade-out');
     setTimeout(() => {
-        orderElement.remove();
+      orderElement.remove();
     }, 500);
-}
+  }
 
-
-function submitOrder() {
+  function submitOrder() {
     const city = cityInput.value;
     const address = document.getElementById('address').value;
     const task = document.getElementById('task').value;
@@ -386,38 +391,35 @@ function submitOrder() {
     const people = document.getElementById('people').value;
     const comment = document.getElementById('comment').value;
 
-    const activeSubscriptions = JSON.parse(localStorage.getItem('activeSubscriptions')) || [];
-    const hasClientPlusSubscription = activeSubscriptions.some(sub => sub.type === 'client');
+    if (availableCities.includes(city)) {
+      const newOrder = document.createElement('div');
+      newOrder.classList.add('order-item', 'unconfirmed');
+      newOrder.innerHTML = `
+        <p><strong>🏙️ Город:</strong> ${city}</p>
+        <p><strong>📍 Адрес:</strong> ${address}</p>
+        <p><strong>📝 Задание:</strong> ${task}</p>
+        <p><strong>📅 Дата:</strong> ${dataz}</p>
+        <p><strong>⏰ Время начала:</strong> ${startTime}</p>
+        <p><strong>💰 Оплата(руб/час):</strong> ${payment} ₽</p>
+        <p><strong>👥 Количество людей:</strong> ${people}</p>
+        <p><strong>💬 Комментарий:</strong> ${comment}</p>
+        <button class="btn confirm-btn">Подтвердить заявку</button>
+        <button class="btn cancel-btn" style="display:none;">Отменить заявку</button>
+      `;
+      
+      newOrder.querySelector('.confirm-btn').addEventListener('click', () => confirmOrder(newOrder));
+      newOrder.querySelector('.cancel-btn').addEventListener('click', () => cancelOrder(newOrder));
 
-    if (hasClientPlusSubscription || availableCities.includes(city)) {
-        const newOrder = document.createElement('div');
-        newOrder.classList.add('order-item', 'unconfirmed');
-        newOrder.innerHTML = `
-            <p><strong>🏙️ Город:</strong> ${city}</p>
-            <p><strong>📍 Адрес:</strong> ${address}</p>
-            <p><strong>📝 Задание:</strong> ${task}</p>
-            <p><strong>📅 Дата:</strong> ${dataz}</p>
-            <p><strong>⏰ Время начала:</strong> ${startTime}</p>
-            <p><strong>💰 Оплата(руб/час):</strong> ${payment} ₽</p>
-            <p><strong>👥 Количество людей:</strong> ${people}</p>
-            <p><strong>💬 Комментарий:</strong> ${comment}</p>
-            <button class="btn confirm-btn">Подтвердить заявку</button>
-            <button class="btn cancel-btn" style="display:none;">Отменить заявку</button>
-        `;
-        
-        newOrder.querySelector('.confirm-btn').addEventListener('click', () => confirmOrder(newOrder));
-        newOrder.querySelector('.cancel-btn').addEventListener('click', () => cancelOrder(newOrder));
+      const myOrdersSection = document.querySelector('.my-orders-title');
+      myOrdersSection.insertAdjacentElement('afterend', newOrder);
 
-        const myOrdersSection = document.querySelector('.my-orders-title');
-        myOrdersSection.classList.remove('hidden'); // Показать заголовок
-        myOrdersSection.insertAdjacentElement('afterend', newOrder);
-
-        closeOrderForm();
-        showPage('orders');
+      closeOrderForm();
+      showPage('orders');
+      
     } else {
-        alert('Пожалуйста, заполните все поля!');
+       alert('Пожалуйста, заполните все поля!');
     }
-}
+  }
 
   function updateCitySuggestions() {
     const inputValue = cityInput.value.toLowerCase();
