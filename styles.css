@@ -7,6 +7,75 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+/* Стили для модального окна */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: #262a2f;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.modal-content label {
+  color: #86C232;
+  font-size: 1.1em;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #333537;
+  color: #ffffff;
+  margin: 10px 0 20px;
+  font-size: 1em;
+}
+
+.modal-content .btn {
+  background-color: #61892F;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content .btn:hover {
+  background-color: #86C232;
+}
+
+
 /* Insufficient Funds Popup */
 #insufficient-funds-popup {
   display: none;
@@ -158,8 +227,7 @@ body {
     padding: 7px;
     background-color: #262627;
     border-radius: 12px;
-    box-shadow: 0 0 12px rgb(0 0 0 / 49%);
-    margin-top: -11px;
+    box-shadow: 0 0 12px rgb(0 0 0 / 30%);
 }
 .button-container {
     padding: 7px;
@@ -167,6 +235,7 @@ body {
     border-radius: 12px;
     box-shadow:  0 0 12px rgb(0 0 0 / 30%);
     margin-top: 15px;
+    height: 89px;
 }
 
 .button-container .btn {
@@ -217,6 +286,23 @@ body {
   width: 25px; /* Размер картинки */
   height: 23px;
 }
+
+.btn-small {
+  background-color: #61892F;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px; /* Отступ слева */
+}
+
+.btn-small:hover {
+  background-color: #86C232;
+}
+
 
 /* Кнопка пополнения баланса */
 .top-up-btn {
