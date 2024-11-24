@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-<script>
-setTimeout(() => {
-  window.location.assign("app.html");
-}, 2500); // Задержка в 3 секунды
-
-</script>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,9 +7,28 @@ setTimeout(() => {
   <link rel="stylesheet" href="loader.css">
 </head>
 <body>
-  <div class="loader-wrapper">
-    <img src="image/abacus.gif" alt="Загрузка" class="loader-gif">
-    <p class="loader-text">Загрузка...</p>
+  <div class="loader-container">
+    <div class="loader-wrapper">
+      <img src="image/abacus.gif" alt="Загрузка" class="loader-gif">
+      <p class="loader-text">Загрузка...</p>
+    </div>
+    <!-- Резервный текст -->
+    <p id="fallback-text" class="fallback-text">
+      Если перенаправление не произошло, нажмите <a href="app.html">здесь</a>.
+    </p>
   </div>
+
+  <script>
+    // Перенаправление через 3 секунды
+    setTimeout(() => {
+      window.location.href = "app.html";
+    }, 3000);
+
+    // Показать резервный текст через 6 секунд
+    setTimeout(() => {
+      const fallbackText = document.getElementById('fallback-text');
+      fallbackText.style.display = 'block'; // Отображаем текст
+    }, 11000);
+  </script>
 </body>
 </html>
