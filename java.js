@@ -74,29 +74,33 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const telegramWebApp = window.Telegram.WebApp;
+    const telegramWebApp = window.Telegram.WebApp;
 
-  if (telegramWebApp.initDataUnsafe && telegramWebApp.initDataUnsafe.user) {
-    const userData = telegramWebApp.initDataUnsafe.user;
-    const userNameElement = document.getElementById('user-name');
-    if (userNameElement) {
-      userNameElement.textContent = userData.username || `${userData.first_name} ${userData.last_name}`;
+    if (telegramWebApp.initDataUnsafe && telegramWebApp.initDataUnsafe.user) {
+        const userData = telegramWebApp.initDataUnsafe.user;
+
+        // Устанавливаем имя пользователя
+        const userNameElement = document.getElementById('user-name');
+        if (userNameElement) {
+            userNameElement.textContent = userData.username || `${userData.first_name} ${userData.last_name}`;
+        }
+
+        // Устанавливаем аватарку пользователя
+        const userAvatarElement = document.getElementById('user-avatar');
+        if (userAvatarElement) {
+            if (userData.photo_url) {
+                userAvatarElement.src = userData.photo_url;
+                userAvatarElement.alt = 'Аватар пользователя';
+                userAvatarElement.style.objectFit = 'cover';
+            } else {
+                userAvatarElement.src = 'image/icon.png'; // Фолбэк, если аватарки нет
+            }
+        }
+    } else {
+        console.warn("Telegram Web App не инициализирован или данные пользователя недоступны.");
     }
 
-    const avatarContainer = document.getElementById('avatar-container');
-    const userAvatarElement = document.getElementById('user-avatar');
-    if (avatarContainer && userAvatarElement) {
-      if (userData.photo_url) {
-        userAvatarElement.src = userData.photo_url;
-        userAvatarElement.alt = 'Аватар пользователя';
-        userAvatarElement.style.objectFit = 'contain';
-      } else {
-        userAvatarElement.src = 'image/icon.png';
-      }
-    }
-  } else {
-    console.log("Telegram Web App не инициализирован или данные пользователя недоступны.");
-  }
+
 
   const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
   const topUpMenu = document.getElementById('top-up-menu');
