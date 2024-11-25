@@ -203,39 +203,6 @@
   </div>
   <p>Telegram: <span id="user-name">Загрузка...</span></p>
   <p>Номер телефона: <span id="user-phone">Загрузка...</span></p>
-  <script>
-    // Загружаем initData из localStorage
-    const initData = localStorage.getItem('telegramInitData');
-    if (initData) {
-      const urlParams = new URLSearchParams(initData);
-      const user = {
-        username: urlParams.get('username'),
-        first_name: urlParams.get('first_name'),
-        last_name: urlParams.get('last_name'),
-        photo_url: urlParams.get('photo_url'),
-      };
-
-      // Устанавливаем имя пользователя
-      const userNameElement = document.getElementById('user-name');
-      if (userNameElement) {
-        userNameElement.textContent = user.username || `${user.first_name} ${user.last_name}`;
-      }
-
-      // Устанавливаем аватарку пользователя
-      const userAvatarElement = document.getElementById('user-avatar');
-      if (userAvatarElement) {
-        if (user.photo_url) {
-          userAvatarElement.src = user.photo_url;
-          userAvatarElement.alt = 'Аватар пользователя';
-          userAvatarElement.style.objectFit = 'cover';
-        } else {
-          userAvatarElement.src = 'image/icon.png'; // Фолбэк, если аватарки нет
-        }
-      }
-    } else {
-      console.warn("Данные пользователя Telegram недоступны.");
-    }
-  </script>
   <button id="change-phone-btn" class="btn-small">Изменить номер</button>
 </div>
 <!-- Полноэкранное меню подписки -->
