@@ -392,45 +392,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }
 
-  function submitOrder() {
-    const city = cityInput.value;
-    const address = document.getElementById('address').value;
-    const task = document.getElementById('task').value;
-    const dataz = document.getElementById('Dataz').value;
-    const startTime = document.getElementById('start-time').value;
-    const payment = document.getElementById('payment').value;
-    const people = document.getElementById('people').value;
-    const comment = document.getElementById('comment').value;
+function submitOrder() {
+  const city = cityInput.value;
+  const address = document.getElementById('address').value;
+  const task = document.getElementById('task').value;
+  const dataz = document.getElementById('Dataz').value;
+  const startTime = document.getElementById('start-time').value;
+  const payment = document.getElementById('payment').value;
+  const people = document.getElementById('people').value;
+  const comment = document.getElementById('comment').value;
 
-    if (availableCities.includes(city)) {
-      const newOrder = document.createElement('div');
-      newOrder.classList.add('order-item', 'unconfirmed');
-      newOrder.innerHTML = `
-        <p><strong>🏙️ Город:</strong> ${city}</p>
-        <p><strong>📍 Адрес:</strong> ${address}</p>
-        <p><strong>📝 Задание:</strong> ${task}</p>
-        <p><strong>📅 Дата:</strong> ${dataz}</p>
-        <p><strong>⏰ Время начала:</strong> ${startTime}</p>
-        <p><strong>💰 Оплата(руб/час):</strong> ${payment} ₽</p>
-        <p><strong>👥 Количество людей:</strong> ${people}</p>
-        <p><strong>💬 Комментарий:</strong> ${comment}</p>
-        <button class="btn confirm-btn">Подтвердить заявку</button>
-        <button class="btn cancel-btn" style="display:none;">Отменить заявку</button>
-      `;
-      
-      newOrder.querySelector('.confirm-btn').addEventListener('click', () => confirmOrder(newOrder));
-      newOrder.querySelector('.cancel-btn').addEventListener('click', () => cancelOrder(newOrder));
+  if (city && address && task && dataz && startTime && payment && people) {
+    // Создание нового элемента заявки
+    const newOrder = document.createElement('div');
+    newOrder.classList.add('order-item', 'unconfirmed');
+    newOrder.innerHTML = `
+      <p><strong>🏙️ Город:</strong> ${city}</p>
+      <p><strong>📍 Адрес:</strong> ${address}</p>
+      <p><strong>📝 Задание:</strong> ${task}</p>
+      <p><strong>📅 Дата:</strong> ${dataz}</p>
+      <p><strong>⏰ Время начала:</strong> ${startTime}</p>
+      <p><strong>💰 Оплата(руб/час):</strong> ${payment} ₽</p>
+      <p><strong>👥 Количество людей:</strong> ${people}</p>
+      <p><strong>💬 Комментарий:</strong> ${comment}</p>
+      <button class="btn confirm-btn">Подтвердить заявку</button>
+      <button class="btn cancel-btn" style="display:none;">Отменить заявку</button>
+    `;
+    
+    // Добавляем логику для кнопок заявки
+    newOrder.querySelector('.confirm-btn').addEventListener('click', () => confirmOrder(newOrder));
+    newOrder.querySelector('.cancel-btn').addEventListener('click', () => cancelOrder(newOrder));
 
-      const myOrdersSection = document.querySelector('.my-orders-title');
-      myOrdersSection.insertAdjacentElement('afterend', newOrder);
+    // Вставляем заявку в DOM
+    const ordersSection = document.querySelector('.my-orders-title');
+    ordersSection.classList.remove('hidden'); // Показываем заголовок
+    ordersSection.insertAdjacentElement('afterend', newOrder);
 
-      closeOrderForm();
-      showPage('orders');
-      
-    } else {
-       alert('Пожалуйста, заполните все поля!');
-    }
+    // Закрываем форму
+    closeOrderForm();
+    showPage('orders');
+  } else {
+    alert('Пожалуйста, заполните все поля!');
   }
+}
+
 
   function updateCitySuggestions() {
     const inputValue = cityInput.value.toLowerCase();
