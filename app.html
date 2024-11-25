@@ -203,10 +203,7 @@
   </div>
   <p>Telegram: <span id="user-name">Загрузка...</span></p>
   <p>Номер телефона: <span id="user-phone">Загрузка...</span></p>
-  <button id="change-phone-btn" class="btn-small">Изменить номер</button>
-</div>
-
-<script>
+  <script>
     // Загружаем initData из localStorage
     const initData = localStorage.getItem('telegramInitData');
     if (initData) {
@@ -239,8 +236,8 @@
       console.warn("Данные пользователя Telegram недоступны.");
     }
   </script>
-
-
+  <button id="change-phone-btn" class="btn-small">Изменить номер</button>
+</div>
 <!-- Полноэкранное меню подписки -->
 <div id="subscription-menu" class="fullscreen-menu hidden">
   <div class="menu-content">
