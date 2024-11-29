@@ -235,7 +235,6 @@ body {
     border-radius: 12px;
     box-shadow:  0 0 12px rgb(0 0 0 / 30%);
     margin-top: 15px;
-    height: 89px;
 }
 
 .button-container .btn {
@@ -302,6 +301,109 @@ body {
 .btn-small:hover {
   background-color: #86C232;
 }
+/* Всплывающее меню */
+.fullscreen-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(34, 38, 41, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.fullscreen-menu.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Поле ввода и подсказки */
+#city-suggestions-select {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  position: absolute;
+  background-color: #333537;
+  color: #ffffff;
+  border-radius: 8px;
+  z-index: 100;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 90%; /* Совпадает с шириной поля ввода */
+}
+
+#city-suggestions-select li {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#city-suggestions-select li:hover {
+  background-color: #61892F;
+}
+
+#city-input-select {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  background-color: #333537;
+  color: #ffffff;
+}
+/* Основные стили для кнопок */
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+
+.cancel-btn:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Подсказки */
+#city-suggestions-select {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  background-color: #333537;
+  color: #ffffff;
+  border-radius: 8px;
+  z-index: 100;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  width: 90%;
+}
+
+#city-suggestions-select li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#city-suggestions-select li:hover {
+  background-color: #4CAF50;
+}
+
+
 
 
 /* Кнопка пополнения баланса */
