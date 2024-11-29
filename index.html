@@ -131,6 +131,8 @@
     </a>
 </div>
 
+
+
       <!-- Форма создания заявки -->
       <div id="create-order-form" class="order-form hidden full-screen">
         <h2>Создать заявку</h2>
@@ -166,7 +168,6 @@
         </form>
       </div>
 
-
       <!-- Информация о компании и поддержке -->
       <div class="info-section" style="margin-bottom: 4%;"> <!-- Расширили вниз на 4% -->
         <h2>О нас</h2>
@@ -176,10 +177,20 @@
         <p>Подписывайтесь на наш официальный канал для получения новостей и обновлений:</p>
         <p><a href="https://t.me/GrandGruz" class="support-link" target="_blank">@GrandGruz</a></p>
             
-        <img src="image/by.png" alt="By" style="width: 50px; height: 30px; margin: 0px 149px; display: block;">
+        <img src="image/by.png" alt="By" style="width: 50px; height: 30px; display: block;">
 
       </div>
     </div>
+    
+    <div id="city-selection-menu" class="fullscreen-menu hidden">
+  <div class="menu-content">
+    <h2>Выберите город</h2>
+    <label for="city-input-select">Введите город:</label>
+    <input type="text" id="city-input-select" placeholder="Введите город" required>
+    <ul id="city-suggestions-select" class="hidden"></ul>
+    <button id="close-city-menu" class="btn">Отмена</button>
+  </div>
+</div>
 
     <!-- Заявки -->
     <div id="orders" class="page">
