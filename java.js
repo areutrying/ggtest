@@ -33,6 +33,107 @@ window.showPage = function (pageId) {
 document.getElementById('support-btn').addEventListener('click', () => {
   window.open('https://t.me/GrandGruz2bot', '_blank');
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const availableCities = ["Москва", "Тюмень", "Курган", "Челябинск", "Санкт-Петербург"];
+  const acceptOrdersButton = document.getElementById('accept-orders-btn');
+
+  // Создаем всплывающее меню выбора города
+  const citySelectionMenu = document.createElement('div');
+  citySelectionMenu.id = 'city-selection-menu';
+  citySelectionMenu.className = 'fullscreen-menu hidden';
+  citySelectionMenu.innerHTML = `
+    <div class="menu-content">
+      <h2>Выберите город</h2>
+      <label for="city-input-select">Введите город:</label>
+      <input type="text" id="city-input-select" placeholder="Введите город" required>
+      <ul id="city-suggestions-select" class="hidden"></ul>
+      <div class="button-group">
+        <button id="confirm-city-btn" class="btn confirm-btn">Подтвердить</button>
+        <button id="close-city-menu" class="btn cancel-btn">Отмена</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(citySelectionMenu);
+
+  const cityInputSelect = document.getElementById('city-input-select');
+  const citySuggestionsSelect = document.getElementById('city-suggestions-select');
+  const closeCityMenuButton = document.getElementById('close-city-menu');
+  const confirmCityButton = document.getElementById('confirm-city-btn');
+  let selectedCity = '';
+
+  // Функция для обновления списка подсказок
+  function updateCitySuggestions(inputValue) {
+    const suggestions = availableCities.filter(city =>
+      city.toLowerCase().includes(inputValue.toLowerCase())
+    );
+
+    citySuggestionsSelect.innerHTML = ''; // Очищаем предыдущие подсказки
+
+    if (suggestions.length > 0) {
+      suggestions.forEach(city => {
+        const suggestionItem = document.createElement('li');
+        suggestionItem.textContent = city;
+        suggestionItem.addEventListener('click', () => {
+          cityInputSelect.value = city;
+          selectedCity = city;
+          citySuggestionsSelect.classList.add('hidden'); // Скрываем подсказки после выбора
+        });
+        citySuggestionsSelect.appendChild(suggestionItem);
+      });
+      citySuggestionsSelect.classList.remove('hidden'); // Показываем список подсказок
+    } else {
+      citySuggestionsSelect.classList.add('hidden'); // Скрываем подсказки, если нет совпадений
+    }
+  }
+
+  // Функция подтверждения города
+  function confirmCity() {
+    const city = selectedCity || cityInputSelect.value.trim();
+    if (city && availableCities.includes(city)) {
+      alert(`Вы выбрали город: ${city}`);
+      closeCitySelectionMenu();
+    } else {
+      alert('Пожалуйста, выберите город из списка.');
+    }
+  }
+
+  // Открытие и закрытие меню
+  function openCitySelectionMenu() {
+    citySelectionMenu.classList.remove('hidden');
+    citySelectionMenu.classList.add('show');
+    cityInputSelect.value = ''; // Сбрасываем поле ввода
+    citySuggestionsSelect.classList.add('hidden'); // Скрываем подсказки
+    selectedCity = ''; // Сбрасываем выбор
+  }
+
+  function closeCitySelectionMenu() {
+    citySelectionMenu.classList.remove('show');
+    setTimeout(() => citySelectionMenu.classList.add('hidden'), 400);
+  }
+
+  // Обработчики событий
+  acceptOrdersButton.addEventListener('click', openCitySelectionMenu);
+  closeCityMenuButton.addEventListener('click', () => {
+    closeCitySelectionMenu();
+  });
+  confirmCityButton.addEventListener('click', confirmCity);
+
+  cityInputSelect.addEventListener('input', () => {
+    updateCitySuggestions(cityInputSelect.value);
+  });
+
+  // Скрываем подсказки при потере фокуса
+  cityInputSelect.addEventListener('blur', () => {
+    setTimeout(() => citySuggestionsSelect.classList.add('hidden'), 200);
+  });
+
+  // Показываем подсказки снова при клике
+  cityInputSelect.addEventListener('focus', () => {
+    updateCitySuggestions(cityInputSelect.value);
+  });
+});
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const phoneModal = document.getElementById('phone-modal');
@@ -99,8 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn("Telegram Web App не инициализирован или данные пользователя недоступны.");
     }
-
-
 
   const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
   const topUpMenu = document.getElementById('top-up-menu');
@@ -392,6 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }
 
+
 function submitOrder() {
   const city = cityInput.value;
   const address = document.getElementById('address').value;
@@ -435,7 +535,6 @@ function submitOrder() {
     alert('Пожалуйста, заполните все поля!');
   }
 }
-
 
   function updateCitySuggestions() {
     const inputValue = cityInput.value.toLowerCase();
