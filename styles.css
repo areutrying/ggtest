@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
 background: rgb(22,23,24);
-background: linear-gradient(0deg, rgba(22,23,24,1) 51%, rgba(52,68,54,1) 100%);
+background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
   color: #ffffff; /* Светлый текст */
   transition: all 0.3s ease-in-out;
   min-height: 100vh; /* Занимаем минимум 100% высоты экрана */
@@ -87,7 +87,7 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 51%, rgba(52,68,54,1) 100%);
   top: 10%; /* Изменено на 10% от верха */
   left: 50%;
   transform: translateX(-50%); /* Изменено для центрирования по горизонтали */
-  background-color: #b7381e; /* Dark red background */
+  background-color: #313131; /* Dark red background */
   color: #ffffff;
   padding: 20px;
   width: 90%;
