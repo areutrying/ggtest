@@ -118,15 +118,15 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
 }
 
 .balance {
-    font-size: 2em;
-    margin: 22px 0px;
+    font-size: 20px;
+    margin: 12px 121px;
 }
 .balance-section {
     padding: 7px;
     background-color: #262627;
     border-radius: 12px;
     box-shadow: 0 0 12px rgb(0 0 0 / 30%);
-    height: 203px;
+    height: 192px;
     width: 356px;
     margin-top: -23px;
 }
@@ -170,17 +170,19 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
 .rating-info {
     font-size: 14px;
     color: #ffffff;
+    background: #1a1a1a;
     padding: 8px;
     text-align: center;
     border-radius: 8px;
-    box-shadow: inset 0px 0px 7px rgb(255 255 2 / 70%);
+    box-shadow: 0px 0px 7px rgb(0 0 0 / 0%);
     height: 11px;
     width: 15%;
     text-align: center;
     display: flex;
     align-items: center;
     gap: 5px;
-    margin: -156px 5px;
+    margin: 128px 1px;
+    margin-top: -38px;
 }
 
 .rating-info img {
@@ -304,8 +306,6 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
 #city-suggestions-select li:hover {
   background-color: #4CAF50;
 }
-
-
 
 
 /* Кнопка пополнения баланса */
@@ -1011,17 +1011,19 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
 }
 
 .subscription-info {
-  margin-top: 0px;
-  font-size: 1em;
-  color: #ffffff;
-  padding: 7px;
-  text-align: center;
-  border-radius: 8px;
-  box-shadow: inset 0px 0px 8px rgb(255 255 255 / 71%);
-  width: 120px;
-  margin: -23px 0px;
-  margin-bottom: 5px;
-  text-align: center;
+    margin-top: 0px;
+    font-size: 14px;
+    color: #ffffff;
+    background: #1a1a1a;
+    padding: 7px;
+    text-align: center;
+    border-radius: 8px;
+    /* box-shadow: 0px 0px 8px rgb(89 83 83 / 59%); */
+    width: 87px;
+    margin: -138px 0px;
+    margin-bottom: 5px;
+    text-align: center;
+    margin-top: -123px;
 }
 
 #cancel-subscription-menu,
