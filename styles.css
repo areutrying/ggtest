@@ -110,13 +110,12 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
   display: block;
 }
 
-
 .container {
   text-align: center;
   margin: 20px auto;
-  max-width: 400px;
   padding-bottom: 70px;
 }
+
 .balance {
     font-size: 2em;
     margin: 22px 0px;
@@ -126,6 +125,8 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
     background-color: #262627;
     border-radius: 12px;
     box-shadow: 0 0 12px rgb(0 0 0 / 30%);
+    height: 162px;
+    margin-top: -23px;
 }
 .button-container {
     padding: 7px;
@@ -165,24 +166,24 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
 }
 
 .rating-info {
-    font-size: 1em;
+    font-size: 14px;
     color: #ffffff;
     padding: 8px;
     text-align: center;
     border-radius: 8px;
     box-shadow: inset 0px 0px 7px rgb(255 255 2 / 70%);
-    height: 29px;
-    width: 163px;
-    margin-bottom: 5px;
+    height: 11px;
+    width: 15%;
     text-align: center;
     display: flex;
-    align-items: center; /* Выравнивание по вертикали */
-    gap: 5px; /* Отступ между картинкой и текстом */
+    align-items: center;
+    gap: 5px;
+    margin: -156px 5px;
 }
 
 .rating-info img {
-  width: 25px; /* Размер картинки */
-  height: 23px;
+    width: 24px;
+    height: 23px;
 }
 
 .btn-small {
