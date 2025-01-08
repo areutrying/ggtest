@@ -122,10 +122,11 @@ body {
     margin: 12px 121px;
 }
 .balance-section {
-    padding: 7px;
+    padding: 11px;
     background-color: #262627;
     border-radius: 12px;
     box-shadow: 0 0 12px rgb(0 0 0 / 30%);
+    height: 205px;
 }
 .button-container {
     padding: 7px;
@@ -1022,7 +1023,7 @@ body {
     text-align: center;
     border-radius: 8px;
     /* box-shadow: 0px 0px 8px rgb(89 83 83 / 59%); */
-    width: 87px;
+    width: 100px;
     margin: -138px 0px;
     margin-bottom: 5px;
     text-align: center;
