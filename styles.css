@@ -111,6 +111,7 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
 }
 
 .container {
+  max-width: 370px;
   text-align: center;
   margin: 20px auto;
   padding-bottom: 70px;
@@ -447,7 +448,7 @@ background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
   border-radius: 15px;
   box-shadow: 0 0 15px rgb(24 24 24 / 30%);
   margin: 20px auto;
-  max-width: 90%;
+  width: 332px;
   text-align: left;
 }
 
