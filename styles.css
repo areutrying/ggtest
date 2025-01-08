@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-background: rgb(22,23,24);
-background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
+  background: rgb(22,23,24);
+  background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
   color: #ffffff; /* Светлый текст */
   transition: all 0.3s ease-in-out;
   min-height: 100vh; /* Занимаем минимум 100% высоты экрана */
