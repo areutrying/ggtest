@@ -171,7 +171,7 @@ body {
     padding: 10px;
     box-shadow: 0px 0px 7px rgb(0 0 0 / 0%);
     height: 11px;
-    width: 15%;
+    width: 16%;
     text-align: center;
     display: flex;
     align-items: center;
@@ -180,11 +180,9 @@ body {
     margin-top: -38px;
     background: rgba(53, 53, 53, 0.76);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     -webkit-backdrop-filter: blur(15px);
     background: rgba(53, 53, 53, 0.76);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 }
@@ -1022,7 +1020,6 @@ body {
     padding: 7px;
     text-align: center;
     border-radius: 8px;
-    /* box-shadow: 0px 0px 8px rgb(89 83 83 / 59%); */
     width: 100px;
     margin: -138px 0px;
     margin-bottom: 5px;
@@ -1030,12 +1027,10 @@ body {
     margin-top: -123px;
     background: rgba(53, 53, 53, 0.76);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     background: rgba(53, 53, 53, 0.76);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 }
