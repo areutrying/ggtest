@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: rgb(22,23,24);
-  background: linear-gradient(0deg, rgba(22,23,24,1) 54%, rgba(52,68,54,1) 156%);
+  background: linear-gradient(0deg, rgba(22, 23, 24, 1) 54%, rgb(109 170 116) 156%);
   color: #ffffff; /* Светлый текст */
   transition: all 0.3s ease-in-out;
   min-height: 100vh; /* Занимаем минимум 100% высоты экрана */
@@ -148,17 +148,16 @@ body {
 .button-container .btn {
     width: 111px;
     height: 80px;
-    background-color: #3e3e3f;
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    background-color: rgb(45 45 45 / 81%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
     color: #ffffff;
-    border: none;
     border-radius: 10px;
     font-size: 16px;
-    display: inline-block;
-    text-align: center;
     cursor: pointer;
     padding: 7px;
     transition: background-color 0.3s ease;
-    margin: 0 2px;
     text-align: center;
     box-shadow: 0px 0px 5px rgb(0 0 0 / 27%);
     margin: 5px 2px;
@@ -400,12 +399,13 @@ body {
     width: 163px;
     height: 89px;
     aspect-ratio: 1 / 1;
-    border-radius: 15px;
     font-size: 1.2em;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: #333333;
+    backdrop-filter: blur(18px) saturate(131%);
+    -webkit-backdrop-filter: blur(18px) saturate(131%);
+    background-color: rgb(45 45 45 / 81%);
+    border-radius: 12px;
     color: #ffffff;
     box-shadow: 0 0 12px rgb(0 0 0 / 30%);
     transition: background-color 0.3s ease;
