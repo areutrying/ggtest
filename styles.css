@@ -1027,27 +1027,35 @@ body {
 }
 
 .subscription-info {
-    margin-top: 0px;
-    font-size: 14px;
+    position: relative;
+    background: linear-gradient(to right, #2774ae, #002e5d, #002e5d);
+    background-size: 300% 100%; /* Увеличиваем размер градиента для эффекта */
+    border-radius: 9px;
+    text-align: center;
     color: #ffffff;
-    background: #1a1a1a;
-    padding: 7px;
-    text-align: center;
-    border-radius: 8px;
-    width: 100px;
-    margin: -138px 0px;
-    margin-bottom: 5px;
-    text-align: center;
-    margin-top: 0px;
-    background: rgba(53, 53, 53, 0.76);
-    border-radius: 16px;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    background: rgba(53, 53, 53, 0.76);
-    border-radius: 3px;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    font-weight: bold;
+    font-size: 14px;
+    animation: gradientFlow 3s linear infinite; /* Анимация с бесконечным циклом */
 }
+
+/* Анимация переливающегося градиента */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.subscription-item {
+    padding: 5px 10px;
+    display: inline-block;
+}
+
 
 #cancel-subscription-menu,
 #pin-menu {
