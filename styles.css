@@ -617,33 +617,46 @@ body {
 
 /* Нижнее меню с эмодзи */
 .bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  background: rgba(38, 38, 39, 0.37);
-  padding: 8px 2px;
-  z-index: 1000;
-  justify-content: space-evenly;
-  backdrop-filter: blur(9.2px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  -webkit-backdrop-filter: blur(15.2px);
-  
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: rgba(38, 38, 39, 0.37);
+    padding: 6px 1px; /* Уменьшенные отступы */
+    z-index: 1000;
+    justify-content: space-evenly;
+    backdrop-filter: blur(9.2px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(15.2px);
+}
+
+.nav-btn {
+    background-color: transparent;
+    border: none;
+    color: #f0f0f0;
+    font-size: 13.5px; /* Уменьшенный текст */
+    transition: transform 0.3s ease, color 0.3s ease-in-out;
+    display: inline-grid;
+    align-content: center;
+}
+
+.nav-btn:hover {
+    color: #86C232;
 }
 
 .nav-icon {
     filter: brightness(0) invert(1);
-    width: 24px;
-    height: 24px;
+    width: 21.6px; /* Уменьшено на 10% */
+    height: 21.6px; /* Уменьшено на 10% */
     vertical-align: middle;
     margin-right: 0px;
-    margin: 0px 23px;
+    margin: 0px 20.7px; /* Пропорционально уменьшено */
 }
 
 .nav-icon.profil-icon {
-    width: 30px !important; /* Увеличенный размер */
-    height: 30px !important;
+    width: 27px; /* Уменьшено на 10% */
+    height: 27px;
 }
 
 
