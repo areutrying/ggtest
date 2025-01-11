@@ -126,7 +126,7 @@ body {
     background-color: #262627;
     border-radius: 12px;
     box-shadow: 0 0 12px rgb(0 0 0 / 30%);
-    height: 205px;
+    height: 181px;
 }
 .button-container {
     padding: 7px;
@@ -182,7 +182,7 @@ body {
     border-radius: 16px;
     -webkit-backdrop-filter: blur(15px);
     background: rgba(53, 53, 53, 0.76);
-    border-radius: 16px;
+    border-radius: 3px;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 }
@@ -1030,7 +1030,7 @@ body {
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     background: rgba(53, 53, 53, 0.76);
-    border-radius: 16px;
+    border-radius: 3px;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 }
