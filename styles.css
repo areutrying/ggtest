@@ -147,7 +147,7 @@ body {
 
 .button-container .btn {
     width: 100px;
-    height: 70px;
+    height: 65px;
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
     background-color: rgb(45 45 45 / 81%);
