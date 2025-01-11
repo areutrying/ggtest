@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (topUpAmount > 0) {
       let currentBalance = parseFloat(balanceDisplay.textContent.replace(/[₽\s]/g, ''));
       currentBalance += topUpAmount;
-      balanceDisplay.textContent = `₽${currentBalance.toFixed(0)}`;
+      balanceDisplay.textContent = `${currentBalance.toFixed(0)}₽`;
 
       topUpAmountInput.value = '';
       topUpMenu.classList.remove('show');
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     }
 
-    balanceDisplay.textContent = `₽${newBalance.toFixed(0)}`;
+    balanceDisplay.textContent = `${newBalance.toFixed(0)}₽`;
     return true;
   }
 
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (currentBalance >= price) {
       currentBalance -= price;
-      balanceDisplay.textContent = `₽${currentBalance.toFixed(0)}`;
+      balanceDisplay.textContent = `${currentBalance.toFixed(0)}₽`;
 
       const newSubscription = {
         type: selectedType,
