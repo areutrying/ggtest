@@ -621,7 +621,7 @@ backdrop-filter: blur(18px) saturate(180%);
     display: flex;
     justify-content: space-around;
     background: rgba(38, 38, 39, 0.37);
-    padding: 6px 1px; /* Уменьшенные отступы */
+    padding: 6px 0px; 
     z-index: 1000;
     justify-content: space-evenly;
     backdrop-filter: blur(9.2px);
