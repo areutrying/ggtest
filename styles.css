@@ -183,8 +183,6 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    background: rgba(53, 53, 53, 0.76);
-    border-radius: 8px;
     padding: 5px 10px;
     font-size: 14px;
     color: #ffffff;
