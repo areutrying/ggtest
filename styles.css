@@ -146,8 +146,8 @@ body {
 
 
 .button-container .btn {
-    width: 95px;
-    height: 65px;
+    width: 108px;
+    height: 71px;
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
     background-color: rgb(45 45 45 / 81%);
@@ -395,8 +395,8 @@ body {
 }
 
 .order-section .btn {
-    width: 140px;
-    height: 70px;
+    width: 155px;
+    height: 78px;
     aspect-ratio: 1 / 1;
     font-size: 16px;
     display: flex;
