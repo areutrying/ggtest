@@ -445,7 +445,7 @@ backdrop-filter: blur(18px) saturate(180%);
 /* Стили для формы заявки */
 .order-form {
   background-color: #262627;
-  padding: 25px;
+  padding: 18px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgb(24 24 24 / 30%);
   margin: 20px auto;
@@ -522,7 +522,8 @@ backdrop-filter: blur(18px) saturate(180%);
 /* Стили для новых заявок */
 .order-item {
   padding: 20px;
-  background-color: #262627;
+  width: 310px;
+  background-color: #2626279c;
   color: #ffffff;
   border-radius: 12px;
   text-align: left;
