@@ -404,7 +404,7 @@ body {
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
     background-color: rgb(47 43 43 / 24%);
-    border: 1px solid rgb(221 221 221 / 28%);
+    border: 1px solid rgb(221 221 221 / 15%);
     border-radius: 12px;
     color: #ffffff;
     /* box-shadow: 0 0 12px rgb(0 0 0 / 30%); */
