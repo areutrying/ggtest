@@ -59,8 +59,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const citySuggestionsSelect = document.getElementById('city-suggestions-select');
   const closeCityMenuButton = document.getElementById('close-city-menu');
   const confirmCityButton = document.getElementById('confirm-city-btn');
+  const subscriptionButton = document.querySelector('.button-container .btn-wrapper:first-child .btn');
+  const subscriptionMenu = document.getElementById('subscription-menu');
   let selectedCity = '';
 
+  subscriptionButton.addEventListener('click', () => {
+    subscriptionMenu.classList.remove('hidden'); // Показываем меню
+    subscriptionMenu.classList.add('show'); // Анимация появления
+  });
+
+    const closeButton = document.getElementById('subscribe-cancel-btn');
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
+      subscriptionMenu.classList.remove('show'); // Убираем анимацию
+      setTimeout(() => subscriptionMenu.classList.add('hidden'), 400); // Прячем меню
+    });
+  }
+  
   // Функция для обновления списка подсказок
   function updateCitySuggestions(inputValue) {
     const suggestions = availableCities.filter(city =>
