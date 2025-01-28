@@ -771,9 +771,9 @@ body {
 }
 
 .info-section p {
-  margin-bottom: 18px;
-  line-height: 1.7;
-  font-size: 1.1em;
+    font-size: 17px;
+    color: #ffffff;
+    text-align: left;
 }
 
 .support-link {
@@ -804,6 +804,28 @@ body {
   object-fit: cover;
   border-radius: 15px; /* Закругленные края изображения */
 }
+
+.podpiska-section{
+      margin-top: 35px;
+    padding: 25px;
+    background-color: #2e2e2f;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 4%;
+}
+.podpiska-section h3 {
+  color: #3fa5a9;
+  margin-bottom: 18px;
+}
+
+.podpiska-section Li {
+    font-size: 17px;
+    color: #ffffff;
+    text-align: left;
+}
+
+
+
 
 /* Пример изменения цвета кнопки при активации */
 .active-nav-btn {
