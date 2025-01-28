@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 body {
-  margin: 70px 0px;
+  margin: 0px 0px;
   font-family: 'Poppins', sans-serif;
   background: rgb(22,23,24);
-  background: linear-gradient(0deg, rgba(22, 23, 24, 1) 54%, rgb(109 128 170) 156%);
+  background: linear-gradient(0deg, rgba(22, 23, 24, 1) 54%, rgb(46 163 118) 156%);
   color: #ffffff; 
   transition: all 0.3s ease-in-out;
   min-height: 100vh; 
@@ -139,32 +139,57 @@ body {
 }
 
 .button-container {
-    padding: 7px;
-    margin-top: 15px;
+    display: flex; /* Горизонтальное расположение кнопок */
+    justify-content: center; /* Центрирование кнопок */
+    gap: 32px; /* Расстояние между кнопками */
+    margin-top: 15px; /* Отступ сверху */
 }
 
+.btn-wrapper {
+    display: flex; /* Flexbox для кнопок и текста */
+    flex-direction: column; /* Вертикальное выравнивание */
+    align-items: center; /* Центрирование содержимого */
+}
 
 .button-container .btn {
-    width: 104px;
-    height: 71px;
+    width: 59px; /* Размер кнопок */
+    height: 59px;
+    border-radius: 50%; /* Круглая форма */
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
-    background-color: rgb(23 23 23 / 35%);
-    border: 1px solid rgb(221 221 221 / 33%);
+    background-color: rgb(40 40 40);
     color: #ffffff;
-    border-radius: 10px;
-    font-size: 14px;
     cursor: pointer;
-    padding: 7px;
+    display: flex; /* Flexbox для размещения изображения */
+    align-items: center; /* Центрирование содержимого по вертикали */
+    justify-content: center; /* Центрирование содержимого по горизонтали */
     transition: background-color 0.3s ease;
-    text-align: center;
-    margin: 5px 2px;
-    display: inline-grid;
+    padding: 0; /* Убираем внутренние отступы */
 }
 
 .button-container .btn:hover {
-    background-color: #4b5159; /* Темный оттенок для эффекта наведения */
+    background-color: #4b5159; /* Цвет при наведении */
 }
+
+.btn-icon {
+    width: 40%; /* Уменьшение размера картинки на 80% */
+    height: auto; /* Автоматическое сохранение пропорций */
+}
+
+.btn-text {
+    margin-top: 8px; /* Отступ между кнопкой и текстом */
+    font-size: 12px; /* Размер текста */
+    color: #ffffff; /* Белый цвет текста */
+    text-align: center; /* Выравнивание текста */
+}
+
+
+
+.button-container .btn span {
+    margin-top: 8px; /* Расстояние между иконкой и текстом */
+    font-size: 12px; /* Размер шрифта текста */
+}
+
 
 .button-container {
 
@@ -401,8 +426,8 @@ body {
     justify-content: center;
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
-    background-color: rgb(23 23 23 / 35%);
-    border: 1px solid rgb(221 221 221 / 33%);
+    background-color: rgb(43 43 43);
+    border: 0px solid rgb(221 221 221 / 33%);
     border-radius: 12px;
     color: #ffffff;
     transition: background-color 0.3s ease;
