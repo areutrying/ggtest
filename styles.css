@@ -157,7 +157,7 @@ body {
     border-radius: 50%; /* Круглая форма */
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
-    background-color: rgb(40 40 40);
+    background-color: rgb(31 31 31);
     color: #ffffff;
     cursor: pointer;
     display: flex; /* Flexbox для размещения изображения */
@@ -426,7 +426,7 @@ body {
     justify-content: center;
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
-    background-color: rgb(43 43 43);
+    background-color: rgb(31 31 31);
     border: 0px solid rgb(221 221 221 / 33%);
     border-radius: 12px;
     color: #ffffff;
