@@ -111,7 +111,7 @@ body {
 }
 
 .container {
-  max-width: 370px;
+  max-width: 500px;
   text-align: center;
   margin: 20px auto;
   padding-bottom: 70px;
@@ -121,7 +121,6 @@ body {
     position: relative; /* Задаём позиционирование для родительского элемента */
     padding: 11px;
     background-color: #2e2e2f;
-    border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -418,21 +417,21 @@ body {
 }
 
 .order-section .btn {
-    width: 155px;
-    height: 78px;
+    width: 138px;
+    height: 69px;
     aspect-ratio: 1 / 1;
-    font-size: 16px;
+    font-size: 15px;
     display: flex;
     justify-content: center;
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
     background-color: rgb(49 49 49);
     border: 0px solid rgb(221 221 221 / 33%);
-    border-radius: 12px;
+    border-radius: 5px;
     color: #ffffff;
     transition: background-color 0.3s ease;
     margin: -7px 7px;
-    padding: 13px;
+    padding: 3px;
     margin-top: 20px;
     flex-direction: column;
     align-items: stretch;
@@ -440,7 +439,7 @@ body {
 
 
 .order-section .btn:hover {
-    background-color: #37412a;
+    
 }
 
 
@@ -457,8 +456,6 @@ body {
 }
 
 .minimal-btn:hover {
-  background-color: #61892F;
-  color: white;
   transform: translateY(-5px);
 }
 
@@ -618,9 +615,7 @@ body {
   padding: 20px;
   background-color: #2e2e2f;
   color: #ffffff;
-  border-radius: 12px;
   text-align: center;
-  margin: 3px 8px;
   height: 148px;
 }
 
@@ -766,7 +761,6 @@ body {
   padding: 25px;
   background-color: #2e2e2f;
   color: #ffffff;
-  border-radius: 12px;
   text-align: left;
   margin-bottom: 4%;
 }
