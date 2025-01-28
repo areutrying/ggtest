@@ -152,8 +152,8 @@ body {
 }
 
 .button-container .btn {
-    width: 59px; /* Размер кнопок */
-    height: 59px;
+    width: 51px; /* Размер кнопок */
+    height: 51px;
     border-radius: 50%; /* Круглая форма */
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
@@ -172,7 +172,7 @@ body {
 }
 
 .btn-icon {
-    width: 40%; /* Уменьшение размера картинки на 80% */
+    width: 50%; /* Уменьшение размера картинки на 80% */
     height: auto; /* Автоматическое сохранение пропорций */
 }
 
