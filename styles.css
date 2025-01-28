@@ -120,7 +120,7 @@ body {
 .balance-section {
     position: relative; /* Задаём позиционирование для родительского элемента */
     padding: 11px;
-    background-color: #262627;
+    background-color: #2e2e2f;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -616,11 +616,12 @@ body {
 /* Стили для страницы Чат */
 #chat {
   padding: 20px;
-  background-color: #262627;
+  background-color: #2e2e2f;
   color: #ffffff;
   border-radius: 12px;
   text-align: center;
   margin: 3px 8px;
+  height: 148px;
 }
 
 #chat h1 {
@@ -763,7 +764,7 @@ body {
 .info-section {
   margin-top: 35px;
   padding: 25px;
-  background-color: #262627;
+  background-color: #2e2e2f;
   color: #ffffff;
   border-radius: 12px;
   text-align: left;
