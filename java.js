@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (topUpAmount > 0) {
                 let currentBalance = parseFloat(balanceDisplay.textContent.replace(/[₽\s]/g, ''));
                 currentBalance += topUpAmount;
-                balanceDisplay.textContent = `₽${currentBalance.toFixed(2)}`;
+                balanceDisplay.textContent = `${currentBalance.toFixed(0)}₽`;
                 topUpAmountInput.value = '';
                 if (topUpMenu) {
                     topUpMenu.classList.remove('show');
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showInsufficientFunds();
             return false;
         }
-        balanceDisplay.textContent = `₽${newBalance.toFixed(2)}`;
+        balanceDisplay.textContent = `${newBalance.toFixed(0)}₽`;
         return true;
     }
 
@@ -385,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let currentBalance = parseFloat(balanceDisplay.textContent.replace(/[₽\s]/g, ''));
             if (currentBalance >= price) {
                 currentBalance -= price;
-                balanceDisplay.textContent = `₽${currentBalance.toFixed(2)}`;
+                balanceDisplay.textContent = `${currentBalance.toFixed(0)}₽`;
                 const newSubscription = {
                     type: selectedType,
                     duration: selectedDuration
@@ -570,14 +570,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const newOrder = document.createElement('div');
             newOrder.classList.add('order-item', 'unconfirmed');
             newOrder.innerHTML = `
-                🏙️ Город: ${city}
-                📍 Адрес: ${address}
-                📝 Задание: ${task}
-                📅 Дата: ${dataz}
-                ⏰ Время начала: ${startTime}
-                💰 Оплата(руб/час): ${payment} ₽
-                👥 Количество людей: ${people}
-                💬 Комментарий: ${comment}
+                <p>🏙️ Город: ${city}</p>
+                <p>📍 Адрес: ${address}</p>
+                <p>📝 Задание: ${task}</p>
+                <p>📅 Дата: ${dataz}</p>
+                <p>⏰ Время начала: ${startTime}</p>
+                <p>💰 Оплата(руб/час): ${payment} ₽</p>
+                <p>👥 Количество людей: ${people}</p>
+                <p>💬 Комментарий: ${comment}</p>
                 <button class="confirm-btn">Подтвердить заявку</button>
                 <button class="cancel-btn">Отменить заявку</button>
             `;
