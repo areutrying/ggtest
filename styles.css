@@ -370,7 +370,6 @@ body {
 }
 
 #top-up-amount {
-  width: 300px;
   padding: 12px;
   border-radius: 8px;
   border: none;
@@ -383,7 +382,7 @@ body {
 
 #top-up-confirm-btn,
 #top-up-cancel-btn {
-  width: 151px;
+  width: 123px;
   padding: 10px;
   font-size: 1.1em;
   background-color: #61892F; /* Зелёный цвет для кнопок */
@@ -1158,7 +1157,7 @@ body {
 
 /* Input style */
 #top-up-amount {
-  width: 100%;
+  width: 185px;
   padding: 12px;
   border-radius: 8px;
   border: none;
@@ -1171,7 +1170,7 @@ body {
 
 /* Button styles */
 #top-up-confirm-btn, #top-up-cancel-btn {
-  width: 48%;
+  width: 114px;
   padding: 10px;
   font-size: 1.1em;
   background-color: #61892F;
