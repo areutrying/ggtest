@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const availableCities = ["Москва", "Тюмень", "Курган", "Челябинск", "Санкт-Петербург"];
     const acceptOrdersButton = document.getElementById('accept-orders-btn');
+
     // Создаем всплывающее меню выбора города
     const citySelectionMenu = document.createElement('div');
     citySelectionMenu.id = 'city-selection-menu';
@@ -215,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Логика пополнения баланса
-    const topUpButton = document.querySelector('.button-container .btn:nth-child(2)');
+    const topUpButton = document.getElementById('top-up-button');
     const topUpMenu = document.getElementById('top-up-menu');
     const topUpConfirmButton = document.getElementById('top-up-confirm-btn');
     const topUpCancelButton = document.getElementById('top-up-cancel-btn');
@@ -281,10 +282,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     const descriptions = {
         client: `
+            Что даёт подписка Заказчик+
             💼Неограниченное количество заявок
             📌Бесплатное закрепление заявок
         `,
         mover: `
+            Что даёт подписка Грузчик+
             ⭐Высокий приоритет на заявку
         `
     };
