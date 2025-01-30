@@ -612,20 +612,22 @@ body {
 
 /* Стили для страницы Чат */
 #chat {
-  padding: 20px;
-  background-color: #2e2e2f;
-  color: #ffffff;
-  text-align: center;
-  height: 148px;
+    padding: 20px;
+    background-color: #2e2e2f;
+    color: #ffffff;
+    text-align: center;
+    height: 126px;
+    border-radius: 0px 0px 15px 15px;
 }
 
 #chat h1 {
   color: #86C232;
+    font-size: 25px;
 }
 
 #chat p {
-  margin-top: 15px;
-  font-size: 1.2em;
+    margin-top: 15px;
+    font-size: 17px;
 }
 
 /* Нижнее меню с эмодзи */
