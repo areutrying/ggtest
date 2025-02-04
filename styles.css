@@ -768,7 +768,7 @@ body {
 }
 
 .info-section h2, .info-section h3 {
-  color: #57a93f;
+  color: rgb(21, 143, 44);
   margin-bottom: 18px;
 }
 
@@ -1041,14 +1041,14 @@ body {
 
 .subscription-info {
     position: relative;
-    background: linear-gradient(to right, #2774ae, #002e5d, #002e5d);
+    background: linear-gradient(to right, #307834, #4b2a2a, #002e5d);
     background-size: 300% 100%; /* Увеличиваем размер градиента для эффекта */
     border-radius: 9px;
     text-align: center;
     color: #ffffff;
     font-weight: bold;
     font-size: 14px;
-    animation: gradientFlow 3s linear infinite; /* Анимация с бесконечным циклом */
+    animation: gradientFlow 3s cubic-bezier(0.27, 0.02, 0.76, 1.01) infinite;
 }
 
 /* Анимация переливающегося градиента */
