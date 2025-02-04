@@ -2,8 +2,7 @@
 body {
   margin: -21px 0px;
   font-family: 'Poppins', sans-serif;
-  background: rgb(22,23,24);
-  background: linear-gradient(0deg, rgba(22, 23, 24, 1) 54%, rgb(0 0 0) 156%);
+  background: rgb(18, 18, 20);
   color: #ffffff; 
   transition: all 0.3s ease-in-out;
   min-height: 100vh; 
@@ -120,7 +119,7 @@ body {
 .balance-section {
     position: relative; /* Задаём позиционирование для родительского элемента */
     padding: 11px;
-    background-color: #2e2e2f;
+    background-color: rgb(30, 30, 30);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -157,7 +156,7 @@ body {
     border-radius: 50%; /* Круглая форма */
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
-    background-color: rgb(49 49 49);
+    background-color: rgb(41, 41, 41);
     color: #ffffff;
     cursor: pointer;
     display: flex; /* Flexbox для размещения изображения */
@@ -425,7 +424,7 @@ body {
     justify-content: center;
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
-    background-color: rgb(49 49 49);
+    background-color: rgb(41, 41, 41);
     border: 0px solid rgb(221 221 221 / 33%);
     border-radius: 5px;
     color: #ffffff;
@@ -540,7 +539,7 @@ body {
 .order-item {
   padding: 20px;
   width: 310px;
-  background-color: #2626279c;
+  background-color: rgb(30, 30, 30);
   color: #ffffff;
   border-radius: 12px;
   text-align: left;
@@ -613,7 +612,7 @@ body {
 /*  Чат */
 #chat {
     padding: 20px;
-    background-color: #2e2e2f;
+    background-color: rgb(30, 30, 30);
     color: #ffffff;
     text-align: center;
     height: 126px;
@@ -761,7 +760,7 @@ body {
 .info-section {
   margin-top: 35px;
   padding: 25px;
-  background-color: #2e2e2f;
+  background-color: rgb(30, 30, 30);
   color: #ffffff;
   text-align: left;
   margin-bottom: 4%;
