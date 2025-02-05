@@ -757,26 +757,6 @@ body {
   }
 }
 
-.info-section {
-  margin-top: 23px;
-  padding: 25px;
-  background-color: rgb(30, 30, 30);
-  color: #ffffff;
-  text-align: left;
-  margin-bottom: 4%;
-  border-radius: 15px;
-}
-
-.info-section h2, .info-section h3 {
-  color: rgb(21, 143, 44);
-  margin-bottom: 18px;
-}
-
-.info-section p {
-    font-size: 17px;
-    color: #ffffff;
-    text-align: left;
-}
 .pod-section {
   position: relative; /* Для позиционирования псевдоэлемента */
   padding: 20px;
@@ -785,6 +765,7 @@ body {
   text-align: left;
   margin-bottom: 4%;
   border-radius: 15px;
+  margin-top: 23px;
 
   /* Flexbox стили */
   display: flex;
@@ -837,6 +818,26 @@ body {
 
 .tgsub-button:hover {
   background-color: #1a6e20;
+}
+
+.info-section {
+  padding: 25px;
+  background-color: rgb(30, 30, 30);
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 4%;
+  border-radius: 15px;
+}
+
+.info-section h2, .info-section h3 {
+  color: rgb(21, 143, 44);
+  margin-bottom: 18px;
+}
+
+.info-section p {
+    font-size: 17px;
+    color: #ffffff;
+    text-align: left;
 }
 .support-link {
   color: #1d7bbd;
