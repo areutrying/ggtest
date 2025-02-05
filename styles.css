@@ -782,14 +782,13 @@ body {
   padding: 20px;
   background-color: rgb(30, 30, 30);
   color: #ffffff;
-  text-align: center;
+  text-align: left;
   margin-bottom: 4%;
   border-radius: 15px;
 
   /* Flexbox стили */
   display: flex;
   align-items: center;
-  justify-content: center; /* Центрируем содержимое по горизонтали */
 
   /* Чтобы содержимое было поверх псевдоэлемента */
   z-index: 1;
