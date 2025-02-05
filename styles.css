@@ -140,7 +140,7 @@ body {
 .button-container {
     display: flex; /* Горизонтальное расположение кнопок */
     justify-content: center; /* Центрирование кнопок */
-    gap: 26px; /* Расстояние между кнопками */
+    gap: 23px; /* Расстояние между кнопками */
     margin-top: 15px; /* Отступ сверху */
 }
 
@@ -151,8 +151,8 @@ body {
 }
 
 .button-container .btn {
-    width: 51px; /* Размер кнопок */
-    height: 51px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%; /* Круглая форма */
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
