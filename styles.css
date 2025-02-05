@@ -804,7 +804,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  right: -102px;
+  right: -105px;
   bottom: 0;
   background-image: url(image/tglogo.png);
   background-size: 70%; /* Уменьшаем размер изображения */
