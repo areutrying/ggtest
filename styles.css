@@ -778,6 +778,39 @@ body {
     text-align: left;
 }
 
+.pod-section {
+  padding: 11px;
+  background-color: rgb(30, 30, 30);
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 4%;
+  border-radius: 15px;
+
+  /* Flexbox стили */
+  display: flex;          /* Включаем Flexbox */
+  align-items: center;    /* Вертикальное выравнивание по центру */
+  justify-content: space-between; /* Распределяем пространство между элементами */
+}
+
+.pod-section h2, .pod-section h3 {
+    color: rgb(230 230 230);
+    font-size: 16px;
+}
+
+.tgsub-button {
+    background-color: #237794;
+    color: white;
+    padding: 8px 17px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+.tgsub-button:hover {
+  background-color: #1a6e20;
+}
+
 .support-link {
   color: #1d7bbd;
   text-decoration: none;
