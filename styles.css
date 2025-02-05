@@ -777,7 +777,6 @@ body {
     color: #ffffff;
     text-align: left;
 }
-
 .pod-section {
   position: relative; /* Для позиционирования псевдоэлемента */
   padding: 20px;
@@ -794,24 +793,25 @@ body {
 
   /* Чтобы содержимое было поверх псевдоэлемента */
   z-index: 1;
+
+  /* Ограничиваем размеры блока, чтобы изображение не выходило за пределы */
+  overflow: hidden; /* Скрываем всё, что выходит за границы */
 }
 
 /* Псевдоэлемент для размытого фона */
 .pod-section::before {
-    content: '';
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: -100px;
-    bottom: 0;
-    background-image: url(image/tglogo.png);
-    background-size: 70%;
-    background-position: right;
-    background-repeat: no-repeat;
-    /* filter: blur(4px); */
-    /* opacity: 0.7; */
-    z-index: -6;
-    border-radius: 15px;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: -102px;
+  bottom: 0;
+  background-image: url(image/tglogo.png);
+  background-size: 70%; /* Уменьшаем размер изображения */
+  background-position: right center; /* Позиционируем изображение справа по центру */
+  background-repeat: no-repeat;
+  z-index: -1; /* Убедимся, что псевдоэлемент находится под содержимым */
+  border-radius: 15px;
 }
 
 .pod-content {
@@ -839,7 +839,6 @@ body {
 .tgsub-button:hover {
   background-color: #1a6e20;
 }
-
 .support-link {
   color: #1d7bbd;
   text-decoration: none;
