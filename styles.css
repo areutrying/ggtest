@@ -873,9 +873,9 @@ body {
 }
 
 .pod-section h2, .pod-section h3 {
-  color: rgb(230 230 230);
-  font-size: 16px;
-  margin-bottom: 10px; /* Добавляем отступ между заголовком и кнопкой */
+    color: rgb(230 230 230);
+    font-size: 16px;
+    margin-bottom: 8px;
 }
 
 .tgsub-button {
