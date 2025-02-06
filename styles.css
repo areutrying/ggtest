@@ -785,10 +785,10 @@ body {
     position: absolute;
     top: 6px;
     left: 0;
-    right: -8px;
+    right: 0px;
     bottom: 0;
     background-image: url(image/zayv.gif);
-    background-size: 40%;
+    background-size: 30%;
     background-position: right center;
     background-repeat: no-repeat;
     z-index: -1;
@@ -803,14 +803,13 @@ body {
 
 .perexod-section h2, .perexod-section h3 {
     color: rgb(230 230 230);
-    font-size: 18px;
-    margin-bottom: 27px;
-    margin-top: 1px;
+    font-size: 16px;
+    margin-bottom: 17px;
 }
 .perexod-section p {
     color: rgb(230 230 230);
-    font-size: 13px;
-    margin-top: -15px;
+    font-size: 12px;
+    margin-top: -17px;
 }
 
 .perexod-button {
@@ -853,18 +852,18 @@ body {
 
 /* Псевдоэлемент для размытого фона */
 .pod-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: -105px;
-  bottom: 0;
-  background-image: url(image/tglogo.png);
-  background-size: 70%; /* Уменьшаем размер изображения */
-  background-position: right center; /* Позиционируем изображение справа по центру */
-  background-repeat: no-repeat;
-  z-index: -1; /* Убедимся, что псевдоэлемент находится под содержимым */
-  border-radius: 15px;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: -19px;
+    bottom: 0;
+    background-image: url(image/tglogo.png);
+    background-size: 40%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    border-radius: 15px;
 }
 
 .pod-content {
