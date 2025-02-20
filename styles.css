@@ -771,10 +771,8 @@ body {
   display: flex;
   align-items: center;
 
-  /* Чтобы содержимое было поверх псевдоэлемента */
   z-index: 1;
 
-  /* Ограничиваем размеры блока, чтобы изображение не выходило за пределы */
   overflow: hidden; /* Скрываем всё, что выходит за границы */
 }
 
@@ -802,8 +800,9 @@ body {
 
 .perexod-section h2, .perexod-section h3 {
     color: rgb(230 230 230);
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 17px;
+    margin-top: 3px;
 }
 .perexod-section p {
     color: rgb(230 230 230);
@@ -873,7 +872,8 @@ body {
 
 .pod-section h2, .pod-section h3 {
     color: rgb(230 230 230);
-    font-size: 16px;
+    font-size: 18px;
+    margin-top: 3px;
 }
 
 .tgsub-button {
@@ -900,15 +900,18 @@ body {
 
 .info-section h2, .info-section h3 {
     color: rgb(230 230 230);
-    font-size: 16px;
+    font-size: 18px;
     text-align: left;
+    margin-top: 3px;
 }
 
 .info-section p {
-    font-size: 17px;
-    color: #747474;
-    margin-top: 30px;
-    text-align: center;
+    font-size: 15px;
+    color: rgb(230 230 230);
+    text-align: left; 
+}
+.frens-section p:last-child { 
+  margin-left: 101px;
 }
 
 .fren-btn {
