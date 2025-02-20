@@ -787,7 +787,7 @@ body {
     right: 0px;
     bottom: 0;
     background-image: url(image/zayv.gif);
-    background-size: 30%;
+    background-size: 99px;
     background-position: right center;
     background-repeat: no-repeat;
     z-index: -1;
@@ -858,7 +858,7 @@ body {
     right: -19px;
     bottom: 0;
     background-image: url(image/tglogo.png);
-    background-size: 40%;
+    background-size: 146px;
     background-position: right center;
     background-repeat: no-repeat;
     z-index: -1;
