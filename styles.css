@@ -6,7 +6,6 @@ body {
   color: #ffffff; 
   transition: all 0.3s ease-in-out;
   min-height: 100vh; 
-  display: flex; 
   flex-direction: column; 
 }
 
@@ -195,9 +194,9 @@ body {
 }
 
 .rating-info {
-    position: absolute; /* Абсолютное позиционирование внутри balance-section */
-    top: 10px; /* Отступ от верхнего края */
-    right: 10px; /* Отступ от правого края */
+    position: absolute;
+    top: 14px;
+    right: 1px;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -895,21 +894,35 @@ body {
   padding: 25px;
   background-color: rgb(30, 30, 30);
   color: #ffffff;
-  text-align: left;
   margin-bottom: 4%;
   border-radius: 15px;
 }
 
 .info-section h2, .info-section h3 {
-  color: rgb(21, 143, 44);
-  margin-bottom: 18px;
+    color: rgb(230 230 230);
+    font-size: 16px;
+    text-align: left;
 }
 
 .info-section p {
     font-size: 17px;
-    color: #ffffff;
-    text-align: left;
+    color: #747474;
+    margin-top: 30px;
+    text-align: center;
 }
+
+.fren-btn {
+  background-color: #91453fc2;
+  text-align: center;
+  color: white;
+  padding: 8px 17px;
+  border: none;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 .support-link {
   color: #1d7bbd;
   text-decoration: none;
