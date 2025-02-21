@@ -195,13 +195,13 @@ body {
 
 .rating-info {
     position: absolute;
-    top: 14px;
+    top: 8px;
     right: 1px;
     display: flex;
     align-items: center;
     gap: 5px;
     padding: 5px 10px;
-    color: #ffffff;
+    color: #e6e1e1;
 }
 
 .rating-info img {
@@ -783,7 +783,7 @@ body {
     left: 0;
     right: 0px;
     bottom: 0;
-    background-image: url(image/zayv.gif);
+    background-image: url(image/zayv.png);
     background-size: 99px;
     background-position: right center;
     background-repeat: no-repeat;
@@ -805,7 +805,7 @@ body {
 }
 .perexod-section p {
     color: rgb(230 230 230);
-    font-size: 12px;
+    font-size: 13px;
     margin-top: -17px;
 }
 
@@ -909,9 +909,7 @@ body {
     color: rgb(230 230 230);
     text-align: left; 
 }
-.frens-section p:last-child { 
-  margin-left: 101px;
-}
+
 
 .fren-btn {
   background-color: #91453fc2;
