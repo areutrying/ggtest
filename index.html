@@ -11,20 +11,21 @@
 <body>
 
   <!-- Нижнее меню с эмодзи -->
-  <div class="bottom-nav" style="z-index: 1000;">
-    <button class="nav-btn" onclick="showPage('home')">
-      <img src="image/home.png" alt="Главная" class="nav-icon"> Главная
-    </button>
-    <button class="nav-btn" onclick="showPage('orders')">
-      <img src="image/Zayavki.png" alt="Заявки" class="nav-icon"> Заявки
-    </button>
-    <button class="nav-btn" onclick="showPage('chat')">
-      <img src="image/chat.png" alt="Чат" class="nav-icon"> Чат
-    </button>
-    <button class="nav-btn" onclick="showPage('profile')">
-      <img src="image/profil.png" alt="Профиль" class="nav-icon profil-icon"> Профиль
-    </button>
-  </div>
+<div class="bottom-nav" style="z-index: 1000;">
+  <button class="nav-btn" onclick="window.location.href='index.html'">
+    <img src="image/home.png" alt="Главная"  class="nav-icon"> Главная
+  </button>
+  <button class="nav-btn" onclick="window.location.href='zayv.html'">
+    <img src="image/Zayavki.png" alt="Заявки" class="nav-icon"> Заявки
+  </button>
+  <button class="nav-btn" onclick="window.location.href='chat.html'">
+    <img src="image/chat.png" alt="Чат" class="nav-icon"> Чат
+  </button>
+  <button class="nav-btn" onclick="window.location.href='prof.html'">
+    <img src="image/profil.png" alt="Профиль" class="nav-icon profil-icon"> Профиль
+  </button>
+</div>
+
 
 
   <!-- Всплывающее меню для закрепления заявки -->
@@ -179,23 +180,6 @@
       <p id="no-orders-message">У вас нет заявок</p> <!-- Сообщение при отсутствии заявок -->
     </div>
 
-    <!-- Страница Чат -->
-    <div id="chat" class="page">
-      <h1>💬 Чат</h1>
-      <p>Здесь будет ваш чат с другими пользователями.</p>
-    </div>
-
-<div id="profile" class="page">
-  <h1>👤 Профиль</h1>
-
-  <!-- Контейнер для аватарки -->
-  <div id="avatar-container">
-    <img id="user-avatar" src="image/icon.png" alt="User Avatar">
-  </div>
-  <p>Telegram: <span id="user-name">Загрузка...</span></p>
-  <p>Номер телефона: <span id="user-phone">Загрузка...</span></p>
-  <button id="change-phone-btn" class="btn-small">Изменить номер</button>
-</div>
 <!-- Полноэкранное меню подписки -->
 <div id="subscription-menu" class="fullscreen-menu hidden">
   <div class="menu-content">
