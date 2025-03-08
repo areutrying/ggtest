@@ -28,14 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-      // Обработчик события для кнопки история
-    const histBtn = document.getElementById('history-btn');
-    if (histBtn) {
-        histBtn.addEventListener('click', () => {
-            window.open('hist.html', '_blank');
-        });
-    }
-
 
     // Обработчик события для кнопки поддержки
     const supportBtn = document.getElementById('support-btn');
