@@ -665,6 +665,14 @@ body {
     margin: 0px 20.7px; /* Пропорционально уменьшено */
 }
 
+.nav-icon {
+    filter: brightness(0) invert(1);
+    width: 21.6px; /* Уменьшено на 10% */
+    height: 21.6px; /* Уменьшено на 10% */
+    vertical-align: middle;
+    margin-right: 0px;
+    margin: 0px 20.7px; /* Пропорционально уменьшено */
+}
 
 .nav-icon.profil-icon {
     width: 27px; /* Уменьшено на 10% */
@@ -714,48 +722,6 @@ body {
 .hidden {
   display: none;
 }
-/* Анимации для страниц */
-@keyframes fadeInPage {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOutPage {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-/* Анимации для других элементов */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 
 
 .perexod-section {
@@ -935,23 +901,6 @@ body {
   color: #86C232;
 }
 
-/* Контейнер для аватара */
-#avatar-container {
-  width: 150px;
-  height: 150px;
-  border-radius: 15px; /* Закругленные края */
-  overflow: hidden;
-  margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Легкая тень */
-}
-
-/* Стили для изображения аватара */
-#user-avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 15px; /* Закругленные края изображения */
-}
 
 
 /* Пример изменения цвета кнопки при активации */
@@ -984,73 +933,6 @@ body {
   transition: opacity 0.5s ease-out;
 }
 
-/* Стили для кнопки "Закрепить" */
-.pin-btn {
-  background-color: rgb(247 0 0 / 0%);
-  border: 2px solid #61892F;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.pin-btn:hover {
-  background-color: #86C232;
-}
-
-/* Стили для списка подсказок городов */
-#city-suggestions {
-  list-style: none;
-  padding: 0;
-  margin: 5px 0 0 0;
-  position: absolute;
-  background-color: #61892f;
-  color: #ffffff;
-  border-radius: 8px;
-  z-index: 100;
-  max-height: 150px;
-  overflow-y: auto;
-}
-
-#city-suggestions li {
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#city-suggestions li:hover {
-  background-color: #333537;
-}
-
-/* Всплывающее меню закрепления заявки */
-#pin-menu {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) d(0.8); /* Начальная трансформация */
-  background-color: #2b2e33; /* Темный фон */
-  color: #ffffff;
-  padding: 20px;
-  width: 90%;
-  max-width: 300px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Глубокая тень */
-  text-align: center;
-  font-size: 1.1em;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease, transform 0.4s ease; /* Плавное появление */
-}
-
-/* Стили для текста и кнопок */
-#pin-menu p {
-  margin-bottom: 20px;
-  font-size: 1.2em;
-  color: #ffffff;
-}
 
 /* Кнопки подтверждения и отмены в всплывающем меню */
 #pin-menu .btn {
@@ -1276,70 +1158,4 @@ body {
 
 #cancel-subscription-confirm-btn:hover {
   background-color: #cc0000; /* Темнее красный при наведении */
-}
-/* Update menu-content to match the style of create-order-form */
-#top-up-menu .menu-content {
-  text-align: left;
-  padding: 25px;
-  background-color: #262a2f;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(134, 194, 50, 0.3); /* Matching green glow */
-  max-width: 90%;
-  width: 320px;
-}
-
-/* Heading style */
-#top-up-menu h2 {
-  font-size: 1.8em;
-  color: #ffffff;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Label style */
-#top-up-menu label {
-  color: #86C232; /* Bright green */
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
-}
-
-/* Input style */
-#top-up-amount {
-  width: 185px;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  background-color: #333537; /* Dark gray background */
-  color: #ffffff;
-  font-size: 1em;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-/* Button styles */
-#top-up-confirm-btn, #top-up-cancel-btn {
-  width: 114px;
-  padding: 10px;
-  font-size: 1.1em;
-  background-color: #61892F;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 10px 1%;
-  text-align: center;
-}
-
-#top-up-confirm-btn:hover {
-  background-color: #86C232; /* Bright green on hover */
-}
-
-#top-up-cancel-btn {
-  background-color: #b7381e; /* Dark red for cancel button */
-}
-
-#top-up-cancel-btn:hover {
-  background-color: #ff4d4d; /* Bright red on hover */
 }
