@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о подписке</title>
+    <style>
+        body {
+            margin: 24px 0px;
+            font-family: 'Poppins', sans-serif;
+            background: rgb(18, 18, 20);
+            color: #ffffff;
+            transition: all 0.3s ease-in-out;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .container {
+            max-width: 342px;
+            width: 84%;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: rgb(30, 30, 30);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 12px;
+        }
+        h2 {
+            margin: 10px 0;
+            font-size: 22px;
+        }
+        .price {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #86C232;
+        }
+        .benefits {
+            list-style: none;
+            padding: 0;
+        }
+        .benefits li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">❮ Назад</a>
+    
+    <div class="container">
+        <img src="image/S1.png" alt="Заказчик+" class="icon">
+        <h2>Заказчик+</h2>
+        <p class="price">1 месяц - 600 рублей</p>
+        <p class="price">3 месяца - 1600 рублей</p>
+        <p class="price">6 месяцев - 3000 рублей</p>
+        <ul class="benefits">
+            <li>💼 Неограниченное количество заявок</li>
+            <li>📌 Бесплатное закрепление заявок</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <img src="image/S2.png" alt="Грузчик+" class="icon">
+        <h2>Грузчик+</h2>
+        <p class="price">1 месяц - 150 рублей</p>
+        <p class="price">3 месяца - 350 рублей</p>
+        <p class="price">6 месяцев - 600 рублей</p>
+        <ul class="benefits">
+            <li>⭐ Высокий приоритет на заявку</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Размещение заявок</h2>
+        <p class="price">Обычное размещение - 200 рублей</p>
+        <p class="price">Закрепление заявки - 250 рублей</p>
+        <p>Закреплённые заявки получают больше просмотров и быстрее находят исполнителей! 🚀</p>
+    </div>
+</body>
+</html>
