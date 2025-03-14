@@ -196,12 +196,14 @@ body {
 .rating-info {
     position: absolute;
     top: 8px;
-    right: 1px;
+    right: 11px;
     display: flex;
     align-items: center;
     gap: 5px;
     padding: 5px 10px;
     color: #e6e1e1;
+    background-color: #5e1d1d;
+    border-radius: 31px;
 }
 
 .rating-info img {
