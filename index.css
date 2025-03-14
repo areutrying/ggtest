@@ -832,10 +832,11 @@ body {
 }
 
 .horizontal-scroll {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth; /* Плавная прокрутка */
-  padding: 20px;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-left: 20px;
+    padding-bottom: 7px;
 }
 
 .horizontal-scroll::-webkit-scrollbar {
@@ -871,7 +872,7 @@ body {
 /* Стили для кнопок прокрутки */
 .scroll-button {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   background-color: rgb(0 0 0);
   color: white;
