@@ -598,13 +598,9 @@ body {
 
 /* Стили для заголовка "Мои заявки" */
 .my-orders-title {
-  font-size: 1.5em;
-  color: #ffffff;
-  margin-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-  display: inline-block;
-  width: 100%;
+    font-size: 2em;
+    margin-bottom: -5px;
+    text-align: center;
 }
 
 /*  Чат */
@@ -1075,143 +1071,6 @@ body {
 
 #pin-cancel-btn:hover {
   background-color: #ff4d4d; /* Ярко-красный при наведении */
-}
-
-@keyframes moveDownLeft {
-  from {
-    transform: translate(1px, 6px);
-  }
-  to {
-    transform: translate(1px, 6px); /* Измените значения на нужные вам */
-  }
-}
-
-/* Стили для полноэкранного меню подписки */
-.fullscreen-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(34, 38, 41, 0.95);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s;
-}
-
-.fullscreen-menu.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.menu-content {
-  text-align: center;
-  padding: 30px;
-  background-color: #232323;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  max-width: 90%;
-  width: 320px;
-}
-
-.menu-content h2 {
-  font-size: 1.8em;
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-
-.menu-content label {
-  display: block;
-  font-size: 1.1em;
-  color: #86C232;
-  margin-top: 15px;
-  margin-bottom: 5px;
-}
-
-.menu-content select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background-color: #333537;
-  color: #ffffff;
-  font-size: 1em;
-  margin-bottom: 20px;
-}
-
-#subscription-price {
-  font-size: 1.2em;
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-
-#subscribe-confirm-btn,
-#subscribe-cancel-btn {
-  display: inline-block;
-  padding: 12px 20px;
-  background-color: #61892F;
-  border: none;
-  color: #ffffff;
-  border-radius: 8px;
-  margin: 5px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#subscribe-confirm-btn:hover {
-  background-color: #86C232;
-}
-
-#subscribe-cancel-btn {
-  background-color: #b7381e;
-}
-
-#subscribe-cancel-btn:hover {
-  background-color: #ff4d4d;
-}
-
-.subscription-description {
-      padding: 7px;
-    background-color: #262a2f;
-    border-radius: 12px;
-    box-shadow: inset 0px 0px 12px rgb(93 93 93 / 76%);
-    margin-top: 15px;
-}
-
-.subscription-info {
-    position: relative;
-    background: linear-gradient(to right, #307834, #4b2a2a, #002e5d);
-    background-size: 300% 100%; /* Увеличиваем размер градиента для эффекта */
-    border-radius: 9px;
-    text-align: center;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 14px;
-    animation: gradientFlow 3s cubic-bezier(0.27, 0.02, 0.76, 1.01) infinite;
-}
-
-/* Анимация переливающегося градиента */
-@keyframes gradientFlow {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.subscription-item {
-    padding: 5px 10px;
-    display: inline-block;
 }
 
 
