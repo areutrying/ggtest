@@ -835,7 +835,7 @@ body {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth; /* Плавная прокрутка */
-  padding-bottom: 10px;
+  padding: 20px;
 }
 
 .horizontal-scroll::-webkit-scrollbar {
