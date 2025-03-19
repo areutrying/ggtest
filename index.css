@@ -200,7 +200,7 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    padding: 5px 10px;
+    padding: 3px 10px;
     color: #e6e1e1;
     background-color: #121212;
     border-radius: 31px;
@@ -857,7 +857,7 @@ body {
 }
 
 .card img {
-  width: 100%;
+  width: 99%;
   border-radius: 12px;
   margin-bottom: -7px;
 }
