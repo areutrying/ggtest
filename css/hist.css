@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+body {
+  margin: 0px 0px;
+  font-family: 'Poppins', sans-serif;
+  background: rgb(18, 18, 20);
+  color: #ffffff; 
+  transition: all 0.3s ease-in-out;
+  min-height: 100vh; 
+  flex-direction: column; 
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+.container {
+  max-width: 500px;
+  text-align: center;
+  margin: 20px auto;
+  padding-bottom: 70px;
+}
+
+/*  Чат */
+#hist {
+    color: #ffffff;
+    text-align: center;
+    height: 654px;
+    border-radius: 0px 0px 15px 15px;
+    max-width: 400px; /* Добавлено ограничение ширины */
+    margin: 0 auto; /* Центрирование блока */
+    position: relative; /*  Для позиционирования кнопки "назад" */
+}
+
+#hist h1 {
+  color: #ffffff;
+    font-size: 25px;
+}
+
+#hist p {
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+    #hist .history-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%; /* Adjust as needed */
+      max-width: 300px; /* Limit the maximum width */
+      height: auto; /* Maintain aspect ratio */
+      opacity: 0.1; /* 30% dimming */
+      object-fit: contain; /* Prevents image from stretching */
+      pointer-events: none; /* Allows clicking through the image */
+      z-index: 0; /* Place image behind text */
+    }
+
+
+.nav-btn {
+  background-color: transparent;
+  border: none;
+  color: #f0f0f0;
+  font-size: 27px;
+  transition: transform 0.3s ease, color 0.3s ease-in-out;
+  display: inline-grid;
+  align-content: space-around;
+  position: absolute; /* Абсолютное позиционирование */
+  top: 4px;
+  left: 21px;
+  text-decoration: none; /* Убирает подчеркивание у ссылки */
+}
+
+.nav-btn:hover {
+  color: #86C232;
+}
