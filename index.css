@@ -8,6 +8,11 @@ body {
   min-height: 100vh; 
   flex-direction: column; 
 }
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
 
 /* Стили для модального окна */
 .modal {
