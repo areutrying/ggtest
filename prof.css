@@ -10,6 +10,12 @@ body {
   text-align: center;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
 .container {
   max-width: 500px;
   text-align: center;
