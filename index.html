@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вывод средств</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        
+        :root {
+            --primary-color: #86C232;
+            --background-dark: #121214;
+            --card-bg: #1e1e20;
+            --input-bg: #262629;
+            --text-light: #f0f0f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 20px 15px 70px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .username {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .balance {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .withdraw-form {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            background: var(--input-bg);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--primary-color);
+        }
+        
+        .method-switch {
+            display: flex;
+            margin-bottom: 20px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .method-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .method-btn.active {
+            background: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: #75a82b;
+        }
+        
+        .submit-btn:disabled {
+            background: #4d5e30;
+            cursor: not-allowed;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #262a2f;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .notification.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .notification.success {
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .notification.error {
+            border-left: 4px solid #e53935;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background: rgba(23, 23, 25, 0.9);
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .nav-btn.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+            filter: invert(0.8);
+        }
+        
+        .nav-btn.active .nav-icon {
+            filter: invert(67%) sepia(50%) saturate(500%) hue-rotate(38deg) brightness(90%);
+        }
+        
+        .banks-logos {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .bank-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            transition: filter 0.3s;
+        }
+        
+        .bank-logo:hover {
+            filter: grayscale(0) brightness(100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img id="user-avatar" src="" alt="Avatar" class="avatar">
+            <div class="user-info">
+                <div class="username" id="username"></div>
+                <div class="balance">Баланс: <span id="balance">0</span> ₽</div>
+            </div>
+        </div>
+        
+        <div class="withdraw-form">
+            <h2 class="section-title">Вывод средств</h2>
+            
+            <div class="method-switch">
+                <button class="method-btn active" data-method="sbp">СБП</button>
+                <button class="method-btn" data-method="card">Карта</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="amount">Сумма вывода (₽)</label>
+                <input type="number" id="amount" placeholder="Введите сумму" min="1">
+            </div>
+            
+            <div id="sbp-fields">
+                <div class="form-group">
+                    <label for="phone">Номер телефона</label>
+                    <input type="tel" id="phone" placeholder="+7 (999) 999-99-99">
+                </div>
+                
+                <div class="form-group">
+                    <label for="bank">Банк</label>
+                    <select id="bank">
+                        <option value="" disabled selected>Выберите банк</option>
+                        <option value="sber">Сбербанк</option>
+                        <option value="tinkoff">Т банк</option>
+                        <option value="vtb">ВТБ</option>
+                        <option value="alfa">Альфа-Банк</option>
+                        <option value="gazprom">Газпромбанк</option>
+                        <option value="other">Другой банк</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="card-fields" style="display: none;">
+                <div class="form-group">
+                    <label for="card-number">Номер карты</label>
+                    <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="comment">Комментарий (необязательно)</label>
+                <textarea id="comment" rows="2" placeholder="Ваш комментарий"></textarea>
+            </div>
+            
+            <div class="banks-logos">
+                <img src="sber.png" class="bank-logo" alt="Сбербанк">
+                <img src="Tbank.png" class="bank-logo" alt="ТБанк">
+                <img src="Vtb.png" class="bank-logo" alt="ВТБ">
+                <img src="Alfa.png" class="bank-logo" alt="Альфа-Банк">
+            </div>
+            
+            <button id="submit-btn" class="submit-btn" disabled>Вывести средства</button>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification"></div>
+    
+    <div class="bottom-nav">
+        <button class="nav-btn active">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+            </svg>
+            Баланс
+        </button>
+        <button class="nav-btn">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+                <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5v-3h3.56c.69 1.19 1.97 2 3.45 2s2.75-.81 3.45-2H19v3zm0-5h-4.99c0 1.1-.9 2-2 2s-2-.9-2-2H5V5h14v9z"/>
+            </svg>
+            История
+        </button>
+    </div>
+
+    <script>
+        // Инициализация Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        
+        // Получение данных пользователя
+        const user = tg.initDataUnsafe.user;
+        let balance = 5000; // Пример баланса
+        
+        // Элементы DOM
+        const userAvatar = document.getElementById('user-avatar');
+        const usernameEl = document.getElementById('username');
+        const balanceEl = document.getElementById('balance');
+        const amountInput = document.getElementById('amount');
+        const phoneInput = document.getElementById('phone');
+        const bankSelect = document.getElementById('bank');
+        const cardNumberInput = document.getElementById('card-number');
+        const commentInput = document.getElementById('comment');
+        const submitBtn = document.getElementById('submit-btn');
+        const notification = document.getElementById('notification');
+        const methodBtns = document.querySelectorAll('.method-btn');
+        const sbpFields = document.getElementById('sbp-fields');
+        const cardFields = document.getElementById('card-fields');
+        
+        // Установка данных пользователя
+        if (user) {
+            userAvatar.src = user.photo_url || 'https://via.placeholder.com/60';
+            usernameEl.textContent = user.first_name || 'Пользователь';
+            balanceEl.textContent = balance.toLocaleString('ru-RU');
+        }
+        
+        // Обработчики событий
+        methodBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                methodBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                if (btn.dataset.method === 'sbp') {
+                    sbpFields.style.display = 'block';
+                    cardFields.style.display = 'none';
+                } else {
+                    sbpFields.style.display = 'none';
+                    cardFields.style.display = 'block';
+                }
+            });
+        });
+        
+        amountInput.addEventListener('input', validateForm);
+        phoneInput.addEventListener('input', validateForm);
+        bankSelect.addEventListener('change', validateForm);
+        cardNumberInput.addEventListener('input', validateForm);
+        
+        submitBtn.addEventListener('click', submitWithdrawal);
+        
+        // Валидация формы
+        function validateForm() {
+            const amount = parseFloat(amountInput.value);
+            const phone = phoneInput.value.trim();
+            const bank = bankSelect.value;
+            const cardNumber = cardNumberInput.value.trim().replace(/\s/g, '');
+            const method = document.querySelector('.method-btn.active').dataset.method;
+            
+            let isValid = true;
+            
+            // Проверка суммы
+            if (isNaN(amount) || amount <= 0 || amount > balance) {
+                isValid = false;
+            }
+            
+            // Проверка метода
+            if (method === 'sbp') {
+                if (phone.length < 11 || !phone.startsWith('+7')) {
+                    isValid = false;
+                }
+                if (!bank) {
+                    isValid = false;
+                }
+            } else {
+                if (cardNumber.length < 16 || isNaN(cardNumber)) {
+                    isValid = false;
+                }
+            }
+            
+            submitBtn.disabled = !isValid;
+        }
+        
+        // Отправка заявки
+        function submitWithdrawal() {
+            const amount = parseFloat(amountInput.value);
+            const method = document.querySelector('.method-btn.active').dataset.method;
+            const phone = phoneInput.value.trim();
+            const bank = bankSelect.options[bankSelect.selectedIndex].text;
+            const cardNumber = cardNumberInput.value.trim();
+            const comment = commentInput.value.trim() || 'Без комментария';
+            
+            // Формирование данных для отправки
+            const withdrawalData = {
+                user_id: user ? user.id : 'unknown',
+                username: user ? `${user.first_name} ${user.last_name || ''}` : 'Неизвестный',
+                amount: amount,
+                method: method === 'sbp' ? 'СБП' : 'Банковская карта',
+                details: method === 'sbp' ? 
+                    `Телефон: ${phone}, Банк: ${bank}` : 
+                    `Карта: ${cardNumber}`,
+                comment: comment,
+                balance: balance,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Отправка на почту (эмуляция)
+            sendWithdrawalEmail(withdrawalData);
+            
+            // Обновление баланса
+            balance -= amount;
+            balanceEl.textContent = balance.toLocaleString('ru-RU');
+            
+            // Показ уведомления
+            showNotification('Заявка успешно отправлена!', 'success');
+            
+            // Очистка формы
+            amountInput.value = '';
+            phoneInput.value = '';
+            bankSelect.selectedIndex = 0;
+            cardNumberInput.value = '';
+            commentInput.value = '';
+            submitBtn.disabled = true;
+        }
+        
+        // Отправка email (эмуляция)
+        function sendWithdrawalEmail(data) {
+            // В реальном приложении здесь будет вызов API для отправки email
+            console.log('Отправка заявки на вывод:', data);
+            
+            const emailContent = `
+                Новая заявка на вывод средств:
+                
+                Пользователь: ${data.username} (ID: ${data.user_id})
+                Сумма: ${data.amount} ₽
+                Способ вывода: ${data.method}
+                Данные: ${data.details}
+                Комментарий: ${data.comment}
+                Баланс до вывода: ${data.balance} ₽
+                Время: ${new Date(data.timestamp).toLocaleString('ru-RU')}
+            `;
+            
+            // В реальном приложении нужно использовать EmailJS или другой сервис
+            // Здесь просто логируем для демонстрации
+            console.log('Email отправлен на citer3840@gmail.com\n\n' + emailContent);
+        }
+        
+        // Показ уведомления
+        function showNotification(message, type = 'success') {
+            notification.textContent = message;
+            notification.className = 'notification ' + type;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Маска для номера телефона
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 0) {
+                value = '+7' + value.substring(1);
+            }
+            
+            if (value.length > 4) {
+                value = value.substring(0, 2) + ' (' + value.substring(2, 5) + ') ' + value.substring(5);
+            }
+            if (value.length > 9) {
+                value = value.substring(0, 9) + '-' + value.substring(9, 12);
+            }
+            if (value.length > 12) {
+                value = value.substring(0, 12) + '-' + value.substring(12, 14);
+            }
+            if (value.length > 15) {
+                value = value.substring(0, 15);
+            }
+            
+            e.target.value = value;
+        });
+        
+        // Маска для номера карты
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            let formattedValue = '';
+            
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            
+            e.target.value = formattedValue.substring(0, 19);
+        });
+    </script>
+</body>
+</html>
