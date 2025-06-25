@@ -14,6 +14,7 @@
             --card-bg: #1e1e20;
             --input-bg: #262629;
             --text-light: #f0f0f0;
+            --error-color: #e53935;
         }
         
         * {
@@ -90,6 +91,7 @@
         
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
         
         label {
@@ -190,7 +192,7 @@
         }
         
         .notification.error {
-            border-left: 4px solid #e53935;
+            border-left: 4px solid var(--error-color);
         }
         
         .bottom-nav {
@@ -251,6 +253,35 @@
         .bank-logo:hover {
             filter: grayscale(0) brightness(100%);
         }
+        
+        .amount-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .fee-info, .total-info {
+            opacity: 0.8;
+        }
+        
+        .error-message {
+            color: var(--error-color);
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        /* Исправление для полей ввода */
+        input, textarea {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        #phone, #card-number {
+            padding-right: 40px;
+        }
     </style>
 </head>
 <body>
@@ -274,12 +305,19 @@
             <div class="form-group">
                 <label for="amount">Сумма вывода (₽)</label>
                 <input type="number" id="amount" placeholder="Введите сумму" min="1">
+                <div class="error-message" id="amount-error">Минимальная сумма вывода: 300 ₽</div>
+                
+                <div class="amount-info">
+                    <div class="fee-info">Комиссия 4%: <span id="fee-amount">0</span> ₽</div>
+                    <div class="total-info">К получению: <span id="total-amount">0</span> ₽</div>
+                </div>
             </div>
             
             <div id="sbp-fields">
                 <div class="form-group">
                     <label for="phone">Номер телефона</label>
                     <input type="tel" id="phone" placeholder="+7 (999) 999-99-99">
+                    <div class="error-message" id="phone-error">Введите корректный номер телефона</div>
                 </div>
                 
                 <div class="form-group">
@@ -293,6 +331,7 @@
                         <option value="gazprom">Газпромбанк</option>
                         <option value="other">Другой банк</option>
                     </select>
+                    <div class="error-message" id="bank-error">Выберите банк</div>
                 </div>
             </div>
             
@@ -300,6 +339,7 @@
                 <div class="form-group">
                     <label for="card-number">Номер карты</label>
                     <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
+                    <div class="error-message" id="card-error">Введите корректный номер карты</div>
                 </div>
             </div>
             
@@ -309,10 +349,10 @@
             </div>
             
             <div class="banks-logos">
-                <img src="Sber.png" class="bank-logo" alt="Сбербанк">
-                <img src="Tbank.png" class="bank-logo" alt="ТБанк">
-                <img src="Vtb.png" class="bank-logo" alt="ВТБ">
-                <img src="Alfa.png" class="bank-logo" alt="Альфа-Банк">
+                <img src="img/Sber.png" class="bank-logo" alt="Сбербанк">
+                <img src="img/Tbank.png" class="bank-logo" alt="ТБанк">
+                <img src="img/Vtb.png" class="bank-logo" alt="ВТБ">
+                <img src="img/Alfa.png" class="bank-logo" alt="Альфа-Банк">
             </div>
             
             <button id="submit-btn" class="submit-btn" disabled>Вывести средства</button>
@@ -343,7 +383,9 @@
         
         // Получение данных пользователя
         const user = tg.initDataUnsafe.user;
-        let balance = 5000; // Пример баланса
+        let balance = 0; // Пример баланса
+        const MIN_WITHDRAWAL = 300; // Минимальная сумма вывода
+        const FEE_PERCENT = 4; // Комиссия
         
         // Элементы DOM
         const userAvatar = document.getElementById('user-avatar');
@@ -359,6 +401,14 @@
         const methodBtns = document.querySelectorAll('.method-btn');
         const sbpFields = document.getElementById('sbp-fields');
         const cardFields = document.getElementById('card-fields');
+        const feeAmountEl = document.getElementById('fee-amount');
+        const totalAmountEl = document.getElementById('total-amount');
+        
+        // Элементы ошибок
+        const amountError = document.getElementById('amount-error');
+        const phoneError = document.getElementById('phone-error');
+        const bankError = document.getElementById('bank-error');
+        const cardError = document.getElementById('card-error');
         
         // Установка данных пользователя
         if (user) {
@@ -380,15 +430,47 @@
                     sbpFields.style.display = 'none';
                     cardFields.style.display = 'block';
                 }
+                validateForm();
             });
         });
         
-        amountInput.addEventListener('input', validateForm);
-        phoneInput.addEventListener('input', validateForm);
-        bankSelect.addEventListener('change', validateForm);
-        cardNumberInput.addEventListener('input', validateForm);
+        amountInput.addEventListener('input', function() {
+            calculateFeeAndTotal();
+            validateForm();
+        });
+        
+        phoneInput.addEventListener('input', function() {
+            validateForm();
+            hideError(phoneError);
+        });
+        
+        bankSelect.addEventListener('change', function() {
+            validateForm();
+            hideError(bankError);
+        });
+        
+        cardNumberInput.addEventListener('input', function() {
+            validateForm();
+            hideError(cardError);
+        });
         
         submitBtn.addEventListener('click', submitWithdrawal);
+        
+        // Расчет комиссии и итоговой суммы
+        function calculateFeeAndTotal() {
+            const amount = parseFloat(amountInput.value) || 0;
+            
+            if (amount >= MIN_WITHDRAWAL) {
+                const fee = Math.max(1, Math.round(amount * FEE_PERCENT / 100));
+                const total = amount - fee;
+                
+                feeAmountEl.textContent = fee.toLocaleString('ru-RU');
+                totalAmountEl.textContent = total.toLocaleString('ru-RU');
+            } else {
+                feeAmountEl.textContent = '0';
+                totalAmountEl.textContent = '0';
+            }
+        }
         
         // Валидация формы
         function validateForm() {
@@ -401,41 +483,67 @@
             let isValid = true;
             
             // Проверка суммы
-            if (isNaN(amount) || amount <= 0 || amount > balance) {
+            if (isNaN(amount)) {
+                showError(amountError, 'Введите сумму');
                 isValid = false;
+            } else if (amount < MIN_WITHDRAWAL) {
+                showError(amountError, `Минимальная сумма: ${MIN_WITHDRAWAL} ₽`);
+                isValid = false;
+            } else if (amount > balance) {
+                showError(amountError, `Недостаточно средств. Максимум: ${balance.toLocaleString('ru-RU')} ₽`);
+                isValid = false;
+            } else {
+                hideError(amountError);
             }
             
             // Проверка метода
             if (method === 'sbp') {
                 if (phone.length < 11 || !phone.startsWith('+7')) {
+                    showError(phoneError, 'Введите корректный номер телефона');
                     isValid = false;
+                } else {
+                    hideError(phoneError);
                 }
+                
                 if (!bank) {
+                    showError(bankError, 'Выберите банк');
                     isValid = false;
+                } else {
+                    hideError(bankError);
                 }
             } else {
                 if (cardNumber.length < 16 || isNaN(cardNumber)) {
+                    showError(cardError, 'Введите корректный номер карты');
                     isValid = false;
+                } else {
+                    hideError(cardError);
                 }
             }
             
             submitBtn.disabled = !isValid;
+            return isValid;
         }
         
         // Отправка заявки
         function submitWithdrawal() {
+            if (!validateForm()) return;
+            
             const amount = parseFloat(amountInput.value);
             const method = document.querySelector('.method-btn.active').dataset.method;
             const phone = phoneInput.value.trim();
             const bank = bankSelect.options[bankSelect.selectedIndex].text;
             const cardNumber = cardNumberInput.value.trim();
             const comment = commentInput.value.trim() || 'Без комментария';
+            const fee = Math.round(amount * FEE_PERCENT / 100);
+            const total = amount - fee;
             
             // Формирование данных для отправки
             const withdrawalData = {
                 user_id: user ? user.id : 'unknown',
                 username: user ? `${user.first_name} ${user.last_name || ''}` : 'Неизвестный',
                 amount: amount,
+                fee: fee,
+                total: total,
                 method: method === 'sbp' ? 'СБП' : 'Банковская карта',
                 details: method === 'sbp' ? 
                     `Телефон: ${phone}, Банк: ${bank}` : 
@@ -462,6 +570,8 @@
             cardNumberInput.value = '';
             commentInput.value = '';
             submitBtn.disabled = true;
+            feeAmountEl.textContent = '0';
+            totalAmountEl.textContent = '0';
         }
         
         // Отправка email (эмуляция)
@@ -474,6 +584,8 @@
                 
                 Пользователь: ${data.username} (ID: ${data.user_id})
                 Сумма: ${data.amount} ₽
+                Комиссия: ${data.fee} ₽ (1%)
+                Итого к выплате: ${data.total} ₽
                 Способ вывода: ${data.method}
                 Данные: ${data.details}
                 Комментарий: ${data.comment}
@@ -497,7 +609,18 @@
             }, 3000);
         }
         
-        // Маска для номера телефона
+        // Показать сообщение об ошибке
+        function showError(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+        
+        // Скрыть сообщение об ошибке
+        function hideError(element) {
+            element.style.display = 'none';
+        }
+        
+        // Маска для номера телефона (исправленная)
         phoneInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             
@@ -505,20 +628,25 @@
                 value = '+7' + value.substring(1);
             }
             
-            if (value.length > 4) {
-                value = value.substring(0, 2) + ' (' + value.substring(2, 5) + ') ' + value.substring(5);
-            }
-            if (value.length > 9) {
-                value = value.substring(0, 9) + '-' + value.substring(9, 12);
-            }
-            if (value.length > 12) {
-                value = value.substring(0, 12) + '-' + value.substring(12, 14);
-            }
-            if (value.length > 15) {
-                value = value.substring(0, 15);
+            let formattedValue = '+7';
+            
+            if (value.length > 1) {
+                formattedValue = value.substring(0, 2);
+                if (value.length > 2) {
+                    formattedValue += ' (' + value.substring(2, 5);
+                }
+                if (value.length > 5) {
+                    formattedValue += ') ' + value.substring(5, 8);
+                }
+                if (value.length > 8) {
+                    formattedValue += '-' + value.substring(8, 10);
+                }
+                if (value.length > 10) {
+                    formattedValue += '-' + value.substring(10, 12);
+                }
             }
             
-            e.target.value = value;
+            e.target.value = formattedValue;
         });
         
         // Маска для номера карты
